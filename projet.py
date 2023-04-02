@@ -1,5 +1,8 @@
 from tkinter import *
 from PIL import ImageTk, Image
+import subprocess
+def signup_button():
+    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
 
 # Create an instance of tkinter window
 window = Tk()
@@ -43,7 +46,7 @@ passwordfield.place(x=280,y=300)
 signIN=Button(window,text=("sign in"))
 signIN.place(x=290,y=450)
 
-signUp=Button(window,text=("sign up"))
+signUp=Button(window,text=("sign up"),command=signup_button)
 signUp.place(x=350,y=450)
 
 

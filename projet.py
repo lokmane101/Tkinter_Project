@@ -19,10 +19,20 @@ img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_projec
 # Create a Label Widget to display the text or Image
 label = Label(frame, image = img)
 label.pack()
-################################################################################################################
+
+#----------------------------------------------import icons---------------------------------------------------#
+
+email_icon=PhotoImage(file="C:\\Users\\lokmane\\Desktop\\Tkinter_project\\email_icon.png")
+person_icon=PhotoImage(file="C:\\Users\\lokmane\\Desktop\\Tkinter_project\\person_icon.png")
+phone_icon=PhotoImage(file="C:\\Users\\lokmane\\Desktop\\Tkinter_project\\phone_icon.png")
+lock_icon=PhotoImage(file="C:\\Users\\lokmane\\Desktop\\Tkinter_project\\lock_icon.png")
+
+#--------------------------------------------------------------------------------------------------------------#
 # creating a leave button and changing its style                                                               #
 # activebackground is color when to kpress on button ############ activeforegroud is color of text when press  #
 # bg is color of background ##################################### fg is color of font                          #
+#--------------------------------------------------------------------------------------------------------------#
+
 leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
 leavebutton.place(x=600, y=450)
 

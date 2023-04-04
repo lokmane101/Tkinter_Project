@@ -34,23 +34,18 @@ def pass_to_account():
 # Create an instance of tkinter window----------------------------
 window = Tk()
 
-# Define the geometry of the window-------------------------------
+# Define the geometry of the window (full screen)-------------------------------
+
 window.attributes('-fullscreen',True)
-
-frame = Frame(window, width=600, height=400,relief="ridge")
-
-frame.place(anchor='center', relx=0, rely=0)
-
-# Create an object of tkinter ImageTk-----------------------------------
-img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\vecteezy_abstract-gradient-blue-and-pink-wave-background_.jpg"))
-# Create a Label Widget to display the  Image
-label = Label(window, image = img)
-label.pack()
-
-
-
-
-
+#-------------define sceen color----------------------------------------------
+window.config(bg="white")
+#-------------import picture---------------------------------------------------
+imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\school.jpg"))
+imagee=imagee.resize((600,900))
+sidepicture = ImageTk.PhotoImage(imagee)
+#----------------Create a Label Widget to display the  Image-----------------
+label = Label(window, image = sidepicture,padx=0,pady=0, relief="flat")
+label.grid(row=0,column=0)
 
 
 #--------------------------------------------------------------------------------------------------------------#
@@ -63,53 +58,48 @@ label.pack()
 
 
 #----------------------------welcome label--------------------------------------------
-welcome=Label(window,text="wolcome to your shcoolar profil manager! ",font=("Arial",62))
-welcome.place(x=0,y=0)
+welcome=Label(window,text="ESPACE     ETUDIANT ",font=("Arial",65),bg="white")
+welcome.place(x=605,y=0)
 
+#---------------------------nom label and entry field--------------------------------
+nom=Label(window,text="User Name:",font=("Arial",40),bg="white")
+nom.place(x=950,y=150)
 
-
-
-width = 20
-height = 20
-#---------------------------nom label and entry field-------------------------------
-nom=Label(window,text="nom complet:",font=("Arial",30))
-nom.place(x=550,y=200)
-
-nomfield=Entry(window,width=25,font=("Arial",20))
-nomfield.place(x=500,y=280)
+nomfield=Entry(window,width=25,font=("Arial",30),relief="flat",bg="#e1f3ff")
+nomfield.place(x=850,y=250)
 #--------------------------password label and entry field----------------------------
-password=Label(window,text="mot de passe:",font=("Arial",30))
-password.place(x=550,y=360)
+password=Label(window,text="mot de passe:",font=("Arial",40),bg="white")
+password.place(x=950,y=350)
 
-passwordfield=Entry(window,width=25,font=("Arial",20))
-passwordfield.place(x=500,y=440)
-#-------------------confirm button------------------------------
+passwordfield=Entry(window,width=25,font=("Arial",30),relief="flat",bg="#e1f3ff")
+passwordfield.place(x=850,y=450)
+#-------------------confirm button---------------------------------------------------
 
-confirm_button=Button(window,text="confirm",command=pass_to_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",30),padx=0,pady=0, relief="flat")
-confirm_button.place(x=600,y=500)
+confirm_button=Button(window,text="confirm",command=pass_to_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=35)
+confirm_button.place(x=850,y=550)
 
-#-------------------------forgot password -----------------------------------------------
-
-
-forgot_password=Button(window,text=("password forgoten"),command=forgoten_password,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",14),padx=0,pady=0, relief="flat")
-forgot_password.place(x=600,y=650)
+#-------------------------forgot password -------------------------------------------
 
 
-#--------------------------sing up buttom-----------------------------
+forgot_password=Button(window,text=("password forgoten"),command=forgoten_password,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
+forgot_password.place(x=850,y=620)
 
-signUp=Button(window,text=("sign up"),command=signup_button,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",14),padx=0,pady=0, relief="flat")
-signUp.place(x=800,y=650)
 
-#--------------------------leave button-------------------------------------------
+#--------------------------sing up buttom--------------------------------------------
+
+signUp=Button(window,text=("sign up"),command=signup_button,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
+signUp.place(x=1350,y=620)
+
+#--------------------------leave button---------------------------------------------
 leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
 leavebutton.place(x=1440, y=800)
 
 
-#------------------------contact support ------------------------------------------------
+#------------------------contact support -------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
 framei.place(x=650,y=780)
 icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support.png")
-button=Button(framei,image=icon,padx=0,pady=0,relief="flat")
+button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
 button.pack()
 
 

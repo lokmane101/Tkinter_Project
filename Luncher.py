@@ -3,14 +3,14 @@ from PIL import ImageTk, Image
 import subprocess
 
 
-#---------------------------------------
+#---------------------------------------definition des commands des buttons------------------------
 
 def signup_button():
     subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
 
 def login_button():
     subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\LogIn.py"])
-#-----------------------------------
+#---------------------------------------------------------------------------------------------------
 
 
 
@@ -29,16 +29,16 @@ def login_button():
 window = Tk()
 
 # Define the geometry of the window-------------------------------
-window.geometry("1080x720")
+window.attributes('-fullscreen',True)
 
 frame = Frame(window, width=600, height=400,relief="ridge")
-frame.pack()
+
 frame.place(anchor='center', relx=0.5, rely=0.5)
 
 # Create an object of tkinter ImageTk-----------------------------------
 img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\vecteezy_abstract-gradient-blue-and-pink-wave-background_.jpg"))
-# Create a Label Widget to display the text or Image
-label = Label(frame, image = img)
+# Create a Label Widget to display the  Image
+label = Label(window, image = img)
 label.pack()
 
 
@@ -53,8 +53,7 @@ label.pack()
 # bg is color of background ##################################### fg is color of font                          #
 #--------------------------------------------------------------------------------------------------------------#
 
-leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=900, y=650)
+
 
 #----------------------------welcome label--------------------------------------------
 welcome=Label(window,text="wolcome to your shcoolar profil manager!",font=("Arial",20))
@@ -68,7 +67,16 @@ signIN.place(x=350,y=200)
 signUp=Button(window,text=("sign up"),command=signup_button,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",30),padx=0,pady=0, relief="flat")
 signUp.place(x=550,y=200)
 
+#--------------------------leave button-------------------------------------------
+leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
+leavebutton.place(x=1440, y=800)
 
+#------------------------contact support ------------------------------------------------
+framei = Frame(window, width=200, height=200,relief="ridge")
+framei.place(x=500,y=650)
+icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support.png")
+button=Button(framei,image=icon,padx=0,pady=0,relief="flat")
+button.pack()
 
 
 

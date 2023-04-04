@@ -3,11 +3,18 @@ from PIL import Image,ImageTk
 window=Tk()
 
 # Define the geometry of the window
-window.geometry("700x500")
+window.attributes('-fullscreen',True)
 
 frame = Frame(window, width=600, height=400,relief="ridge")
 frame.pack()
 frame.place(anchor='center', relx=0.5, rely=0.5)
+
+# Create an object of tkinter ImageTk-----------------------------------
+img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\vecteezy_abstract-gradient-blue-and-pink-wave-background_.jpg"))
+# Create a Label Widget to display the text or Image
+label = Label(frame, image = img)
+label.pack()
+
 
 #----------------------------------------------import icons---------------------------------------------------#
 width = 20
@@ -68,7 +75,7 @@ MotDePass_field.place(x=300,y=270)
 
 #-------------------confirm mot de passe label and entry filed-------------------------------
 
-confirm_pwd=Label(window,text="confirmer cotre mot de passe:",image=lock_icon, compound="left")
+confirm_pwd=Label(window,text="confirmer votre mot de passe:",image=lock_icon, compound="left")
 confirm_pwd.place(x=300,y=290)
 
 confirm_pwd_field=Entry(window)
@@ -92,8 +99,20 @@ confirm_button.place(x=320,y=380)
 #-------------------leave button -------------------------------
 
 leave_button=Button(window,text="leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",12),padx=0,pady=0, relief="flat")
-leave_button.place(x=600,y=450)
+leave_button.place(x=1440, y=800)
 
+
+#------------------------contact support ------------------------------------------------
+framei = Frame(window, width=200, height=200,relief="ridge")
+framei.place(x=330,y=450)
+icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support1.png")
+button=Button(framei,image=icon,padx=0,pady=0,relief="flat")
+button.pack()
+
+
+
+
+# show a message box
 
 
 

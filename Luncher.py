@@ -83,27 +83,31 @@ password.place(x=550,y=360)
 
 passwordfield=Entry(window,width=25,font=("Arial",20))
 passwordfield.place(x=500,y=440)
+#-------------------confirm button------------------------------
 
+confirm_button=Button(window,text="confirm",command=pass_to_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",30),padx=0,pady=0, relief="flat")
+confirm_button.place(x=600,y=500)
 
 #-------------------------forgot password -----------------------------------------------
 
 
 forgot_password=Button(window,text=("password forgoten"),command=forgoten_password,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",14),padx=0,pady=0, relief="flat")
-forgot_password.place(x=580,y=500)
+forgot_password.place(x=600,y=650)
 
 
 #--------------------------sing up buttom-----------------------------
 
 signUp=Button(window,text=("sign up"),command=signup_button,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",14),padx=0,pady=0, relief="flat")
-signUp.place(x=800,y=500)
+signUp.place(x=800,y=650)
 
 #--------------------------leave button-------------------------------------------
 leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
 leavebutton.place(x=1440, y=800)
 
+
 #------------------------contact support ------------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
-framei.place(x=650,y=750)
+framei.place(x=650,y=780)
 icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat")
 button.pack()

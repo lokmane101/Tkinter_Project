@@ -14,11 +14,6 @@ img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_projec
 # Create a Label Widget to display the  Image
 label = Label(window, image = img)
 label.pack()
-style = ttk.Style()
-style.configure("Transparent.TLabel", background="systemTransparent")
-
-label = ttk.Label(window, text="This is a transparent label", style="Transparent.TLabel",foreground="black")
-label.pack()
 
 
 window.mainloop()

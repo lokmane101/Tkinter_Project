@@ -36,8 +36,8 @@ def pass_account():
         fichier_log=open("fichierLog.txt",'a+')
         fichier_log.write(nomfield.get()+"\n")
     else:
-        erreur=Label(window,text="nom d'utilisateur ou mot de passe incorrect",font=("Arial",20),bg="white",fg="red")
-        erreur.place(x=850,y=500)
+        erreur=Label(window,text="nom d'utilisateur ou mot de passe incorrect",font=("Arial",15),bg="white",fg="red")
+        erreur.place(x=580,y=390)
 
     
 
@@ -112,29 +112,29 @@ passwordfield=Entry(window,width=20,font=("Arial",30),relief="flat",bg="#e1f3ff"
 passwordfield.place(x=580,y=340)
 #-------------------confirm button---------------------------------------------------
 
-confirm_button=Button(window,text="confirm",command=pass_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=35)
-confirm_button.place(x=850,y=580)
+confirm_button=Button(window,text="confirm",command=pass_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=27)
+confirm_button.place(x=580,y=450)
 
 #-------------------------forgot password -------------------------------------------
 
 
 forgot_password=Button(window,text=("password forgoten"),command=forgoten_password,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
-forgot_password.place(x=850,y=650)
+forgot_password.place(x=580,y=530)
 
 
 #--------------------------sing up buttom--------------------------------------------
 
 signUp=Button(window,text=("sign up"),command=signup_button,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
-signUp.place(x=1350,y=650)
+signUp.place(x=940,y=530)
 
 #--------------------------leave button---------------------------------------------
 leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=1440, y=800)
+leavebutton.place(x=1100, y=660)
 
 
 #------------------------contact support -------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
-framei.place(x=650,y=780)
+framei.place(x=460,y=640)
 icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\support.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
 button.pack()

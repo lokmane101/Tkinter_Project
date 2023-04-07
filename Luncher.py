@@ -6,16 +6,16 @@ import subprocess
 #---------------------------------------definition des commands des buttons------------------------
 
 def signup_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\signUp.py"])
 
 def window_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\window.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\window.py"])
 
 def forgoten_password():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgottenPwd.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\forgottenPwd.py"])
 
 def pass_to_account():
-    subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\Account.py"])
+    subprocess.run(["python","C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\Account.py"])
 #---------------------------------------------------------------------------------------------------
 
 
@@ -36,11 +36,11 @@ window = Tk()
 
 # Define the geometry of the window (full screen)-------------------------------
 
-window.attributes('-fullscreen',True)
+window.attributes('-fullscreen',False)
 #-------------define sceen color----------------------------------------------
 window.config(bg="white")
 #-------------import picture---------------------------------------------------
-imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\school.jpg"))
+imagee=(Image.open("C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\school.jpg"))
 imagee=imagee.resize((600,900))
 sidepicture = ImageTk.PhotoImage(imagee)
 #----------------Create a Label Widget to display the  Image-----------------
@@ -98,7 +98,7 @@ leavebutton.place(x=1440, y=800)
 #------------------------contact support -------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
 framei.place(x=650,y=780)
-icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support.png")
+icon=PhotoImage(file=r"C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\support.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
 button.pack()
 

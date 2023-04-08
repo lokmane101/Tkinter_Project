@@ -9,13 +9,13 @@ import mysql.connector
 #---------------------------------------definition des commands des buttons------------------------
 
 def signup_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\signUp.py"])
 
 def window_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\window.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\window.py"])
 
 def forgoten_password():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgottenPwd.py"])
+    subprocess.run(["python", "C:\\Users\\us\\Desktop\\working_folder\\ID1\\S2\\programmation python et les bases du web\\python\\Projet\\Tkinter_Project\\forgottenPwd.py"])
 
 
 def pass_account():
@@ -68,12 +68,12 @@ window = Tk()
 
 # Define the geometry of the window (full screen)-------------------------------
 
-window.geometry("1200x720")
+window.attributes('-fullscreen',True)
 #-------------define sceen color----------------------------------------------
 window.config(bg="white")
 #-------------import picture---------------------------------------------------
-imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\school.jpg"))
-imagee=imagee.resize((430,800))
+imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\school.jpg"))
+imagee=imagee.resize((600,900))
 sidepicture = ImageTk.PhotoImage(imagee)
 #----------------Create a Label Widget to display the  Image-----------------
 label = Label(window, image = sidepicture,padx=0,pady=0, relief="flat")
@@ -134,8 +134,8 @@ leavebutton.place(x=1100, y=660)
 
 #------------------------contact support --------------------------------------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
-framei.place(x=460,y=640)
-icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\support.png")
+framei.place(x=650,y=780)
+icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
 button.pack()
 

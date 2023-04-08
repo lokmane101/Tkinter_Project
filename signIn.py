@@ -199,7 +199,7 @@ phone_etoile.place(x=x_nom_etoile-30,y=y_nom_etoile+230)
 
         #---------------craetion de l'icon ----------#
 
-phone_icon=create_icon("phone_icon.jpeg",(icon_size-10,icon_size-10))
+phone_icon=create_icon("phone_icon.png",(icon_size-10,icon_size-10))
 
 
 icon_label=Label(window,image=phone_icon,bd=0,bg="white")

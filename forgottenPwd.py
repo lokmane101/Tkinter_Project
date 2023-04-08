@@ -9,7 +9,7 @@ frame.pack()
 frame.place(anchor='center', relx=0.5, rely=0.5)
 
 # Create an object of tkinter ImageTk-----------------------------------
-img = ImageTk.PhotoImage(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\vecteezy_abstract-gradient-blue-and-pink-wave-background_.jpg"))
+img = ImageTk.PhotoImage(Image.open("C:\\Users\\us\\Desktop\\Tkinter_project\\vecteezy_abstract-gradient-blue-and-pink-wave-background_.jpg"))
 # Create a Label Widget to display the text or Image
 label = Label(frame, image = img)
 label.pack()
@@ -19,11 +19,11 @@ width = 20
 height = 20
 
 
-person_icon=Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\person_icon.png")
+person_icon=Image.open("C:\\Users\\us\\Desktop\\Tkinter_project\\person_icon.png")
 person_icon=person_icon.resize((width, height), Image.ANTIALIAS)
-school_icon=Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\school.png")
+school_icon=Image.open("C:\\Users\\us\\Desktop\\Tkinter_project\\school.png")
 school_icon=school_icon.resize((width, height), Image.ANTIALIAS)
-lock_icon=Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\lock_icon.png")
+lock_icon=Image.open("C:\\Users\\us\\Desktop\\Tkinter_project\\lock_icon.png")
 lock_icon=lock_icon.resize((width, height), Image.ANTIALIAS)
 
 person_icon=ImageTk.PhotoImage(person_icon)
@@ -104,7 +104,7 @@ leave_button.place(x=1440, y=800)
 #------------------------contact support ------------------------------------------------
 framei = Frame(f_Pwd, width=200, height=200,relief="ridge")
 framei.place(x=330,y=450)
-icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\support1.png")
+icon=PhotoImage(file=r"C:\\Users\\us\\Desktop\\Tkinter_project\\support1.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat")
 button.pack()
 

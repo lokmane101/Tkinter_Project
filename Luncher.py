@@ -10,20 +10,20 @@ import mysql.connector
 
 def signup_button():
     subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
-
+    window.destroy()
 def window_button():
     subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\window.py"])
-
-def forgoten_password():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgottenPwd.py"])
-
-
+    
+def forgoten_pwd():
+    window.destroy()
+    subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgot_password1.py"])
+    
 def pass_account():
 #----------------get info from name and password fields-------------------------------------
     nom_text=nomfield.get()
     password_text=passwordfield.get()
 #------------------execute command-----------------------------------------------------
-    cursorr.execute("SELECT password from Etudiant where CIN='"+nom_text+"';")
+    cursorr.execute("SELECT password from Etudiant where CNE='"+nom_text+"';")
 #-------------------fetch result--------------------------------------------------
     result=cursorr.fetchone()
 #----------------------------------------------------------------------------------
@@ -33,11 +33,13 @@ def pass_account():
     if authentification==password_text:
         print("script runned")
         subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\Account.py"])
-        fichier_log=open("fichierLog.txt",'a+')
+        window.destroy()
+        fichier_log=open("fichierLog.txt",'w+')
         fichier_log.write(nomfield.get()+"\n")
+        fichier_log.close()
     else:
         erreur=Label(window,text="nom d'utilisateur ou mot de passe incorrect",font=("Arial",15),bg="white",fg="red")
-        erreur.place(x=580,y=390)
+        erreur.place(x=580,y=400)
 
     
 
@@ -79,7 +81,6 @@ sidepicture = ImageTk.PhotoImage(imagee)
 label = Label(window, image = sidepicture,padx=0,pady=0, relief="flat")
 label.grid(row=0,column=0)
 
-
 #--------------------------------------------------------------------------------------------------------------#
 # creating a leave button and changing its style                                                               #
 # activebackground is color when to kpress on button ############ activeforegroud is color of text when press  #
@@ -95,40 +96,40 @@ person_icon=ImageTk.PhotoImage(person_icon)
 
 
 #----------------------------welcome label--------------------------------------------------------------------
-welcome=Label(window,text="ESPACE     ETUDIANT ",font=("Arial",54),bg="white")
+welcome=Label(window,text="ESPACE     ETUDIANT ",font=("LEMONMILK-Medium",54),bg="white")
 welcome.place(x=435,y=0)
 
 #---------------------------nom label and entry field-------------------------------------------------------
-nom=Label(window,text="Nom d'utilisateur:",font=("Arial",35),bg="white",image=person_icon,compound="left")
-nom.place(x=600,y=150)
+nom=Label(window,text="Nom d'utilisateur:",font=("Louis George Cafe Bold",35),bg="white",image=person_icon,compound="left")
+nom.place(x=575,y=150)
 
-nomfield=Entry(window,width=20,font=("Arial",30),relief="flat",bg="#e1f3ff")
+nomfield=Entry(window,width=20,font=("Arial",30),relief="flat",bg="#e1f3ff",highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white')
 nomfield.place(x=580,y=220)
 #--------------------------password label and entry field-----------------------------------------------------
-password=Label(window,text="Mot de passe:",font=("Arial",35),bg="white",image=lock_icon,compound="left")
-password.place(x=600,y=280)
+password=Label(window,text="Mot de passe:",font=("Louis George Cafe Bold",35),bg="white",image=lock_icon,compound="left")
+password.place(x=580,y=280)
 
-passwordfield=Entry(window,width=20,font=("Arial",30),relief="flat",bg="#e1f3ff")
+passwordfield=Entry(window,width=20,show="*", font=("Arial",30),relief="flat",bg="#e1f3ff",highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white')
 passwordfield.place(x=580,y=340)
 #-------------------confirm button---------------------------------------------------------------------------
 
-confirm_button=Button(window,text="confirm",command=pass_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=27)
+confirm_button=Button(window,text="Confirmer",command=pass_account, bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=27)
 confirm_button.place(x=580,y=450)
 
 #-------------------------forgot password --------------------------------------------------------------------
 
 
-forgot_password=Button(window,text=("password forgoten"),command=forgoten_password,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
+forgot_password=Button(window,text=("Mot de passe oublié?"),command=forgoten_pwd,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
 forgot_password.place(x=580,y=530)
 
 
 #--------------------------sing up buttom-----------------------------------------------------------------------
 
-signUp=Button(window,text=("sign up"),command=signup_button,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
+signUp=Button(window,text=("S'inscrire"),command=signup_button,bg="white",fg="#258EF5",activebackground="white", activeforeground="#258EF5",font=("Arial",14),padx=0,pady=0, relief="flat")
 signUp.place(x=940,y=530)
 
 #--------------------------leave button--------------------------------------------------------------------------
-leavebutton=Button(window,text="Leave",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
+leavebutton=Button(window,text="Quitter",command=window.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
 leavebutton.place(x=1100, y=660)
 
 

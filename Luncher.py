@@ -2,28 +2,30 @@ from tkinter import *
 from PIL import ImageTk, Image
 import subprocess
 import mysql.connector 
-
+import os
 
 
 
 #---------------------------------------definition des commands des buttons------------------------
+current_path=os.getcwd()
+print(current_path)
 
 def signup_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\signUp.py"])
+    subprocess.run(["python", current_path+"\\signIn1.py"])
     window.destroy()
 def window_button():
-    subprocess.run(["python", "C:\\Users\\lokmane\\Desktop\\Tkinter_project\\window.py"])
+    subprocess.run(["python", current_path+"\\window.py"])
     
 def forgoten_pwd():
     window.destroy()
-    subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgot_password1.py"])
+    subprocess.run(["python",current_path+"\\forgot_password1.py"])
     
 def pass_account():
 #----------------get info from name and password fields-------------------------------------
     nom_text=nomfield.get()
     password_text=passwordfield.get()
 #------------------execute command-----------------------------------------------------
-    cursorr.execute("SELECT password from Etudiant where CNE='"+nom_text+"';")
+    cursorr.execute("SELECT password from Etudiant where CIN='"+nom_text+"';")
 #-------------------fetch result--------------------------------------------------
     result=cursorr.fetchone()
 #----------------------------------------------------------------------------------
@@ -32,11 +34,11 @@ def pass_account():
     
     if authentification==password_text:
         print("script runned")
-        subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\Account.py"])
-        window.destroy()
         fichier_log=open("fichierLog.txt",'w+')
         fichier_log.write(nomfield.get()+"\n")
         fichier_log.close()
+        subprocess.run(["python",current_path+"\\Account.py"])
+        window.destroy()
     else:
         erreur=Label(window,text="nom d'utilisateur ou mot de passe incorrect",font=("Arial",15),bg="white",fg="red")
         erreur.place(x=580,y=400)
@@ -74,7 +76,7 @@ window.geometry("1200x720")
 #-------------define sceen color----------------------------------------------
 window.config(bg="white")
 #-------------import picture---------------------------------------------------
-imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\school.jpg"))
+imagee=(Image.open(current_path+"\\icons\\school.jpg"))
 imagee=imagee.resize((430,800))
 sidepicture = ImageTk.PhotoImage(imagee)
 #----------------Create a Label Widget to display the  Image-----------------
@@ -86,10 +88,10 @@ label.grid(row=0,column=0)
 # activebackground is color when to kpress on button ############ activeforegroud is color of text when press  #
 # bg is color of background ##################################### fg is color of font                          #
 #--------------------------------------------------------------------------------------------------------------#
-lock_icon=Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\lock_icon.png")
+lock_icon=Image.open(current_path+"\\icons\\lock_icon.png")
 lock_icon=lock_icon.resize((40, 40), Image.ANTIALIAS)
 lock_icon=ImageTk.PhotoImage(lock_icon)
-person_icon=Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\person_icon.png")
+person_icon=Image.open(current_path+"\\icons\\person_icon.png")
 person_icon=person_icon.resize((50, 50), Image.ANTIALIAS)
 person_icon=ImageTk.PhotoImage(person_icon)
 
@@ -136,7 +138,7 @@ leavebutton.place(x=1100, y=660)
 #------------------------contact support --------------------------------------------------------------------------
 framei = Frame(window, width=200, height=200,relief="ridge")
 framei.place(x=460,y=640)
-icon=PhotoImage(file=r"C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\support.png")
+icon=PhotoImage(file=r""+current_path+"\\icons\\support.png")
 button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
 button.pack()
 

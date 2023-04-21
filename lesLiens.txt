@@ -1,0 +1,14 @@
+GC1:	https://drive.google.com/file/d/1g_BJAAnMfRK1MNsfPCk_NydjNEoZR2Vg/view?usp=sharing
+GC2:	https://drive.google.com/file/d/12jxzlfVQos4yvLCpvODQpFAkcmcFp-y6/view?usp=sharing
+GEE1:	https://drive.google.com/file/d/141pv5PPHc8xoZSAbnHPhXbdXWxg90VSl/view?usp=sharing
+GEE2:	https://drive.google.com/file/d/1HY5tnWyoL-hSAqxmjDQiq5GANzH4Hxbe/view?usp=sharing
+GEER1:	https://drive.google.com/file/d/1PCUjuAS41OuOVzUFEgPhbMv7pPQKLMVF/view?usp=sharing
+GEER2:	https://drive.google.com/file/d/1VT4RbzOpndYtTt92bJ5coueMxp1z1aal/view?usp=sharing
+GI1:	https://drive.google.com/file/d/1vH6M0Hvmf2nYQzCpvWFC8MfZet1D-j3R/view?usp=sharing
+GI2:	https://drive.google.com/file/d/1dNIVbYuUU36nLypcZW15TNUiJ362SgeC/view?usp=sharing
+GM1:	https://drive.google.com/file/d/1DomivKwR1ALl6dKT23qHn0BGv2RG48dJ/view?usp=sharing
+GM2:	https://drive.google.com/file/d/1l4Mv9FTDo1kkE11irRnJuNvpEGO2n2jv/view?usp=sharing
+GDD1:	https://drive.google.com/file/d/1Nz6Mu8ZliD2G_Hn4mM5zV0aJuBbOOar5/view?usp=sharing
+GDD2:	https://drive.google.com/file/d/1_Le_y2BODEpDWBmvG7RMLjjju4tHiaLX/view?usp=sharing
+CP1:	https://drive.google.com/file/d/1xUF7EuQKwM2W-jPChGAti9s8K_nmlqBs/view?usp=sharing
+CP2:	https://drive.google.com/file/d/1vUnGRtNQ_AsSZxL6mvqhtNlSxh9GCma9/view?usp=sharing

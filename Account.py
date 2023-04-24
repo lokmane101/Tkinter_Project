@@ -4,9 +4,8 @@ import subprocess
 from PIL import Image,ImageTk
 import os
 import webbrowser
-def emploi():
-    url = 'https://drive.google.com/file/d/1Nz6Mu8ZliD2G_Hn4mM5zV0aJuBbOOar5/view?usp=sharing'
-    webbrowser.open_new_tab(url)
+from tkinter import messagebox
+
 current_path=os.getcwd()
 account=Tk()
 account.geometry("1200x720")
@@ -82,6 +81,22 @@ def imporicon(path,size_tuple):
     icon=ImageTk.PhotoImage(icon)
     return icon
 
+def emploi():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    username=users[-2]
+    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username+"';")
+    result=cursorr.fetchone()
+    filier=result[0]
+    cursorr.execute("SELECT link from emploidutemps where filier='"+filier+"';")
+    print(filier)
+    url =cursorr.fetchone() 
+    link=url[0]
+    print(link)
+    webbrowser.open_new_tab(link)
+def support():
+    messagebox.showinfo(title="SUPPORT", message="CONTACTER UN DES ADMINS :\n\n\nAFKIR MOHAMED \t email\n\n\nAKKOUH LOKMANE \t lokmaneakkouh10@gmail.com\n\n\n BEN TOUHAMI MOHAMED RIDA \t email")
+
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
 #------------------------connect to the database------------------------------------    
@@ -117,7 +132,7 @@ agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",co
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
-button=Button(iconsbarr,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
+button=Button(iconsbarr,command=support,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
 button.place(x=30,y=630)
 
 
@@ -132,6 +147,8 @@ photo=imporicon(get_user_picture(),(200,200))
 photo_label=Label(body_frame,image=photo)
 photo_label.place(x=0,y=0)
 #----------------------show other data ----------------------------------------------------------------------
+
+
 username_label=Label(body_frame,text="NOM D'UTILISATEUR:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
 username_label.place(x=220,y=0)
 username_label2=Label(body_frame,text=get_username(),bg="#B5EFFF",fg="white",font=("Arila",35))

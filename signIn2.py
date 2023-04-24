@@ -3,7 +3,7 @@ from tkinter import font,filedialog
 from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
-
+import  re
 
 #____________________________creation of same util function__________________________________________#
 
@@ -21,9 +21,12 @@ def go_back():
         window.destroy()
         subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn1.py"])
 def suivant():
-       db.insert_data_sign_in_phase2(CNE_field.get(),CIN_field.get())
-       window.destroy()
-       subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn3.py"])
+       v_generate_err=generate_err()
+       v_regex_verification=regex_verification()
+       if v_generate_err and v_regex_verification:
+              db.insert_data_sign_in_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
+              window.destroy()
+              subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn3.py"])
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#
@@ -58,6 +61,78 @@ def parcourir_lien():
         photo_field.insert(0,photo_path)
 
 
+
+
+
+#---------creation of a function that generate us a  error if it was the case------------#
+
+def generate_err():
+       ok=True
+       if field_adress.get()=="":
+                Label(window,text="****svp entrer votre adress'",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+                ok=False
+       else:
+                Label(window,text="****svp entrer votre adress",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+
+       if CNE_field.get()=="":
+                Label(window,text="****svp entrer votre CNE",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
+                ok=False
+       else:
+                Label(window,text="****svp entrer votre CNE",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
+
+       if CIN_field.get()=="":
+                Label(window,text="****svp entrer votre CIN",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
+                ok=False
+       else: 
+                Label(window,text="****svp entrer votre photo",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
+
+       if photo_field.get()=="":
+                Label(window,text="****svp entrer votre photo",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+30+100*3+40)
+                ok=False
+       else:
+                Label(window,text="****svp entrer votre numero",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+30+100*3+40)
+       return ok
+       
+
+def regex_verification():
+        ok=True
+        adress=re.match(r"^\d{1,}-\w+\s?\w+\s?\w+-\w+\s?\w+$",field_adress.get())
+        if  not bool(adress) and field_adress.get().strip()  not  in ("N°-rue-ville",""):
+                ok=False
+                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
+                print("adress valider")
+        else:
+                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
+                
+
+        CNE=re.match(r"^[A-Z]{1}\d{10}$",CNE_field.get())
+        if not bool(CNE) and CNE_field.get().strip() not in ("L**********",""):
+                ok=False
+                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
+                print("CNE valider")
+        else:
+                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
+
+        
+        CIN=re.match(r"^[A-Z]{1,2}\d{6}$",CIN_field.get())
+        if not bool(CIN) and CIN_field.get().strip() not in (""):
+                ok=False
+                Label(window,text="****invalide syntxe",fg="red",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
+        else:
+                Label(window,text="****invalide syntxe",fg="white",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
+
+        return ok
+
+
+def focus_In_adress(event):
+        if field_adress.get()=="N°-rue-ville":
+                field_adress.delete(0,END)
+                field_adress.config(fg="black")
+
+def focus_out_adress(event):
+        if field_adress.get()=="":
+                field_adress.insert(0,"N°-rue-ville")
+                field_adress.configure(foreground="gray",font=("Louis George Cafe Bold",15))
 #________________________________varaibel a utiliser___________________________________#
 
 x_adress_entry=300+100+100
@@ -102,8 +177,12 @@ image_label.config(highlightthickness=0,bd=0)
 #-----enter the Entry name field------#
 name_txt=StringVar()
 
-field_adress=Entry(window, textvariable=name_txt, width=45,bd=4,font=("Arial",15),highlightthickness=3,highlightbackground='white')
+field_adress=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 field_adress.place(x=x_adress_entry,y=y_adress_entry)
+field_adress.insert(0,"N°-rue-ville")
+field_adress.config(fg="gray")
+field_adress.bind("<FocusIn>",focus_In_adress)
+field_adress.bind("<FocusOut>",focus_out_adress)
 
 
 #-----enter the name Label------#
@@ -138,7 +217,7 @@ image_label.place(x=x_adress_icon-10,y=y_adress_icon+120)
 image_label.config(highlightthickness=0)
 
 CNE_txt=StringVar()
-CNE_field=Entry(window, textvariable=CNE_txt,bd=4,width=45,font=("Arial",15),highlightthickness=3,highlightbackground='white')
+CNE_field=Entry(window, textvariable=CNE_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CNE_field.place(x=x_adress_entry,y=y_adress_entry+120)
 
 
@@ -160,8 +239,9 @@ CIN_Label.place(x=x_adress_Label,y=y_adress_Label+250)
 #--------------creation du entry of CIN------------#
 
 CIN_txt=StringVar()
-CIN_field=Entry(window,textvariable=CIN_txt,font=("Avial",15), width=45,bd=4,highlightthickness=3,highlightbackground='white')
+CIN_field=Entry(window,textvariable=CIN_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CIN_field.place(x=x_adress_entry,y=y_adress_entry+250)
+
 
 #------------creation de l'étoile--------------#
 
@@ -200,7 +280,7 @@ photo_etoile.place(x=x_adress_etoile-10,y=y_adress_etoile+280+120)
 
 #--------------creation du entry of photo------------------#
 photo_txt=StringVar()
-photo_field=Entry(window,textvariable=photo_txt,font=("Avial",15), width=35,bd=4,highlightthickness=3,highlightbackground='white')
+photo_field=Entry(window,textvariable=photo_txt,font=("Avial",15), width=35,bd=2,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 photo_field.place(x=x_adress_entry,y=y_adress_entry+280+120)
 
 
@@ -252,12 +332,12 @@ espace_etudiant.place(x=150,y=5)
 
 
 #----------creation du boutton suivant-----------#
-button_suivant=Button(window, text="suivant",fg="white",bg="blue",width=20,activebackground="#15b4ea",activeforeground="blue",font=("Avial",10,"bold"),command=suivant)
+button_suivant=Button(window, text="suivant",fg="white",bg="#258EF5",width=20,activebackground="#15b4ea",activeforeground="blue",font=("Avial",10,"bold"),command=suivant)
 button_suivant.place(x=1000,y=680)
 
 #-----------creartion du button go back----------#
 # go_back_icon=create_icon("icons/go_back.jpg",(45,15))
-go_back_button=Button(window, text="Précedent",width=20,foreground="white" ,compound="left",bg="blue",font=("Avial",10,"bold"),activebackground="#15b4ea",activeforeground="blue",command=go_back)
+go_back_button=Button(window, text="Précedent",width=20,foreground="white" ,compound="left",bg="#258EF5",font=("Avial",10,"bold"),activebackground="#15b4ea",activeforeground="blue",command=go_back)
 go_back_button.place(x=300+100,y=680)
 
 

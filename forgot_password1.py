@@ -17,7 +17,7 @@ def verify():
 
     # Verify user information in database
     db = mysql.connector.connect(
-        host="127.0.0.1",
+        host="localhost",
         user="root",
         password="lokmane-SQL-12",
         database="projet"

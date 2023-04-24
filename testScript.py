@@ -73,7 +73,7 @@ database = mysql.connector.connect(
     database="projet"
 )
 
-cursor = database.cursor()
+# cursor = database.cursor()
 # def convertToBinary(file):
 #     with open(file,"rb") as f:
 #         bd=f.read()

@@ -16,7 +16,7 @@ class DataBase:
         self.target_attribute=10
 
    #----------------------pour le script 1(collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_in_phase1(self,nom,prenom,email,phone,date_naissance):
+    def insert_data_sign_up_phase1(self,nom,prenom,email,phone,date_naissance):
         args=[("nom",nom),("prenom",prenom),("email",email),("phone",phone),("date_naissance",date_naissance)]
         file=open("data.txt","a+")
         for key,value in args:
@@ -25,7 +25,7 @@ class DataBase:
 
 
    #----------------------pour le script 2 (collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_in_phase2(self,adress,cne,cni,image):
+    def insert_data_sign_up_phase2(self,adress,cne,cni,image):
         args=[("cne",cne),("cni",cni),("adress",adress),("image",image)]
         file=open("data.txt","a+")
         for key,value in args:
@@ -33,7 +33,7 @@ class DataBase:
         file.close()
     
     #----------------------pour le script 3 (collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_in_phase3(self,username,passwd,section):
+    def insert_data_sign_up_phase3(self,username,passwd,section):
         args=[("username",username),("passwd",passwd),("section",section)]
         for key,value in args:
             file=open("data.txt","a+")

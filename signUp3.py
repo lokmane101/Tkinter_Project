@@ -14,7 +14,7 @@ def go_back():
 def valider():
         if generate_err():
                 print("apply insertion function......")
-                db.insert_data_sign_in_phase3(field_username.get(),passwd_field.get(),section_field.get())
+                db.insert_data_sign_up_phase3(field_username.get(),passwd_field.get(),section_field.get())
                 print("hello importaion des donnnées......")
                 print(db.getrow())
                 print("enregistrement.....")

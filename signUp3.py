@@ -142,7 +142,7 @@ image_label.place(x=x_username_icon-20,y=y_username_icon+120+30)
 image_label.config(highlightthickness=0)
 
 passwd_txt=StringVar()
-passwd_field=Entry(window, textvariable=passwd_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+passwd_field=Entry(window,show="*", textvariable=passwd_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 passwd_field.place(x=x_username_entry,y=y_username_entry+120+30)
 
 

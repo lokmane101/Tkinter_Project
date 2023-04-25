@@ -4,7 +4,8 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import  re
-
+import os
+current_path=os.getcwd()
 #____________________________creation of same util function__________________________________________#
 
 
@@ -26,7 +27,7 @@ def suivant():
        if v_generate_err and v_regex_verification:
               db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
-              subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn3.py"])
+              subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signUp3.py"])
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#

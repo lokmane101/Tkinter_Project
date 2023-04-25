@@ -4,6 +4,8 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import re 
+import os
+current_path=os.getcwd()
 
 
 #--------------------------------------#
@@ -21,7 +23,7 @@ def button_suivant():
         if v_regex_verification and  v_generate_err  :
                 db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),date_de_naissan_field.get())
                 window.destroy()      
-                subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn2.py"])
+                subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signUp2.py"])
                 print("travaille")
                 
 

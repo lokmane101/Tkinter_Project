@@ -5,7 +5,7 @@ class DataBase:
         self.mydata={}
         self.database=sc.connect(
             user="root",
-            passwd="root",
+            passwd="lokmane-SQL-12",
             host="localhost",
             database="projet"
 

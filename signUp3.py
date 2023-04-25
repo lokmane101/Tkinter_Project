@@ -3,7 +3,8 @@ from tkinter import filedialog
 from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
-
+import os
+current_path=os.getcwd()
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()

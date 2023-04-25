@@ -136,10 +136,10 @@ def generate_err():
                 Label(window,text="****svp entrer le prenom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
 
         if email_field.get() in ["","school@service.com"]:
-                Label(window,text="****svp entrer le email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="****svp entrer l' email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
                 ok=False
         else: 
-                Label(window,text="****svp entrer le email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="****svp entrer l' email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
 
         if phone_field.get() in  ["","06******** | 07********"]:
                 Label(window,text="****svp entrer votre numero",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)

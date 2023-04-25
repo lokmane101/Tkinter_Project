@@ -25,7 +25,7 @@ def pass_account():
     nom_text=nomfield.get()
     password_text=passwordfield.get()
 #------------------execute command-----------------------------------------------------
-    cursorr.execute("SELECT password from Etudiant where CIN='"+nom_text+"';")
+    cursorr.execute("SELECT passwd from Etudiant where CIN='"+nom_text+"';")
 #-------------------fetch result--------------------------------------------------
     result=cursorr.fetchone()
 #----------------------------------------------------------------------------------

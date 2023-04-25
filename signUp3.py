@@ -7,14 +7,14 @@ from dataBase import DataBase
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
-        subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn2.py"])
+        subprocess.run(["python",current_path+r"/signUp2.py"])
 
 #----pour button valider-----
 
 def valider():
         if generate_err():
                 print("apply insertion function......")
-                db.insert_data_sign_up_phase3(field_username.get(),passwd_field.get(),section_field.get())
+                db.insert_data_sign_up_phase3(passwd_field.get(),filière_field.get())
                 print("hello importaion des donnnées......")
                 print(db.getrow())
                 print("enregistrement.....")
@@ -37,20 +37,15 @@ def create_icon(icon_path,tuple_size):
 #---------fonction pour lagestion d'erreur------------#
 def generate_err():
         ok=True
-        if field_username.get()=="":
-                Label(window,text="****svp entrer votre username'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
-                ok=False
-        else:
-                Label(window,text="****svp entrer votre username",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
-                
+        
         if passwd_field.get()=="":
-                Label(window,text="****svp entrer votre password'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
+                Label(window,text="****svp entrer votre mot de passe",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
                 ok=False
         else:
-                Label(window,text="****svp entrer votre password'",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
+                Label(window,text="****svp entrer votre mot de passe",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
                 
-        if section_field.get()=="":
-                Label(window,text="****svp entrer votre section'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+300+40)
+        if filière_field.get()=="":
+                Label(window,text="****svp entrer votre filière'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
                 ok=False
         
         else:
@@ -60,6 +55,9 @@ def generate_err():
 
 
 #________________________________varaibel a utiliser___________________________________#
+
+current_path=r"c:/Users/us/Desktop/Tkinter_Project"
+
 
 x_username_entry=300+100+100
 y_username_entry=150
@@ -89,88 +87,58 @@ db= DataBase()
 
 
 
-#______________________________________________create the username widget______________________________________#
-
-
-                
-
-#--------------association of icon picture to the Entry-------------------#
-
-username_icon=create_icon("icons/username_icon.jpg",(45,45))
-
-image_label=Label(window, image=username_icon,padx=0,pady=0,relief="flat")
-image_label.place(x=x_username_icon-15,y=y_username_icon)
-image_label.config(highlightthickness=0,bd=0)
-
-
-
-#-----enter the Entry name field------#
-name_txt=StringVar()
-
-field_username=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
-field_username.place(x=x_username_entry,y=y_username_entry)
-
-
-#-----enter the name Label------#
-username=Label(window,text="Entrer votre username : ",fg="black",font=("Helvetica",15,"bold"),bg="white" ,highlightthickness=0)
-username.place(x=x_username_Label-10,y=y_username_Label)
-
-necessary_point=Label (window, text="*", fg="red",font=("Arial",15),bg="white" ,highlightthickness=0)
-necessary_point.place(x=x_username_etoile+20,y=y_username_etoile)
-
-
 
 #_______________________________________________________create the password widget __________________________________________________________#
 
 
                                                 #----passwd Label-----#
-passwd_Label=Label(window,text="Enter Votre mot de passe :",font=("Helvetica",15,"bold"),bg="white")
-passwd_Label.place(x=x_username_Label-10,y=y_username_Label+120+30)
+passwd_Label=Label(window,text="Entrer votre mot de passe :",font=("Helvetica",15,"bold"),bg="white")
+passwd_Label.place(x=x_username_Label-10,y=y_username_Label)
 
 
 
 #--------creation de l'etoile---------#
 
 passwd_etoile=Label(window, text="*", font=("Arial",15),fg="red",bg="white")
-passwd_etoile.place(x=x_username_etoile+50,y=y_username_etoile+120+30)
+passwd_etoile.place(x=x_username_etoile+50,y=y_username_etoile)
 
 
 #---------creation du l'icon
 passwd_icon=create_icon("icons/passwd_icon.jpg",(45,45))
 image_label=Label(window, image=passwd_icon,padx=0,pady=0,relief="flat",bg="white")
-image_label.place(x=x_username_icon-20,y=y_username_icon+120+30)
+image_label.place(x=x_username_icon-15,y=y_username_icon)
 image_label.config(highlightthickness=0)
 
 passwd_txt=StringVar()
 passwd_field=Entry(window,show="*", textvariable=passwd_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
-passwd_field.place(x=x_username_entry,y=y_username_entry+120+30)
+passwd_field.place(x=x_username_entry,y=y_username_entry)
 
 
 
-# ________________________________________creation du champ section___________________________________________________#
+# ________________________________________creation du champ filière___________________________________________________#
 
     
     
 #--------------creation du label-------------------#
-section_Label=Label(window, text="Entrer votre section :",font=("Halvetica",15,"bold"),bg="white")
-section_Label.place(x=x_username_Label,y=y_username_Label+300)
+filière_Label=Label(window, text="Entrer votre filière :",font=("Halvetica",15,"bold"),bg="white")
+filière_Label.place(x=x_username_Label-10,y=y_username_Label+120+30)
 
 
 
-#--------------creation du entry of section------------#
+#--------------creation du entry of filière------------#
 
-section_txt=StringVar()
-section_field=Entry(window,textvariable=section_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
-section_field.place(x=x_username_entry,y=y_username_entry+300)
+filière_txt=StringVar()
+filière_field=Entry(window,textvariable=filière_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+filière_field.place(x=x_username_entry,y=y_username_entry+120+30)
 
 #------------creation de l'étoile--------------#
-section_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
-section_etoile.place(x=x_username_etoile+5,y=y_username_etoile+300)
+filière_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
+filière_etoile.place(x=x_username_etoile-20,y=y_username_etoile+120+30)
 
 #---------------craetion de l'icon ----------#
-section_icon=create_icon("icons/section_icon.png",(icon_size-10,icon_size-10))
-icon_label=Label(window,image=section_icon,bd=0,bg="white")
-icon_label.place(x=x_username_icon,y=y_username_icon+306)
+filière_icon=create_icon("icons/filière_icon.png",(icon_size-10,icon_size-10))
+icon_label=Label(window,image=filière_icon,bd=0,bg="white")
+icon_label.place(x=x_username_icon-20,y=y_username_icon+120+30)
 
 
 

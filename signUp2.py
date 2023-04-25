@@ -19,14 +19,14 @@ def create_icon(icon_path,tuple_size):
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
-        subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn1.py"])
+        subprocess.run(["python",current_path+r"/signUp1.py"])
 def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
               db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
-              subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn3.py"])
+              subprocess.run(["python",current_path+r"/signUp3.py"])
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#
@@ -135,6 +135,9 @@ def focus_out_adress(event):
                 field_adress.configure(foreground="gray",font=("Louis George Cafe Bold",15))
 #________________________________varaibel a utiliser___________________________________#
 
+current_path=r"c:/Users/us/Desktop/Tkinter_Project"
+
+
 x_adress_entry=300+100+100
 y_adress_entry=150
 
@@ -198,7 +201,7 @@ necessary_point.place(x=x_adress_etoile,y=y_adress_etoile)
 
 
                                                 #----CNE Label-----#
-CNE_Label=Label(window,text="Enter Votre CNE :",font=("Helvetica",15,"bold"),bg="white")
+CNE_Label=Label(window,text="Entrer votre CNE :",font=("Helvetica",15,"bold"),bg="white")
 CNE_Label.place(x=x_adress_Label-10,y=y_adress_Label+120)
 
 

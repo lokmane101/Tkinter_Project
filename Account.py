@@ -152,11 +152,11 @@ person_button.place(x=18,y=0)
 
 
 school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
-school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
 school_icon_button.place(x=25,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="FILIERE",fg="white",activeforeground="white")
 paper_button.place(x=24,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))

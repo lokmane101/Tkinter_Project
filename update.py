@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-#--------------
-=======
 from tkinter import *
 import mysql.connector 
 import subprocess
@@ -277,4 +274,3 @@ account.mainloop()
 
 
 
->>>>>>> ad4268e68fb079d29e0014e0e5546243f6e910ac

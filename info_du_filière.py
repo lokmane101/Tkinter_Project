@@ -85,8 +85,16 @@ dy=5
 l_listbox=[]
 l_button=[]
 n=0
+
+for data in modules_profs:
+    listbox=Listbox(modules_frame,width=30)
+    l_listbox.append(listbox)
+    n+=1
+
+
 for index in range(len(modules_profs)):
     button=Button(modules_frame,text=f"module{index+1}",width=20,height=2)
+    l_button.append(button)
     button.place(x=dx,y=dy)
     dx+=200    
 

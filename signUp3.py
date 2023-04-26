@@ -4,7 +4,8 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import os
-current_path=os.getcwd()
+
+
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
@@ -57,7 +58,7 @@ def generate_err():
 
 #________________________________varaibel a utiliser___________________________________#
 
-current_path=r"c:/Users/us/Desktop/Tkinter_Project"
+current_path=os.getcwd()
 
 
 x_username_entry=300+100+100

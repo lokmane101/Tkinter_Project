@@ -407,7 +407,7 @@ go_back_button.place(x=300+100,y=680)
 
 
 
-frame_title =Frame(window,bg="#9ac3f1" )
+frame_title =Frame(window,bg="white" )
 frame_title.place(x=290,y=0,width=3500,height=80)
 
 frame=Frame(window,bg="blue")
@@ -421,7 +421,7 @@ picture_label.place(x=0,y=0)
 #--------creation du titre--------#
 
 
-espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",50),bg="#9ac3f1",pady=0,fg="white")
+espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",50),bg="white",pady=0,)
 espace_etudiant.place(x=150,y=5)
                                                                                                                                                                                         
 

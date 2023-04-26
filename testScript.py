@@ -139,23 +139,31 @@ for choice in choices:
     listbox.insert(tk.END, choice)
 
 # Créer un bouton pour afficher ou masquer la liste de choix
-button = tk.Button(window, text="Afficher/Masquer", command=lambda: listbox.pack_forget() if listbox.winfo_ismapped() else listbox.pack())
+button = tk.Button(window, text="Afficher/Masquer", command=lambda: listbox.place_forget() if listbox.winfo_ismapped() else listbox.place(x=40,y=90))
 
 # Afficher le bouton
-button.pack()
+button.place(x=40,y=70)
 
 # Démarrer la boucle principale
 # window.mainloop()
 
-cursor1=database.cursor()
+# cursor1=database.cursor()
 
-requete="CREATE TABLE FILIERE ( NOM varchar(50)"
+# requete="CREATE TABLE FILIERE ( NOM varchar(50)"
 
-for i in range(1,12):
-    requete=requete +f",module{i} varchar(50)"
+# for i in range(1,12):
+#     requete=requete +f",module{i} varchar(50)"
 
-requete=requete+")"
+# requete=requete+")"
 
-print(requete)
+# print(requete)
 
-cursor1.execute(requete)
+# cursor1.execute(requete)
+# with open(r"fichierLog.txt","r") as fL:
+#         cne=fL.readlines()[0].replace("\n","")
+# requete="SELECT NOM,PRENOM,filière FROM ETUDIANT WHERE CNE=%s"
+# cursor.execute(requete,(cne,))
+# nom_prenom_fil=cursor.fetchall()
+# print(nom_prenom_fil[0])
+
+print("<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252'>".split(" ")[2])

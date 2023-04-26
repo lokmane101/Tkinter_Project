@@ -121,16 +121,16 @@ def support():
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
 #------------------------connect to the database ETUDIANT------------------------------------    
-database = mysql.connector.connect(host="127.0.0.1",
+database = mysql.connector.connect(host="localhost",
       user="root",
-      password="lokamne-sql-12", 
+      password="root", 
       database="projet")
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 #------------------------connect to the database ADRESSE------------------------------------    
 database = mysql.connector.connect(host="127.0.0.1",
       user="root",
-      password="lokmane-sql-12", 
+      password="root", 
       database="projet")
 #------------------------create cursor---------------------------------------------
 cursorr1=database.cursor()

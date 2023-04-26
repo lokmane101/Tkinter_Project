@@ -104,3 +104,32 @@ class DataBase:
             file.write("")
         return
             
+    #-----get name and prenom d'étudiant
+    def getStudent(self):
+        with open(r"fichierLog.txt","r") as fL:
+            cne=fL.readlines()[0].replace("\n","")
+        requete="SELECT NOM,PRENOM,filière FROM ETUDIANT WHERE CNE=%s"
+        self.cursor.execute(requete,(cne,))
+        nom_prenom_fil=self.cursor.fetchall()
+        if nom_prenom_fil[0][2]=="ID1":
+            filiere="ingénieurie des données 1"
+        elif nom_prenom_fil[0][2]=="ID2":
+            filiere="ingénieurie des données 2"
+        elif nom_prenom_fil[0][2]=="GI1":
+            filiere="genie informatique 1"
+        else:
+            filiere="genie informatique 2"
+
+        return nom_prenom_fil[0][0],nom_prenom_fil[0][1],filiere
+    
+
+
+    # recuperation des modules  et leur professeurs
+    def get_Modules_Profs(self):
+        with open(r"fichierLog.txt","r") as fL:
+            cne=fL.readlines()[0].replace("\n","")
+        requete ="SELECT module,professeur from modules where filière=(SELECT filière from etudiant where cne=%s)"
+        data=(cne,)
+        self.cursor.execute(requete,data)
+        return  self.cursor.fetchall()
+

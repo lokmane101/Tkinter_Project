@@ -25,9 +25,10 @@ def pass_account():
     nom_text=nomfield.get()
     password_text=passwordfield.get()
 #------------------execute command-----------------------------------------------------
-    cursorr.execute("SELECT passwd from Etudiant where cne='"+nom_text+"';")
+    cursorr.execute("SELECT mot_de_passe from Etudiant where cne='"+nom_text+"';")
 #-------------------fetch result--------------------------------------------------
     result=cursorr.fetchone()
+    print(result)
 #----------------------------------------------------------------------------------
     authentification=result[0] if result else None #since result of fetch is a tuple we have to selct first element to get the result
                                                    #i added that if in case the result of fetch was None to not give an error
@@ -56,7 +57,7 @@ def pass_account():
 database = mysql.connector.connect(host='localhost',
                                 database='projet',
                                 user='root',
-                                passwd='lokmane-SQL-12')
+                                passwd='root')
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 

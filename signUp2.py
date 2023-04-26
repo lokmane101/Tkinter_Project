@@ -4,7 +4,7 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import  re
-
+import os
 #____________________________creation of same util function__________________________________________#
 
 
@@ -19,14 +19,14 @@ def create_icon(icon_path,tuple_size):
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
-        subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn1.py"])
+        subprocess.run(["python",current_path+r"/signUp1.py"])
 def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
               db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
-              subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn3.py"])
+              subprocess.run(["python",current_path+r"/signUp3.py"])
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#
@@ -68,11 +68,11 @@ def parcourir_lien():
 
 def generate_err():
        ok=True
-       if field_adress.get()=="":
-                Label(window,text="****svp entrer votre adress'",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+       if field_adress.get() in["", "N°-rue-ville"] :
+                Label(window,text="****svp entrer votre adresse",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
                 ok=False
        else:
-                Label(window,text="****svp entrer votre adress",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+                Label(window,text="****svp entrer votre adresse",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
 
        if CNE_field.get()=="":
                 Label(window,text="****svp entrer votre CNE",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
@@ -135,17 +135,21 @@ def focus_out_adress(event):
                 field_adress.configure(foreground="gray",font=("Louis George Cafe Bold",15))
 #________________________________varaibel a utiliser___________________________________#
 
+current_path=current_path=os.getcwd()
+
+
+
 x_adress_entry=300+100+100
-y_adress_entry=150
+y_adress_entry=150+10
 
 x_adress_Label=400+100+100
-y_adress_Label=100
+y_adress_Label=100+10
 
 x_adress_icon=350+100+100
-y_adress_icon=90
+y_adress_icon=90+10
 
 x_adress_etoile=600+100+100
-y_adress_etoile=100
+y_adress_etoile=100+10
 
 
 icon_size=50
@@ -198,7 +202,7 @@ necessary_point.place(x=x_adress_etoile,y=y_adress_etoile)
 
 
                                                 #----CNE Label-----#
-CNE_Label=Label(window,text="Enter Votre CNE :",font=("Helvetica",15,"bold"),bg="white")
+CNE_Label=Label(window,text="Entrer votre CNE :",font=("Helvetica",15,"bold"),bg="white")
 CNE_Label.place(x=x_adress_Label-10,y=y_adress_Label+120)
 
 
@@ -308,7 +312,7 @@ parcourir.place(x=x_adress_icon+350,y=y_adress_entry+405)
 
 
 frame_title =Frame(window,bg="white" )
-frame_title.place(x=290,y=0,width=3500,height=60)
+frame_title.place(x=290,y=0,width=3500,height=70)
 
 frame=Frame(window,bg="blue")
 frame.place(x=0,y=0,width=290+100,height=7000)
@@ -321,7 +325,7 @@ picture_label.pack()
 #--------creation du titre--------#
 
 
-espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",40),bg="white")
+espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",50),bg="white")
 espace_etudiant.place(x=150,y=5)
 
 

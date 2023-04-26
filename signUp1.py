@@ -4,7 +4,7 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import re 
-
+import os
 
 #--------------------------------------#
 #                                      #
@@ -19,15 +19,15 @@ def button_suivant():
         v_generate_err=generate_err()
         v_regex_verification=regex_verification()
         if v_regex_verification and  v_generate_err  :
-                db.insert_data_sign_in_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),date_de_naissan_field.get())
+                db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),téléphone_field.get(),date_de_naissan_field.get())
                 window.destroy()      
-                subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/signIn2.py"])
+                subprocess.run(["python",current_path+r"/signUp2.py"])
                 print("travaille")
                 
 
         
 def go_to_luncher():
-        subprocess.run(["python",r"c:/Users/us/Desktop/Tkinter_Project/Luncher.py"])
+        subprocess.run(["python",current_path+r"/Luncher.py"])
         window.quit()      
 
 
@@ -48,6 +48,8 @@ def go_to_luncher():
 
 
 #________________________________varaibel a utiliser___________________________________#
+
+current_path=os.getcwd()
 
 x_nom_entry=300+100+100
 y_nom_entry=150
@@ -96,15 +98,15 @@ def focus_out_email(event):
 
 #--------place holder de l'email----------------------------#
 
-def focus_In_phone(event):
-        if phone_field.get()=="06******** | 07********":
-                phone_field.delete(0,END)
-                phone_field.config(fg="black")
+def focus_In_téléphone(event):
+        if téléphone_field.get()=="06******** | 07********":
+                téléphone_field.delete(0,END)
+                téléphone_field.config(fg="black")
 
-def focus_out_phone(event):
-        if phone_field.get()=="":
-                phone_field.insert(0,"06******** | 07********")
-                phone_field.configure(foreground="gray",font=("Louis George Cafe Bold",15))
+def focus_out_téléphone(event):
+        if téléphone_field.get()=="":
+                téléphone_field.insert(0,"06******** | 07********")
+                téléphone_field.configure(foreground="gray",font=("Louis George Cafe Bold",15))
 
 
 
@@ -136,12 +138,12 @@ def generate_err():
                 Label(window,text="****svp entrer le prenom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
 
         if email_field.get() in ["","school@service.com"]:
-                Label(window,text="****svp entrer le email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="****svp entrer l' email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
                 ok=False
         else: 
-                Label(window,text="****svp entrer le email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="****svp entrer l' email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
 
-        if phone_field.get() in  ["","06******** | 07********"]:
+        if téléphone_field.get() in  ["","06******** | 07********"]:
                 Label(window,text="****svp entrer votre numero",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
                 ok=False
         else:
@@ -168,11 +170,11 @@ def regex_verification():
                 Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+40+100*2)
                 
 
-        phone=re.match(r"^0(6|7)\d{8}$",phone_field.get())
-        if not bool(phone) and phone_field.get().strip() not in ("06******** | 07********",""):
+        téléphone=re.match(r"^0(6|7)\d{8}$",téléphone_field.get())
+        if not bool(téléphone) and téléphone_field.get().strip() not in ("06******** | 07********",""):
                 ok=False
                 Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
-                print("phone valider")
+                print("téléphone valider")
         else:
                 Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
 
@@ -242,7 +244,7 @@ image_label.config(highlightthickness=0)
 
 
                                                 #----prenom Label-----#
-prenom_Label=Label(window,text="Entrer votre Prenom :",font=("Helvetica",15,"bold"),bg="white")
+prenom_Label=Label(window,text="Entrer votre prenom :",font=("Helvetica",15,"bold"),bg="white")
 prenom_Label.place(x=x_nom_Label,y=y_nom_Label+100)
 
 
@@ -315,27 +317,27 @@ icon_label.place(x=x_non_icon,y=y_non_icon+206)
 
 
 #--------------creation du label-------------------#
-phone_Label=Label(window, text="Entrer votre phone  :",font=("Halvetica",15,"bold"),bg="white")
-phone_Label.place(x=x_nom_Label,y=y_nom_Label+330)
+téléphone_Label=Label(window, text="Entrer votre téléphone  :",font=("Halvetica",15,"bold"),bg="white")
+téléphone_Label.place(x=x_nom_Label,y=y_nom_Label+330)
 
 
-#--------------creation du entry of phone------------#
-phone_txt=StringVar()
-phone_field=Entry(window,textvariable=phone_txt,font=("Louis George Cafe Bold",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
-phone_field.place(x=x_nom_entry,y=y_nom_entry+330)
-phone_field.insert(0,"06******** | 07********")
-phone_field.configure(fg="gray")
-phone_field.bind("<FocusIn>",focus_In_phone)
-phone_field.bind("<FocusOut>",focus_out_phone)
+#--------------creation du entry of téléphone------------#
+téléphone_txt=StringVar()
+téléphone_field=Entry(window,textvariable=téléphone_txt,font=("Louis George Cafe Bold",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+téléphone_field.place(x=x_nom_entry,y=y_nom_entry+330)
+téléphone_field.insert(0,"06******** | 07********")
+téléphone_field.configure(fg="gray")
+téléphone_field.bind("<FocusIn>",focus_In_téléphone)
+téléphone_field.bind("<FocusOut>",focus_out_téléphone)
 
 
 #------------creation de l'étoile--------------#
-phone_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
-phone_etoile.place(x=x_nom_etoile,y=y_nom_etoile+330)
+téléphone_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
+téléphone_etoile.place(x=x_nom_etoile+40,y=y_nom_etoile+330)
 
 #---------------craetion de l'icon ----------#
-phone_icon=create_icon("icons/phone_icon.png",(icon_size-10,icon_size-10))
-icon_label=Label(window,image=phone_icon,bd=0,bg="white",fg="white")
+téléphone_icon=create_icon("icons/phone_icon.png",(icon_size-10,icon_size-10))
+icon_label=Label(window,image=téléphone_icon,bd=0,bg="white",fg="white")
 icon_label.place(x=x_non_icon,y=y_non_icon+336)
 
 
@@ -347,7 +349,7 @@ icon_label.place(x=x_non_icon,y=y_non_icon+336)
 
 
 #--------------creation du label-------------------#
-date_de_naissan_Label=Label(window, text="Entrer la date_de_naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
+date_de_naissan_Label=Label(window, text="Entrer la date de naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
 date_de_naissan_Label.place(x=x_nom_Label,y=y_nom_Label+430+50)
 
 
@@ -364,7 +366,7 @@ date_de_naissan_field.bind("<FocusOut>",focus_out)
 
 #-------------------creation de l'étoile-----------------#
 date_de_naissan_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
-date_de_naissan_etoile.place(x=x_nom_etoile+100,y=y_nom_etoile+430+50)
+date_de_naissan_etoile.place(x=x_nom_etoile+80,y=y_nom_etoile+480)
 
 #---------------craetion de l'icon ----------#
 date_de_naissan_icon=create_icon("icons/date_de_naissance_icon.png",(icon_size-15,icon_size-15))
@@ -406,20 +408,20 @@ go_back_button.place(x=300+100,y=680)
 
 
 frame_title =Frame(window,bg="white" )
-frame_title.place(x=290,y=0,width=3500,height=60)
+frame_title.place(x=290,y=0,width=3500,height=80)
 
 frame=Frame(window,bg="blue")
 frame.place(x=0,y=0,width=290+100,height=7000)
 
 
-school_image=create_icon("icons/school1.jpg",(300+100,740))
+school_image=create_icon("icons/school1.jpg",(300+100,780))
 picture_label=Label(frame,image=school_image)
-picture_label.pack()
+picture_label.place(x=0,y=0)
 
 #--------creation du titre--------#
 
 
-espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",40),bg="white")
+espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",50),bg="white",pady=0,)
 espace_etudiant.place(x=150,y=5)
                                                                                                                                                                                         
 

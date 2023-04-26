@@ -25,7 +25,7 @@ def pass_account():
     nom_text=nomfield.get()
     password_text=passwordfield.get()
 #------------------execute command-----------------------------------------------------
-    cursorr.execute("SELECT password from Etudiant where CIN='"+nom_text+"';")
+    cursorr.execute("SELECT passwd from Etudiant where cne='"+nom_text+"';")
 #-------------------fetch result--------------------------------------------------
     result=cursorr.fetchone()
 #----------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ def pass_account():
 database = mysql.connector.connect(host='localhost',
                                 database='projet',
                                 user='root',
-                                password='lokmane-SQL-12')
+                                passwd='lokmane-SQL-12')
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 

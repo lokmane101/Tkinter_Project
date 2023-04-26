@@ -106,7 +106,7 @@ image=image.resize((500,500),Image.ANTIALIAS)
 # image=ImageTk.PhotoImage(image)
 
 # Display the image
-image.show()
+# image.show()
 
 # email=re.match(r"\w+\.?\w+@\w+\.\w{2,}","ridagmai.com")
 # print(bool(email))
@@ -122,3 +122,40 @@ image.show()
 # print("<_io.TextIOWrapper name='C:/Users/us/Pictures/mercedes.jpg' mode='r' encoding='cp65001'>".split(" ")[1].split("=")[1].replace("'",""))
 
 # print(bool(re.match(r"^0(6|7)\d{8}$","0655675876")))
+
+import tkinter as tk
+
+# Créer une fenêtre
+window = tk.Tk()
+
+# Créer une liste de choix
+choices = ["Choix 1l ", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3", "Choix 2", "Choix 3"]
+
+# Créer un widget Listbox
+listbox = tk.Listbox(window)
+
+# Ajouter les choix à la liste
+for choice in choices:
+    listbox.insert(tk.END, choice)
+
+# Créer un bouton pour afficher ou masquer la liste de choix
+button = tk.Button(window, text="Afficher/Masquer", command=lambda: listbox.pack_forget() if listbox.winfo_ismapped() else listbox.pack())
+
+# Afficher le bouton
+button.pack()
+
+# Démarrer la boucle principale
+# window.mainloop()
+
+cursor1=database.cursor()
+
+requete="CREATE TABLE FILIERE ( NOM varchar(50)"
+
+for i in range(1,12):
+    requete=requete +f",module{i} varchar(50)"
+
+requete=requete+")"
+
+print(requete)
+
+cursor1.execute(requete)

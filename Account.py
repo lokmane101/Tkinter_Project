@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import *
 import mysql.connector 
 import subprocess
 from PIL import Image,ImageTk
@@ -17,6 +18,9 @@ def personel():
     personel=Tk()
     personel.geometry=("1200x720")
     personel.config(bg="white")
+def info_personel():
+    account.destroy()
+    subprocess.run(["python",current_path+"\\update.py"])
 def get_user_second_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
@@ -143,7 +147,7 @@ cursorr=database.cursor()
 #-----------------------------import icons----------------------------------------
 
 person_icon=imporicon(current_path+"\\icons\\person_icon1.png",(80,80))
-person_button=Button(iconsbarr,text="PROFIL",image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
+person_button=Button(iconsbarr,text="PROFIL",command=info_personel,image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
 person_button.place(x=18,y=0)
 
 

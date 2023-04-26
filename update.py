@@ -13,117 +13,82 @@ account.geometry("1200x720")
 account.config(bg="white")
 iconsbarr=Frame(account,width=150,height=1440,bg="#15b4ea",)
 iconsbarr.place(x=0,y=0)
+def username():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    username=users[-2]
 
 def personel():
     personel=Tk()
     personel.geometry=("1200x720")
     personel.config(bg="white")
 def get_user_second_name():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT prenom from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT prenom from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 def log_out():
     account.destroy()
     subprocess.run(["python",current_path+"\\Luncher.py"])
 def get_user_first_name():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT nom from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT nom from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 def get_filiere():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 
 def get_user_picture():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT photo from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT photo from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     photo_path=result[0]
     return photo_path
 def get_user_CNE():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     cne=result[0]
     return cne
 
 def get_user_picture():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT photo from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT photo from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     photo_path=result[0]
     return photo_path
 def get_user_CNE():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     cne=result[0]
     return cne
 
 def get_user_CIN():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT CIN from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT CIN from Etudiant where CIN='"+username()+"';")
     result=cursorr.fetchone()
     cin=result[0]
     return cin
 def get_password():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT mot_de_passe from Etudiant where cne='"+username+"';")
+    cursorr.execute("SELECT mot_de_passe from Etudiant where cne='"+username()+"';")
     result=cursorr.fetchone()
     mot_de_passe=result[0]
     return mot_de_passe
 def get_téléphone():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
     cursorr.execute("SELECT téléphone from Etudiant where cne='"+username+"';")
     result=cursorr.fetchone()
     téléphone=result[0]
     return téléphone
 
 def get_email():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT email from Etudiant where cne='"+username+"';")
+    cursorr.execute("SELECT email from Etudiant where cne='"+username()+"';")
     result=cursorr.fetchone()
     email=result[0]
     return email
 
 def get_date_de_naissance():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT date_de_naissance from Etudiant where cne='"+username+"';")
+    cursorr.execute("SELECT date_de_naissance from Etudiant where cne='"+username()+"';")
     result=cursorr.fetchone()
     date_de_naissance=result[0]
     return date_de_naissance
 def get_adress():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT id from Etudiant where cne='"+username+"';")
+    cursorr.execute("SELECT id from Etudiant where cne='"+username()+"';")
     id=cursorr.fetchone()
     cursorr1.execute("SELECT num, rue, ville from adress where id_Etud='"+id+"';")
     result =cursorr1.fetch()

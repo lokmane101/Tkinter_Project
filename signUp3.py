@@ -100,7 +100,7 @@ passwd_Label.place(x=x_username_Label-10,y=y_username_Label)
 #--------creation de l'etoile---------#
 
 passwd_etoile=Label(window, text="*", font=("Arial",15),fg="red",bg="white")
-passwd_etoile.place(x=x_username_etoile+50,y=y_username_etoile)
+passwd_etoile.place(x=x_username_etoile+60,y=y_username_etoile)
 
 
 #---------creation du l'icon

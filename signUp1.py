@@ -366,7 +366,7 @@ date_de_naissan_field.bind("<FocusOut>",focus_out)
 
 #-------------------creation de l'étoile-----------------#
 date_de_naissan_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
-date_de_naissan_etoile.place(x=x_nom_etoile+70,y=y_nom_etoile+430+50)
+date_de_naissan_etoile.place(x=x_nom_etoile+80,y=y_nom_etoile+480)
 
 #---------------craetion de l'icon ----------#
 date_de_naissan_icon=create_icon("icons/date_de_naissance_icon.png",(icon_size-15,icon_size-15))

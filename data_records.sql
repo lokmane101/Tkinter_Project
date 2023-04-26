@@ -9,7 +9,7 @@ filière  varchar(20),
 email  varchar(50),
 téléphone  varchar(40),
 cne  varchar(20),
-cni varchar(20),
+cin varchar(20),
 date_de_naissance date,
 image longblob
 );

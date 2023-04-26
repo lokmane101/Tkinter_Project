@@ -5,7 +5,7 @@ class DataBase:
         self.mydata={}
         self.database=sc.connect(
             user="root",
-            passwd="lokmane-SQL-12",
+            passwd="root",
             host="localhost",
             database="projet"
 
@@ -16,8 +16,8 @@ class DataBase:
         self.target_attribute=10
 
    #----------------------pour le script 1(collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_up_phase1(self,nom,prenom,email,phone,date_naissance):
-        args=[("nom",nom),("prenom",prenom),("email",email),("phone",phone),("date_naissance",date_naissance)]
+    def insert_data_sign_up_phase1(self,nom,prenom,email,téléphone,date_de_naissance):
+        args=[("nom",nom),("prenom",prenom),("email",email),("téléphone",téléphone),("date_de_naissance",date_de_naissance)]
         file=open("data.txt","a+")
         for key,value in args:
             file.write(key+f":::{value}\n")
@@ -25,16 +25,16 @@ class DataBase:
 
 
    #----------------------pour le script 2 (collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_up_phase2(self,adress,cne,cni,image):
-        args=[("cne",cne),("cni",cni),("adress",adress),("image",image)]
+    def insert_data_sign_up_phase2(self,adress,cne,cin,image):
+        args=[("cne",cne),("cin",cin),("adress",adress),("image",image)]
         file=open("data.txt","a+")
         for key,value in args:
             file.write(key+f":::{value}\n")
         file.close()
     
     #----------------------pour le script 3 (collecter les données dans le fichier text data.txt)--------------------#
-    def insert_data_sign_up_phase3(self,username,passwd,section):
-        args=[("username",username),("passwd",passwd),("section",section)]
+    def insert_data_sign_up_phase3(self,passwd,filière):
+        args=[("passwd",passwd),("filière",filière)]
         for key,value in args:
             file=open("data.txt","a+")
             file.write(key+f":::{value}\n")
@@ -75,9 +75,9 @@ class DataBase:
 
         print(Myimage_path)
         #------insertion des données (sans l'adress)--------#
-        requeste="INSERT INTO ETUDIANT (username,passwd,nom,prenom,section,email,phone,cne,cni,date_naissance,image) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        data=(self.mydata["username"],self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["section"],
-            self.mydata["email"],self.mydata["phone"],self.mydata["cne"],self.mydata["cni"],self.mydata["date_naissance"],DataBase.convertToBinary(image_path=Myimage_path))
+        requeste="INSERT INTO ETUDIANT (mot_de_passe,nom,prenom,filière,email,téléphone,cne,cin,date_de_naissance,image) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        data=(self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["filière"],
+            self.mydata["email"],self.mydata["téléphone"],self.mydata["cne"],self.mydata["cin"],self.mydata["date_de_naissance"],DataBase.convertToBinary(image_path=Myimage_path))
         self.cursor.execute(requeste,data)
         self.database.commit()
          

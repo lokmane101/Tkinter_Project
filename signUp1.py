@@ -4,6 +4,8 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import re 
+import os
+current_path=os.getcwd()
 
 
 #--------------------------------------#
@@ -21,13 +23,21 @@ def button_suivant():
         if v_regex_verification and  v_generate_err  :
                 db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),téléphone_field.get(),date_de_naissan_field.get())
                 window.destroy()      
+<<<<<<< HEAD
                 subprocess.run(["python",current_path+r"/signUp2.py"])
+=======
+                subprocess.run(["python",current_path+"\\signUp2.py"])
+>>>>>>> cf1478ad405ab8bdc570389f98337224902ea3ea
                 print("travaille")
                 
 
         
 def go_to_luncher():
+<<<<<<< HEAD
         subprocess.run(["python",current_path+r"/Luncher.py"])
+=======
+        subprocess.run(["python",current_path+"\\Luncher.py"])
+>>>>>>> cf1478ad405ab8bdc570389f98337224902ea3ea
         window.quit()      
 
 
@@ -218,7 +228,7 @@ db=DataBase()
 #-----enter the Entry name field------#
 name_txt=StringVar()
 
-field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",20),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 field_nom.place(x=x_nom_entry,y=y_nom_entry)
 
 
@@ -407,8 +417,6 @@ go_back_button.place(x=300+100,y=680)
 
 
 
-frame_title =Frame(window,bg="white" )
-frame_title.place(x=290,y=0,width=3500,height=60)
 
 frame=Frame(window,bg="blue")
 frame.place(x=0,y=0,width=290+100,height=7000)
@@ -421,8 +429,8 @@ picture_label.pack()
 #--------creation du titre--------#
 
 
-espace_etudiant=Label(frame_title,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",40),bg="white")
-espace_etudiant.place(x=150,y=5)
+espace_etudiant=Label(window,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",52),bg="white")
+espace_etudiant.place(x=435,y=0)
                                                                                                                                                                                         
 
 

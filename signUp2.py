@@ -4,7 +4,8 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import  re
-
+import os
+current_path=os.getcwd()
 #____________________________creation of same util function__________________________________________#
 
 
@@ -19,14 +20,22 @@ def create_icon(icon_path,tuple_size):
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
+<<<<<<< HEAD
         subprocess.run(["python",current_path+r"/signUp1.py"])
+=======
+        subprocess.run(["python",current_path+"\\signUp1.py"])
+>>>>>>> cf1478ad405ab8bdc570389f98337224902ea3ea
 def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
               db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
+<<<<<<< HEAD
               subprocess.run(["python",current_path+r"/signUp3.py"])
+=======
+              subprocess.run(["python",current_path+"\\signUp3.py"])
+>>>>>>> cf1478ad405ab8bdc570389f98337224902ea3ea
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#

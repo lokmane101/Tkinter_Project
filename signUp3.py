@@ -3,7 +3,8 @@ from tkinter import filedialog
 from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
-
+import os
+current_path=os.getcwd()
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
@@ -104,7 +105,7 @@ passwd_etoile.place(x=x_username_etoile+60,y=y_username_etoile)
 
 
 #---------creation du l'icon
-passwd_icon=create_icon("icons/passwd_icon.jpg",(45,45))
+passwd_icon=create_icon(current_path+"\\icons\\passwd_icon.jpg",(45,45))
 image_label=Label(window, image=passwd_icon,padx=0,pady=0,relief="flat",bg="white")
 image_label.place(x=x_username_icon-15,y=y_username_icon)
 image_label.config(highlightthickness=0)
@@ -157,7 +158,7 @@ frame=Frame(window,bg="blue")
 frame.place(x=0,y=0,width=290+100,height=7000)
 
 
-school_image=create_icon("icons/school1.jpg",(300+100,740))
+school_image=create_icon(current_path+"\\icons\\school1.jpg",(300+100,740))
 picture_label=Label(frame,image=school_image)
 picture_label.pack()
 
@@ -177,7 +178,7 @@ button_valider=Button(window, text="valider",fg="white",bg="#258EF5",width=20,ac
 button_valider.place(x=1000,y=680)
 
 #-----------creartion du button go back----------#
-# go_back_icon=create_icon("icons/go_back.jpg",(45,15))
+# go_back_icon=create_icon(current_path+"\\icons\\go_back.jpg",(45,15))
 go_back_button=Button(window, text="Précedent",width=20,foreground="white" ,compound="left",bg="#258EF5",font=("Avial",10,"bold"),activebackground="#15b4ea",activeforeground="blue",command=go_back)
 go_back_button.place(x=300+100,y=680)
 

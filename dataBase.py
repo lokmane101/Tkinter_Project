@@ -65,7 +65,9 @@ class DataBase:
     def valide(self):
         #-----definition d'image path 
         Myimage_path=self.mydata["image"].split(" ")
+        print(Myimage_path)
         if "png" in Myimage_path[2] or "jpg"in Myimage_path[2]:
+            
             Myimage_path =Myimage_path[1].split("=")[1].replace("'","")+" "+Myimage_path[2].replace("'","")
         else:
             Myimage_path=Myimage_path[1].split("=")[1].replace("'","")

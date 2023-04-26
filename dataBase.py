@@ -50,7 +50,7 @@ class DataBase:
         print(data)
         for line in data:
             items=line.split(":::")
-            self.mydata[items[0]]=items[1]
+            self.mydata[items[0]]=items[0]
         return self.mydata
 
     #-------------une method static qui permet de convertir une phote en forme binaire-------------------------------------------------------------------------

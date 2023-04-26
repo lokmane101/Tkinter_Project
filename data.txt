@@ -1,0 +1,105 @@
+nom:::akkouh
+prenom:::lokmane
+email:::lokmaneakkouh10@gmail.com
+téléphone:::0642609327
+date_de_naissance:::2002-10-02
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imzouren-morocco
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID 01
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imzouren-morocco
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID 01
+cne:::S1330641690
+cin:::RB231507
+adress:::02-imzi-maro
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252' >
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID01
+nom:::akkouh
+prenom:::lokmane
+email:::lokmaneakkouh10@gmail.com
+téléphone:::0642609327
+date_de_naissance:::2002-10-02
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imzouren-morocco
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID01
+cne:::S1330641690
+cin:::RB215070
+adress:::02-MZOUREN-maroc
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail7.jpg' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID01
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imz-maroc
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane.jpg' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID 01
+passwd:::dilah
+filière:::ID1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID 1
+passwd:::dilah
+filière:::ID1
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imz-maroc
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/lokmane.jpg' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID1
+passwd:::dilah
+filière:::ID1
+passwd:::dilah
+filière:::ID1
+nom:::rida
+prenom:::Ben touhami
+email:::b@gmail.com
+tÃ©lÃ©phone:::0652148796
+date_de_naissance:::2003-9-6
+cne:::E1597894532
+cin:::R785236
+adress:::5-imz-alhoceima
+image:::<_io.TextIOWrapper name='C:/Users/us/Pictures/EX Q.png' mode='r' encoding='cp65001'>
+passwd:::qld,fvq
+filiÃ¨re:::ID1
+passwd:::rida@hh
+filiÃ¨re:::ID1
+passwd:::rida@jzk
+filiÃ¨re:::ID1
+passwd:::klqe, fvk<Ã 
+filiÃ¨re:::ID1

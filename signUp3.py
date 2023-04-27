@@ -4,6 +4,7 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import os
+import re
 
 
 #------------button qui retour en arrière-------------#
@@ -14,18 +15,29 @@ def go_back():
 #----pour button valider-----
 
 def valider():
-        if generate_err():
+        v_regex_verification=regex_verification()
+        v_generate_err=generate_err()
+        if v_regex_verification and v_generate_err:
                 print("apply insertion function......")
                 db.insert_data_sign_up_phase3(passwd_field.get(),filière_field.get())
                 print("hello importaion des donnnées......")
                 print(db.getrow())
                 print("enregistrement.....")
                 db.valide()
-                print("saved")
                 window.quit()
+                subprocess.run(["python",current_path+"\\Account.py"])
+
 #____________________________creation of same util function__________________________________________#
 
+def focus_In_filière(event):
+        if filière_field.get()=="filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)":
+                filière_field.delete(0,END)
+                filière_field.config(fg="black")
 
+def focus_out_filière(event):
+        if filière_field.get()=="":
+                filière_field.insert(0,"filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)")
+                filière_field.configure(foreground="gray",font=("Louis George Cafe Bold",15)),
 #--------------------create icon---------------------#
 def create_icon(icon_path,tuple_size):
         image=Image.open(icon_path)
@@ -46,15 +58,25 @@ def generate_err():
         else:
                 Label(window,text="****svp entrer votre mot de passe",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
                 
-        if filière_field.get()=="":
-                Label(window,text="****svp entrer votre filière'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
+        if filière_field.get() in  ["","filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)"]:
+                Label(window,text="****svp entrer votre filière",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
                 ok=False
         
         else:
-                Label(window,text="****svp entrer votre section",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+300+40)
+                Label(window,text="****svp entrer votre filière",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
         return ok
+def regex_verification():
+        ok=True
+        fil=re.match(r"^ID1|ID2|GI1|GI2$",filière_field.get())
+        if  not bool(fil) and filière_field.get().strip()  not  in ("filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)",""):
+                ok=False
+                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_username_entry+50,y=y_username_entry+200-10)
+                print("filière valider")
+        else:
+                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_username_entry+50,y=y_username_entry+200-10)
+                
                  
-
+        return ok
 
 #________________________________varaibel a utiliser___________________________________#
 
@@ -130,8 +152,12 @@ filière_Label.place(x=x_username_Label-10,y=y_username_Label+120+30)
 #--------------creation du entry of filière------------#
 
 filière_txt=StringVar()
-filière_field=Entry(window,textvariable=filière_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+filière_field=Entry(window,textvariable=filière_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff",fg="black")
 filière_field.place(x=x_username_entry,y=y_username_entry+120+30)
+filière_field.insert(0,"filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)")
+filière_field.configure(fg="gray")
+filière_field.bind("<FocusIn>",focus_In_filière)
+filière_field.bind("<FocusOut>",focus_out_filière)
 
 #------------creation de l'étoile--------------#
 filière_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")

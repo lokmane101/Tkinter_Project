@@ -97,12 +97,12 @@ sql = "SELECT IMAGE FROM ETUDIANT WHERE ID=2"
 cursor.execute(sql)
 
 # Fetch the image data from the database
-image_data = cursor.fetchone()[0]
+# image_data = cursor.fetchone()[0]
 
 # print(image_data)
 # Convert the image data to a PIL Image object
-image = Image.open(BytesIO(image_data))
-image=image.resize((500,500),Image.ANTIALIAS)
+# image = Image.open(BytesIO(image_data))
+# image=image.resize((500,500),Image.ANTIALIAS)
 # image=ImageTk.PhotoImage(image)
 
 # Display the image
@@ -166,5 +166,7 @@ button.place(x=40,y=70)
 # nom_prenom_fil=cursor.fetchall()
 # print(nom_prenom_fil[0])
 
-cursor.execute("SELECT IMAGE FROM ETUDIANT WHERE CIN='R1587899633'")
-print(cursor.fetchone())
+# cursor.execute("SELECT IMAGE FROM ETUDIANT WHERE CIN='R1587899633'")
+# print(cursor.fetchone())
+raise "contacter l'addministration"
+print(3)

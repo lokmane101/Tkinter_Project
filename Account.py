@@ -86,6 +86,9 @@ def imporicon(path,size_tuple):
     icon=icon.resize(size_tuple, Image.ANTIALIAS)
     icon=ImageTk.PhotoImage(icon)
     return icon
+def description_filière():
+    account.destroy()
+    subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
 
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
@@ -109,7 +112,7 @@ school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat
 school_icon_button.place(x=25,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white")
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white",command=description_filière)
 paper_button.place(x=24,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))

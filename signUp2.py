@@ -24,8 +24,12 @@ def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
-              db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
+              cne=CNE_field.get()
+              db.insert_data_sign_up_phase2(field_adress.get(),cne,CIN_field.get(),photo_field.get())
               window.destroy()
+              with open(r"fichierLog.txt","w+") as file:
+                      file.write(cne+"\n")
+                      
               subprocess.run(["python",current_path+r"/signUp3.py"])
 
 

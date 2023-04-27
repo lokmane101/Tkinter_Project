@@ -70,7 +70,19 @@ insert into Modules values('GI1','Langage C avancé et structures de données','
 insert into Modules values('GI1','Comptabilité générale ','E.W.DADI');
 
 
-#---------GI2---------------------------------
+#---------------GI2-------------------
+insert into Modules values('GI2','Machine Learning','A.BOUFASSIL');
+insert into Modules values('GI2','Gestion de projet et Génie logiciel','A.RAGRAGUI');
+insert into Modules values('GI2','Frameworks Java EE avancés et .Net','T.BOUDAA/S.OUALD CHAIB');
+insert into Modules values('GI2','Web 2 : Applications Web modernes','F.RAFII ZAKANI');
+insert into Modules values('GI2','Entreprenariat 2','ALI BENAISSA');
+insert into Modules values('GI2','Crypto-systèmes et sécurité Informatique','N.KANNOUF');
+insert into Modules values('GI2','Python pour les sciences de données','E.W.DADI');
+insert into Modules values('GI2','Programmation Java Avancée','T.BOUDAA');
+insert into Modules values('GI2','Linux et programmation système','M.CHERADDI');
+insert into Modules values('GI2','Langues et Communication Professionnelle 2 & Soft Skils','A.BOUAZZA');
+insert into Modules values('GI2','sécurité informatique','A.BENGAG');
+insert into Modules values('GI2','Administration des Bases de données Avancées','A.AKHLAL');
 
 
 
@@ -96,6 +108,17 @@ insert into Modules values('GI1','Comptabilité générale ','E.W.DADI');
 
 
 
+
+
+
+
+
+
+
+
+
+
+select * from etudiant;
 select * from modules;
 
 

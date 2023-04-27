@@ -4,17 +4,11 @@ class DataBase:
     def __init__(self):
         self.mydata={}
         self.database=sc.connect(
-<<<<<<< HEAD
+
             user="root",
             passwd="lokmane-SQL-12",
             host="localhost",
             database="projet"
-=======
-            host="127.0.0.1",
-        user="root",
-        password="Mohamed-123+", 
-        database="projet"
->>>>>>> 1401614ee16e0db63ca99480cf97f5f3b33b6a1a
 
         )
         print("connected")

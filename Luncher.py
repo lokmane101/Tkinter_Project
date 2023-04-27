@@ -57,7 +57,7 @@ def pass_account():
 database = mysql.connector.connect(host='localhost',
                                 database='projet',
                                 user='root',
-                                passwd='root')
+                                passwd='lokmane-SQL-12')
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 

@@ -1,6 +1,7 @@
 from tkinter import *
 import mysql.connector 
 import subprocess
+from io import BytesIO
 from PIL import Image,ImageTk
 import os
 import webbrowser
@@ -11,7 +12,7 @@ current_path=os.getcwd()
 account=Tk()
 account.geometry("1200x720")
 account.config(bg="white")
-iconsbarr=Frame(account,width=150,height=1440,bg="#15b4ea",)
+iconsbarr=Frame(account,width=200,height=1440,bg="#15b4ea",)
 iconsbarr.place(x=0,y=0)
 
 def personel():
@@ -22,14 +23,14 @@ def get_username():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT username from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT nom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     return result[0]
 def get_user_second_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT prenom from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT prenom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     return result[0]
 def log_out():
@@ -39,14 +40,14 @@ def get_user_first_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT nom from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT nom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     return result[0]
 def get_filiere():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT filière from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     return result[0]
 
@@ -54,15 +55,17 @@ def get_user_picture():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT image from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT image from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
-    photo_path=result[0]
-    return photo_path
+    photo_in_byte=result[0]
+    picture=imporicon(BytesIO(photo_in_byte),(200,200))
+    return picture
+
 def get_user_CNE():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT CNE from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     cne=result[0]
     return cne
@@ -71,7 +74,7 @@ def get_user_CIN():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT CIN from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT CIN from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     cin=result[0]
     return cin
@@ -100,11 +103,11 @@ person_button.place(x=18,y=0)
 
 
 school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
-school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
 school_icon_button.place(x=25,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white")
 paper_button.place(x=24,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
@@ -126,9 +129,9 @@ button.place(x=30,y=630)
 # hello.place(x=700,y=30)
 #------------------------------personal data frame------------------------------------------------------------------
 body_frame=Frame(account,bg="#B5EFFF",width=1000,height=530,relief="flat")
-body_frame.place(x=170,y=100)
+body_frame.place(x=240,y=100)
 #-------------------- personal picture import ----------------------------------------------------------
-photo=imporicon(get_user_picture(),(200,200))
+photo=get_user_picture()
 photo_label=Label(body_frame,image=photo)
 photo_label.place(x=0,y=0)
 #----------------------show other data ----------------------------------------------------------------------
@@ -159,8 +162,8 @@ filier_label2.place(x=700,y=450)
 
 #--------------------------leave button-------------------------------------------
 leavebutton=Button(account,text="Quitter",command=account.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=1100, y=660)
+leavebutton.place(x=1200, y=660)
 #--------------------------logout button--------------------------------------------
 logout=Button(account,text="Partir",command=log_out,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-logout.place(x=180, y=660)
+logout.place(x=280, y=660)
 account.mainloop()

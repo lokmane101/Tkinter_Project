@@ -98,6 +98,10 @@ for index in range(len(modules_profs)):
     button.place(x=dx,y=dy)
     dx+=200    
 
+def click():
+    for i in range(len(modules_frame)):
+        pass
+
 
 
 

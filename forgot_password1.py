@@ -23,7 +23,7 @@ def verify():
         database="projet"
     )
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM etudiant WHERE cne=%s AND cin=%s AND date_naissance=%s", (cne, cin, ddn))
+    cursor.execute("SELECT * FROM etudiant WHERE cne=%s AND cin=%s AND date_de_naissance=%s", (cne, cin, ddn))
     result = cursor.fetchone()
 
     if result:

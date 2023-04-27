@@ -274,10 +274,15 @@ image_label.config(highlightthickness=0)
 
     
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> aa1d97fd446bd2364775e5720bdc23996e94d9f7
     
 #--------------creation du label-------------------#
 email_Label=Label(window, text="Entrer votre email :",font=("Halvetica",15,"bold"),bg="white")
 email_Label.place(x=x_nom_Label,y=y_nom_Label+200)
+<<<<<<< HEAD
+=======
 =======
 
 def imporicon(path,size_tuple):
@@ -388,6 +393,7 @@ filiere_label.place(x=180,y=350)
 filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="white",font=("Arila",20))
 filiere_label2.place(x=600,y=400)
 >>>>>>> b688d539ab8474e17aadeddfcd1cb75bf8dfc633
+>>>>>>> aa1d97fd446bd2364775e5720bdc23996e94d9f7
 
 
 

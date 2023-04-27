@@ -273,10 +273,121 @@ image_label.config(highlightthickness=0)
 # ________________________________________creation du champ email___________________________________________________#
 
     
+<<<<<<< HEAD
     
 #--------------creation du label-------------------#
 email_Label=Label(window, text="Entrer votre email :",font=("Halvetica",15,"bold"),bg="white")
 email_Label.place(x=x_nom_Label,y=y_nom_Label+200)
+=======
+
+def imporicon(path,size_tuple):
+    icon=Image.open(path)
+    icon=icon.resize(size_tuple, Image.ANTIALIAS)
+    icon=ImageTk.PhotoImage(icon)
+    return icon
+
+def emploi():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    username=users[-2]
+    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username+"';")
+    result=cursorr.fetchone()
+    filier=result[0]
+    cursorr.execute("SELECT link from emploidutemps where filier='"+filier+"';")
+    print(filier)
+    url =cursorr.fetchone() 
+    link=url[0]
+    print(link)
+    webbrowser.open_new_tab(link)
+def support():
+    messagebox.showinfo(title="SUPPORT", message="CONTACTER UN DES ADMINS :\n\n\nAFKIR MOHAMED \t email\n\n\nAKKOUH LOKMANE \t lokmaneakkouh10@gmail.com\n\n\n BEN TOUHAMI MOHAMED RIDA \t email")
+
+#------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
+
+#------------------------connect to the database ETUDIANT------------------------------------    
+database = mysql.connector.connect(host="localhost",
+      user="root",
+      password="root", 
+      database="projet")
+#------------------------create cursor---------------------------------------------
+cursorr=database.cursor()
+#------------------------connect to the database ADRESSE------------------------------------    
+database = mysql.connector.connect(host="127.0.0.1",
+      user="root",
+      password="root", 
+      database="projet")
+#------------------------create cursor---------------------------------------------
+cursorr1=database.cursor()
+
+#-----------------------------import icons----------------------------------------
+
+person_icon=imporicon(current_path+"\\icons\\person_icon1.png",(80,80))
+person_button=Button(iconsbarr,text="PROFIL",image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
+person_button.place(x=18,y=0)
+
+
+school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
+school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+school_icon_button.place(x=25,y=115)
+
+paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="text ici",fg="white",activeforeground="white")
+paper_button.place(x=24,y=230)
+
+book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
+book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
+book_icon_button.place(x=25,y=335)
+
+
+agenda_icon=imporicon(current_path+"\\icons\\agenda.png",(60,60))
+agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=emploi, image=agenda_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="EMPLOI DU \n DU TEMPS",fg="white",activeforeground="white")
+agenda_icon_button.place(x=10,y=460)
+
+support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
+button=Button(iconsbarr,command=support,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
+button.place(x=30,y=630)
+
+
+#-------------------------------body----------------------------------------------------------------------------
+# hello=Label(text="HELLO\t"+get_user_second_name(),font=("Arial",30),fg="#258EF5",bg="white")
+# hello.place(x=700,y=30)
+#------------------------------personal data frame------------------------------------------------------------------
+body_frame=Frame(account,bg="#B5EFFF",width=1000,height=530,relief="flat")
+body_frame.place(x=170,y=100)
+#-------------------- personal picture import ----------------------------------------------------------
+photo=imporicon(get_user_picture(),(200,200))
+photo_label=Label(body_frame,image=photo)
+photo_label.place(x=0,y=0)
+#----------------------show other data ----------------------------------------------------------------------
+
+
+firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+firstName_label.place(x=180,y=110)
+firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="white",font=("Arila",20))
+firstName_label2.place(x=600,y=110)
+
+second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+second_Name_label.place(x=180,y=200)
+second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="white",font=("Arila",20))
+second_Name_label2.place(x=600,y=200)
+
+CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+CNE_label.place(x=180,y=250)
+CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="white",font=("Arila",20))
+CNE_label2.place(x=600,y=250)
+
+
+CIN_label=Label(body_frame,text="CIN:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+CIN_label.place(x=180,y=300)
+CIN_label2=Label(body_frame,text=get_user_CIN(),bg="#B5EFFF",fg="white",font=("Arila",20))
+CIN_label2.place(x=600,y=300)
+
+
+filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+filiere_label.place(x=180,y=350)
+filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="white",font=("Arila",20))
+filiere_label2.place(x=600,y=400)
+>>>>>>> b688d539ab8474e17aadeddfcd1cb75bf8dfc633
 
 
 

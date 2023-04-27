@@ -16,3 +16,88 @@ image longblob
 
 
 );
+
+use projet;
+DROP TABLE mODULES;
+create table Modules (
+filière varchar(50) references Etudiant (filière),
+
+module varchar(150),
+
+professeur varchar(50));
+
+#-----------------ID1--------------------
+insert into Modules values('ID1','Analyse numérique matricielle et Statistique Inférentielle','F.EL MOURADI');
+insert into Modules values('ID1','Architecture des ordinateurs et systèmes d’exploitation','M.EL CHERRADI/S.EL HAMDDOUI');
+insert into Modules values('ID1','Statistique en grande dimension','M.ADDAM');
+insert into Modules values('ID1','Programmation Python / Les bases du Web','A.BENGAG');
+insert into Modules values('ID1','Programmation Orientée Objet Java','T.BOUDAA');
+insert into Modules values('ID1','Entreprenariat I','S.KOULALI');
+insert into Modules values('ID1','Administration et Optimisation des Bases de Données','Y.EL MOURABIT');
+insert into Modules values('ID1','Data Mining','A.BOUFFASIL');
+insert into Modules values('ID1','Théorie des langages et compilation','A.KHAMJAN');
+insert into Modules values('ID1','Systèmes d’Information et Bases de Données','A.EL HADDADI');
+insert into Modules values('ID1','Structure de données et Algorithmique avancée','A.AL HADDADI');
+insert into Modules values('ID1','Analyse numérique matricielle et Statistique Inférentielle','M.ADDAM');
+insert into Modules values('ID1','Communication Professionnelle et Soft Skills -I-','A.BOUAZZA');
+
+#---------------ID2---------------
+insert into Modules values('ID2','Intelligence Artificielle II – Deep Learning','M.EL MAROUANI');
+insert into Modules values('ID2','Entreprenariat II','S.KOULALI');
+insert into Modules values('ID2','Data Warehouse et Data Lake','A.EL HADDADI');
+insert into Modules values('ID2','Big Data Avancées','A.EL HADDADI');
+insert into Modules values('ID2','Applications Web avancées avec Java et Spring','T.BOUDAA');
+insert into Modules values('ID2','NLP','T.BOUDAA');
+insert into Modules values('ID2','Modélisation Stochastique / Techniques Mathématiques d’Optimisation','M.ADDAM');
+insert into Modules values('ID2','Intelligence Artificielle I – Machine Learning','A.EL HADDADI');
+insert into Modules values('ID2','Fondements du Big Data','A.EL HADDADI');
+insert into Modules values('ID2','Communication Professionnelle et Soft Skills -II-','A.BOUAZZA');
+insert into Modules values('ID2','Bases de données avancées','Y. EL MOURABIT');
+insert into Modules values('ID2','Architecture Logicielle et UML','T.BOUDAA');
+
+#----GI1------#
+insert into Modules values('GI1','Web1 : Technologies de Web et PHP5','E.W.DADI');
+insert into Modules values('GI1','Théorie des langages et compilation','O.ZEALOUK');
+insert into Modules values('GI1','Programmation Orientée Objet C++','R.RAGRAGUI');
+insert into Modules values('GI1','Entreprenariat 1 & Atelier Start up','S.KOULALI');
+insert into Modules values('GI1','Architecture Logicielle et UML','F.RAFII ZAKANI');
+insert into Modules values('GI1','Algorithmique Avancée et complexité','E.W.DADI');
+insert into Modules values('GI1','Systèmes d’Information et Bases de Données Relationnelles','Y.EL MOURABIT');
+insert into Modules values('GI1','Réseaux informatiques','F.RAFII ZAKANI');
+insert into Modules values('GI1','Langues et Communication Professionnelles 1','A.BOUAZZA');
+insert into Modules values('GI1','Recherche opérationnelle et théorie des graphes','E.W.DADI');
+insert into Modules values('GI1','Langage C avancé et structures de données','A.RAGRAGUI');
+insert into Modules values('GI1','Comptabilité générale ','E.W.DADI');
+
+
+#---------GI2---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from modules;
+
+
+
+

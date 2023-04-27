@@ -6,7 +6,7 @@ class DataBase:
         self.database=sc.connect(
 
             user="root",
-            passwd="lokmane-SQL-12",
+            passwd="root",
             host="localhost",
             database="projet"
 

@@ -86,3 +86,27 @@ passwd:::dilah
 filière:::ID1
 passwd:::dilah
 filière:::ID1
+nom:::akkouh
+prenom:::lokmane
+email:::lokmaneakkouh10@gmail.com
+téléphone:::0642609327
+date_de_naissance:::2002-10-02
+cne:::S1330641690
+cin:::RB215070
+adress:::02-imzouren-moroccco
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/lokmane.jpg' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID1
+passwd:::dilah
+filière:::ID1
+nom:::akkouh
+prenom:::lokmane
+email:::lokmaneakkouh10@gmail.com
+téléphone:::0642609327
+date_de_naissance:::2002-10-02
+cne:::S1330641690
+cin:::RB215070
+adress:::20-imzouren-maroc
+image:::<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/lokmane.jpg' mode='r' encoding='cp1252'>
+passwd:::dilah
+filière:::ID1

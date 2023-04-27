@@ -166,4 +166,5 @@ button.place(x=40,y=70)
 # nom_prenom_fil=cursor.fetchall()
 # print(nom_prenom_fil[0])
 
-print("<_io.TextIOWrapper name='C:/Users/lokmane/Desktop/lokmane/thumbnail/thumbnail 2.png' mode='r' encoding='cp1252'>".split(" ")[2])
+cursor.execute("SELECT IMAGE FROM ETUDIANT WHERE CIN='R1587899633'")
+print(cursor.fetchone())

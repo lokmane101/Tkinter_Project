@@ -3,6 +3,7 @@ import mysql.connector
 import subprocess
 from PIL import Image,ImageTk
 import os
+from io import BytesIO
 import webbrowser
 from tkinter import messagebox
 
@@ -17,46 +18,47 @@ def username():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
+    return username
 
 def personel():
     personel=Tk()
     personel.geometry=("1200x720")
     personel.config(bg="white")
 def get_user_second_name():
-    cursorr.execute("SELECT prenom from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT prenom from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 def log_out():
     account.destroy()
     subprocess.run(["python",current_path+"\\Luncher.py"])
 def get_user_first_name():
-    cursorr.execute("SELECT nom from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT nom from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 def get_filiere():
-    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT filière from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     return result[0]
 
 def get_user_CNE():
-    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT CNE from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     cne=result[0]
     return cne
 
 def get_user_picture():
-    cursorr.execute("SELECT image from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT image from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     photo_path=result[0]
-    return photo_path
+    return BytesIO(photo_path)
 def get_user_CNE():
-    cursorr.execute("SELECT CNE from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT CNE from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     cne=result[0]
     return cne
 
 def get_user_CIN():
-    cursorr.execute("SELECT CIN from Etudiant where CIN='"+username()+"';")
+    cursorr.execute("SELECT CIN from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     cin=result[0]
     return cin
@@ -66,7 +68,7 @@ def get_password():
     mot_de_passe=result[0]
     return mot_de_passe
 def get_téléphone():
-    cursorr.execute("SELECT téléphone from Etudiant where cne='"+username+"';")
+    cursorr.execute("SELECT téléphone from Etudiant where cne='"+username()+"';")
     result=cursorr.fetchone()
     téléphone=result[0]
     return téléphone
@@ -85,9 +87,10 @@ def get_date_de_naissance():
 def get_adress():
     cursorr.execute("SELECT id from Etudiant where cne='"+username()+"';")
     id=cursorr.fetchone()
-    cursorr1.execute("SELECT num, rue, ville from adress where id_Etud='"+id+"';")
-    result =cursorr1.fetch()
-    adress=result[0]+"-"+result[1]+"-"+result[2]
+    print(id)
+    cursorr.execute("SELECT num, rue, ville from adress where id_Etud='"+str(id[0])+"';")
+    result =cursorr.fetchone()
+    adress=str(result[0])+"-"+result[1]+"-"+result[2]
     return adress
     
 
@@ -112,24 +115,20 @@ def emploi():
     webbrowser.open_new_tab(link)
 def support():
     messagebox.showinfo(title="SUPPORT", message="CONTACTER UN DES ADMINS :\n\n\nAFKIR MOHAMED \t email\n\n\nAKKOUH LOKMANE \t lokmaneakkouh10@gmail.com\n\n\n BEN TOUHAMI MOHAMED RIDA \t email")
-
+def description_filière():
+    account.destroy()
+    subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
 #------------------------connect to the database ETUDIANT------------------------------------    
 database = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="lokmane-SQL-12", 
+    password="root", 
     database="projet")
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
-#------------------------connect to the database ADRESSE------------------------------------    
-database = mysql.connector.connect(host="127.0.0.1",
-      user="root",
-      password="lokmane-SQL-12", 
-      database="projet")
-#------------------------create cursor---------------------------------------------
-cursorr1=database.cursor()
+
 
 #-----------------------------import icons----------------------------------------
 
@@ -240,7 +239,7 @@ def hide_password(event):
     password_label.bind("<Button-1>", show_password)
 
 # Création du champ de mot de passe sécurisé
-password_label = Label(body_frame, text=get_password(), show="*", bg="#B5EFFF", fg="white", font=("Arial", 20))
+password_label = Label(body_frame, text=get_password(), bg="#B5EFFF", fg="white", font=("Arial", 20))
 password_label.place(x=600, y=300)
 
 # Ajout d'un événement de clic au Label pour afficher/masquer le mot de passe
@@ -256,7 +255,7 @@ MOT_DE_PASSE_label.place(x=180,y=300)
 def go_there():
     subprocess.run(["python", current_path+"\\singUp1"])
 
-verify_button = account.Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there())
+verify_button = Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there())
 verify_button.place(x=870, y=470)
 
 

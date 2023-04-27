@@ -218,7 +218,7 @@ db=DataBase()
 #-----enter the Entry name field------#
 name_txt=StringVar()
 
-field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",20),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 field_nom.place(x=x_nom_entry,y=y_nom_entry)
 
 

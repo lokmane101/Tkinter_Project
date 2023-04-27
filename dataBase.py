@@ -1,5 +1,5 @@
 import mysql.connector as sc
-
+from tkinter import messagebox
 class DataBase:
     def __init__(self):
         self.mydata={}
@@ -77,13 +77,18 @@ class DataBase:
 
         print(Myimage_path)
         #------insertion des données (sans l'adress)--------#
-        requeste="INSERT INTO ETUDIANT (mot_de_passe,nom,prenom,filière,email,téléphone,cne,cin,date_de_naissance,image) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        data=(self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["filière"],
-            self.mydata["email"],self.mydata["téléphone"],self.mydata["cne"],self.mydata["cin"],self.mydata["date_de_naissance"],DataBase.convertToBinary(image_path=Myimage_path))
-        self.cursor.execute(requeste,data)
-        self.database.commit()
-         
-        print("saved data without adress ")
+        try:
+            requeste="INSERT INTO ETUDIANT (mot_de_passe,nom,prenom,filière,email,téléphone,cne,cin,date_de_naissance,image) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            data=(self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["filière"],
+                  self.mydata["email"],self.mydata["téléphone"],self.mydata["cne"],self.mydata["cin"],self.mydata["date_de_naissance"],DataBase.convertToBinary(image_path=Myimage_path))
+            self.cursor.execute(requeste,data)
+            self.database.commit()
+            print("saved data without adress ")
+        except:
+            messagebox.showwarning("Warning","cne déja existe, retour à a page précédente pour corriger cne")
+            raise "cne déja existe, recommencez la (ré)insription"
+        
+           
         
 
         #--------fetch the id of the student------
@@ -118,9 +123,9 @@ class DataBase:
         elif nom_prenom_fil[0][2]=="ID2":
             filiere="ingénieurie des données 2"
         elif nom_prenom_fil[0][2]=="GI1":
-            filiere="genie informatique 1"
+            filiere="génie informatique 1"
         else:
-            filiere="genie informatique 2"
+            filiere="génie informatique 2"
 
         return nom_prenom_fil[0][0],nom_prenom_fil[0][1],filiere
     
@@ -134,4 +139,5 @@ class DataBase:
         data=(cne,)
         self.cursor.execute(requete,data)
         return  self.cursor.fetchall()
-
+    
+        

@@ -23,7 +23,7 @@ create table Modules (
 filière varchar(50) references Etudiant (filière),
 
 module varchar(150),
-
+link varchar(500),
 professeur varchar(50));
 
 #-----------------ID1--------------------
@@ -116,10 +116,10 @@ insert into Modules values('GI2','Administration des Bases de données Avancées
 
 
 
-
-
+use projet;
 select * from etudiant;
 select * from modules;
+
 
 
 

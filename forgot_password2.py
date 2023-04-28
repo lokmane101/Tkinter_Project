@@ -19,7 +19,7 @@ def update_password():
     mydb = mysql.connector.connect(
         host="127.0.0.1",
         user="root",
-        password="Mohamed-123+", 
+        password="root", 
         database="projet"
     )
     mycursor = mydb.cursor()

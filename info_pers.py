@@ -12,12 +12,12 @@ account=Tk()
 account.title("Modification des infos personnels")
 account.geometry("1200x720")
 account.config(bg="white")
-iconsbarr=Frame(account,width=150,height=1440,bg="#15b4ea",)
+iconsbarr=Frame(account,width=155,height=1440,bg="#15b4ea")
 iconsbarr.place(x=0,y=0)
 def username():
-
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
+    print(users)
     username=users[-2]
     return username
 
@@ -48,6 +48,8 @@ def get_user_CNE():
     return cne
 
 def get_user_picture():
+    print(username())
+
     cursorr.execute("SELECT image from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     photo_path=result[0]
@@ -105,10 +107,10 @@ def emploi():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
-    cursorr.execute("SELECT filiere from Etudiant where CIN='"+username+"';")
+    cursorr.execute("SELECT filière from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchone()
     filier=result[0]
-    cursorr.execute("SELECT link from emploidutemps where filier='"+filier+"';")
+    cursorr.execute("SELECT link from emploidutemps where filière='"+filier+"';")
     print(filier)
     url =cursorr.fetchone() 
     link=url[0]
@@ -119,6 +121,20 @@ def support():
 def description_filière():
     account.destroy()
     subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
+#-------------------------subprocesses-------------------------------------
+def person():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\info_pers.py"])
+def description():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Description_filière.py"])
+def accueil():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Account.py"])
+def cours():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Cours.py"])
+
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
 #------------------------connect to the database ETUDIANT------------------------------------    
@@ -134,20 +150,20 @@ cursorr=database.cursor()
 #-----------------------------import icons----------------------------------------
 
 person_icon=imporicon(current_path+"\\icons\\person_icon1.png",(80,80))
-person_button=Button(iconsbarr,text="PROFIL",image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
+person_button=Button(iconsbarr,command=person,text="PROFIL",image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
 person_button.place(x=18,y=0)
 
 
 school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
-school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
-school_icon_button.place(x=25,y=115)
+school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white",command=accueil)
+school_icon_button.place(x=10,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="Description",fg="white",activeforeground="white")
-paper_button.place(x=24,y=230)
+paper_button=Button(iconsbarr,command=description,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPT°",fg="white",activeforeground="white")
+paper_button.place(x=0,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
-book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
+book_icon_button=Button(iconsbarr,command=cours,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
 book_icon_button.place(x=25,y=335)
 
 
@@ -164,7 +180,7 @@ button.place(x=30,y=630)
 # hello=Label(text="HELLO\t"+get_user_second_name(),font=("Arial",30),fg="#258EF5",bg="white")
 # hello.place(x=700,y=30)
 #------------------------------personal data frame------------------------------------------------------------------
-body_frame=Frame(account,bg="#B5EFFF",width=1000,height=530,relief="flat")
+body_frame=Frame(account,bg="#B5EFFF",width=1000,height=550,relief="flat")
 body_frame.place(x=240,y=100)
 #-------------------- personal picture import ----------------------------------------------------------
 photo=imporicon(get_user_picture(),(200,200))
@@ -174,56 +190,56 @@ photo_label.place(x=0,y=0)
 
 
 firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-firstName_label.place(x=180,y=110)
-firstName_label2=Label(body_frame,text=get_user_first_name,bg="#B5EFFF",fg="white",font=("Arila",20))
-firstName_label2.place(x=600,y=110)
+firstName_label.place(x=210,y=30)
+firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+firstName_label2.place(x=600,y=30)
 
 second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-second_Name_label.place(x=180,y=200)
-second_Name_label2=Label(body_frame,text=get_user_second_name,bg="#B5EFFF",fg="white",font=("Arila",20))
-second_Name_label2.place(x=600,y=200)
+second_Name_label.place(x=210,y=80)
+second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+second_Name_label2.place(x=600,y=80)
 
 CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-CNE_label.place(x=180,y=250)
-CNE_label2=Label(body_frame,text=get_user_CNE,bg="#B5EFFF",fg="white",font=("Arila",20))
-CNE_label2.place(x=600,y=250)
+CNE_label.place(x=210,y=130)
+CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CNE_label2.place(x=600,y=130)
 
 
 CIN_label=Label(body_frame,text="CIN:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-CIN_label.place(x=180,y=300)
-CIN_label2=Label(body_frame,text=get_user_CIN,bg="#B5EFFF",fg="white",font=("Arila",20))
-CIN_label2.place(x=600,y=300)
+CIN_label.place(x=210,y=180)
+CIN_label2=Label(body_frame,text=get_user_CIN(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CIN_label2.place(x=600,y=180)
 
 
 filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-filiere_label.place(x=180,y=350)
-filiere_label2=Label(body_frame,text=get_filiere,bg="#B5EFFF",fg="white",font=("Arila",20))
-filiere_label2.place(x=600,y=400)
+filiere_label.place(x=210,y=220)
+filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+filiere_label2.place(x=600,y=220)
 
 
 
 EMAIL_label=Label(body_frame,text="EMAIL:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-EMAIL_label.place(x=180,y=300)
-EMAIL_label2=Label(body_frame,text=get_email,bg="#B5EFFF",fg="white",font=("Arila",20))
-EMAIL_label2.place(x=600,y=300)
+EMAIL_label.place(x=210,y=270)
+EMAIL_label2=Label(body_frame,text=get_email(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+EMAIL_label2.place(x=600,y=270)
 
-
+add=0
 TELEPHONE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-TELEPHONE_label.place(x=180,y=300)
-TELEPHONE_label2=Label(body_frame,text=get_téléphone,bg="#B5EFFF",fg="white",font=("Arila",20))
-TELEPHONE_label2.place(x=600,y=300)
+TELEPHONE_label.place(x=210,y=320+add)
+TELEPHONE_label2=Label(body_frame,text=get_téléphone(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+TELEPHONE_label2.place(x=600,y=320+add)
 
 
 DATE_DE_NAISSANCE_label=Label(body_frame,text="DATE DE NAISSANCE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-DATE_DE_NAISSANCE_label.place(x=180,y=300)
-DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance,bg="#B5EFFF",fg="white",font=("Arila",20))
-DATE_DE_NAISSANCE_label2.place(x=600,y=300)
+DATE_DE_NAISSANCE_label.place(x=210,y=370+add)
+DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+DATE_DE_NAISSANCE_label2.place(x=600,y=370+add)
 
 
-ADRESSE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-ADRESSE_label.place(x=180,y=300)
-ADRESSE_labe2=Label(body_frame,text=get_adress,bg="#B5EFFF",fg="white",font=("Arila",20))
-ADRESSE_labe2.place(x=600,y=300)
+ADRESSE_label=Label(body_frame,text="ADRESSE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+ADRESSE_label.place(x=210,y=420+add)
+ADRESSE_labe2=Label(body_frame,text=get_adress(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+ADRESSE_labe2.place(x=600,y=420+add)
 
 #---------------------------- masquer le mot de passe----------------------
 
@@ -240,32 +256,33 @@ def hide_password(event):
     password_label.bind("<Button-1>", show_password)
 
 # Création du champ de mot de passe sécurisé
-password_label = Label(body_frame, text=get_password, bg="#B5EFFF", fg="white", font=("Arial", 20))
-password_label.place(x=600, y=300)
+password_label = Label(body_frame, text=get_password(), bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
+password_label.place(x=600, y=470)
 
 # Ajout d'un événement de clic au Label pour afficher/masquer le mot de passe
 password_label.bind("<Button-1>", show_password)
 
 
 MOT_DE_PASSE_label=Label(body_frame,text="MOT_DE_PASSE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
-MOT_DE_PASSE_label.place(x=180,y=300)
+MOT_DE_PASSE_label.place(x=210,y=470)
 
 #------------------modification button: go to script singUP1 of Rida----------------------------
 
 #-----------subprocess-----------
 def go_there():
-    subprocess.run(["python", current_path+"\\singUp1"])
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Update1.py"])
 
-verify_button = Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there())
-verify_button.place(x=870, y=470)
+verify_button = Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there)
+verify_button.place(x=870, y=490)
 
 
 #--------------------------leave button-------------------------------------------
 leavebutton=Button(account,text="Quitter",command=account.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=1100, y=660)
+leavebutton.place(x=1200, y=660)
 #--------------------------logout button--------------------------------------------
 logout=Button(account,text="Partir",command=log_out,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-logout.place(x=180, y=660)
+logout.place(x=210, y=660)
 account.mainloop()
 
 

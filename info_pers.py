@@ -15,6 +15,7 @@ account.config(bg="white")
 iconsbarr=Frame(account,width=155,height=1440,bg="#15b4ea")
 iconsbarr.place(x=0,y=0)
 def username():
+
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     username=users[-2]
@@ -187,6 +188,7 @@ photo_label.place(x=0,y=0)
 
 
 firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+<<<<<<< HEAD
 firstName_label.place(x=210,y=30)
 firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 firstName_label2.place(x=600,y=30)
@@ -212,16 +214,51 @@ filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("
 filiere_label.place(x=210,y=220)
 filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 filiere_label2.place(x=600,y=220)
+=======
+firstName_label.place(x=180,y=110)
+firstName_label2=Label(body_frame,text=get_user_first_name,bg="#B5EFFF",fg="white",font=("Arila",20))
+firstName_label2.place(x=600,y=110)
+
+second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+second_Name_label.place(x=180,y=200)
+second_Name_label2=Label(body_frame,text=get_user_second_name,bg="#B5EFFF",fg="white",font=("Arila",20))
+second_Name_label2.place(x=600,y=200)
+
+CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+CNE_label.place(x=180,y=250)
+CNE_label2=Label(body_frame,text=get_user_CNE,bg="#B5EFFF",fg="white",font=("Arila",20))
+CNE_label2.place(x=600,y=250)
+
+
+CIN_label=Label(body_frame,text="CIN:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+CIN_label.place(x=180,y=300)
+CIN_label2=Label(body_frame,text=get_user_CIN,bg="#B5EFFF",fg="white",font=("Arila",20))
+CIN_label2.place(x=600,y=300)
+
+
+filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+filiere_label.place(x=180,y=350)
+filiere_label2=Label(body_frame,text=get_filiere,bg="#B5EFFF",fg="white",font=("Arila",20))
+filiere_label2.place(x=600,y=400)
+>>>>>>> faaa3a409f7a578b7a065307ea4c2d39529fe098
 
 
 
 EMAIL_label=Label(body_frame,text="EMAIL:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+<<<<<<< HEAD
 EMAIL_label.place(x=210,y=270)
 EMAIL_label2=Label(body_frame,text=get_email(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 EMAIL_label2.place(x=600,y=270)
+=======
+EMAIL_label.place(x=180,y=300)
+EMAIL_label2=Label(body_frame,text=get_email,bg="#B5EFFF",fg="white",font=("Arila",20))
+EMAIL_label2.place(x=600,y=300)
+
+>>>>>>> faaa3a409f7a578b7a065307ea4c2d39529fe098
 
 add=0
 TELEPHONE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+<<<<<<< HEAD
 TELEPHONE_label.place(x=210,y=320+add)
 TELEPHONE_label2=Label(body_frame,text=get_téléphone(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 TELEPHONE_label2.place(x=600,y=320+add)
@@ -237,6 +274,23 @@ ADRESSE_label=Label(body_frame,text="ADRESSE:",bg="#B5EFFF",fg="#0073e6",font=("
 ADRESSE_label.place(x=210,y=420+add)
 ADRESSE_labe2=Label(body_frame,text=get_adress(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 ADRESSE_labe2.place(x=600,y=420+add)
+=======
+TELEPHONE_label.place(x=180,y=300)
+TELEPHONE_label2=Label(body_frame,text=get_téléphone,bg="#B5EFFF",fg="white",font=("Arila",20))
+TELEPHONE_label2.place(x=600,y=300)
+
+
+DATE_DE_NAISSANCE_label=Label(body_frame,text="DATE DE NAISSANCE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+DATE_DE_NAISSANCE_label.place(x=180,y=300)
+DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance,bg="#B5EFFF",fg="white",font=("Arila",20))
+DATE_DE_NAISSANCE_label2.place(x=600,y=300)
+
+
+ADRESSE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
+ADRESSE_label.place(x=180,y=300)
+ADRESSE_labe2=Label(body_frame,text=get_adress,bg="#B5EFFF",fg="white",font=("Arila",20))
+ADRESSE_labe2.place(x=600,y=300)
+>>>>>>> faaa3a409f7a578b7a065307ea4c2d39529fe098
 
 #---------------------------- masquer le mot de passe----------------------
 
@@ -253,8 +307,13 @@ def hide_password(event):
     password_label.bind("<Button-1>", show_password)
 
 # Création du champ de mot de passe sécurisé
+<<<<<<< HEAD
 password_label = Label(body_frame, text=get_password(), bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
 password_label.place(x=600, y=470)
+=======
+password_label = Label(body_frame, text=get_password, bg="#B5EFFF", fg="white", font=("Arial", 20))
+password_label.place(x=600, y=300)
+>>>>>>> faaa3a409f7a578b7a065307ea4c2d39529fe098
 
 # Ajout d'un événement de clic au Label pour afficher/masquer le mot de passe
 password_label.bind("<Button-1>", show_password)

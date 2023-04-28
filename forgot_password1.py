@@ -2,6 +2,8 @@ import tkinter as tk
 import mysql.connector
 from PIL import Image,ImageTk
 import subprocess
+import os
+current_path=os.getcwd()
 MAX_TRIES = 5
 def on_entry_click(event):
     """Function to handle click event on Entry widget"""
@@ -19,7 +21,7 @@ def verify():
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="lokmane-SQL-12",
+        password="root",
         database="projet"
     )
     cursor = db.cursor()
@@ -28,7 +30,7 @@ def verify():
 
     if result:
         root.destroy()
-        subprocess.run(["python","C:\\Users\\lokmane\\Desktop\\Tkinter_project\\forgot_password2.py"])
+        subprocess.run(["python",current_path+"forgot_password2.py"])
     else:
         global MAX_TRIES
         MAX_TRIES -= 1
@@ -51,7 +53,7 @@ root = tk.Tk()
 root.title("Vérification des informations d'utilisateur")
 root.geometry("1200x720")
 root.config(bg="white")
-imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\password2.jpg"))
+imagee=(Image.open(current_path+"\\icons\\password2.jpg"))
 imagee=imagee.resize((430,800))
 sidepicture = ImageTk.PhotoImage(imagee)
 #----------------Create a Label Widget to display the  Image-----------------

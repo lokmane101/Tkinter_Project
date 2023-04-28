@@ -109,7 +109,7 @@ def regex_verification():
                 Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
                 
 
-        CNE=re.match(r"^[A-Z]{1}\d{10}$",CNE_field.get())
+        CNE=re.match(r"^[A-Z]\d{9}|[A-Z]{2}\d{7}\d?\d?$",CNE_field.get())
         if not bool(CNE) and CNE_field.get().strip() not in ("L**********",""):
                 ok=False
                 Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
@@ -118,7 +118,7 @@ def regex_verification():
                 Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
 
         
-        CIN=re.match(r"^[A-Z]{1,2}\d{6}$",CIN_field.get())
+        CIN=re.match(r"^[A-Z]\d{6}|[A-Z]{2}\d{5}\d?$",CIN_field.get())
         if not bool(CIN) and CIN_field.get().strip() not in (""):
                 ok=False
                 Label(window,text="****invalide syntxe",fg="red",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)

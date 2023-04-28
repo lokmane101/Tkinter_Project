@@ -3,9 +3,13 @@ from PIL import Image,ImageTk
 from os import *
 from dataBase import DataBase
 import subprocess
+import webbrowser
 
 
 #------------------------focntions utiles----------------------#
+def emploi():
+    url = 'https://drive.google.com/file/d/1Nz6Mu8ZliD2G_Hn4mM5zV0aJuBbOOar5/view?usp=sharing'
+    webbrowser.open_new_tab(url)
 def imporicon(path,icon_size):
     icon=Image.open(path)
     icon=icon.resize(icon_size)
@@ -18,6 +22,10 @@ def go_to_personel():
 def go_to_accueil():
     account.destroy()
     subprocess.run(["python",current_path+"\\Account.py"])
+
+def go_to_cours():
+    account.destroy()
+    subprocess.run(["python",current_path+"\\Cours.py"])
 
 
 #-----------------variables a utiliser----------------------------------------#
@@ -56,12 +64,12 @@ paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=pa
 paper_button.place(x=24,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
-book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
+book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white",command=go_to_cours)
 book_icon_button.place(x=25,y=335)
 
 
 agenda_icon=imporicon(current_path+"\\icons\\agenda.png",(60,60))
-agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat", image=agenda_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="EMPLOI DU \n DU TEMPS",fg="white",activeforeground="white")
+agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=emploi, image=agenda_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="EMPLOI DU \n DU TEMPS",fg="white",activeforeground="white")
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
@@ -144,7 +152,7 @@ for index in range(len(modules_profs)):
     dx+=200   
     if len(l_button)%6==0:
         dx=10
-        dy+=210
+        dy+=205
     
 
 

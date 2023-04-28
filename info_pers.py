@@ -15,9 +15,9 @@ account.config(bg="white")
 iconsbarr=Frame(account,width=155,height=1440,bg="#15b4ea")
 iconsbarr.place(x=0,y=0)
 def username():
-
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
+    print(users)
     username=users[-2]
     return username
 
@@ -48,6 +48,8 @@ def get_user_CNE():
     return cne
 
 def get_user_picture():
+    print(username())
+
     cursorr.execute("SELECT image from Etudiant where Cne='"+username()+"';")
     result=cursorr.fetchone()
     photo_path=result[0]
@@ -119,7 +121,7 @@ def support():
 def description_filière():
     account.destroy()
     subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
-#--------------subprocesses-------------------------------------
+#-------------------------subprocesses-------------------------------------
 def person():
     account.destroy()
     subprocess.run(["python", current_path+"\\info_pers.py"])
@@ -268,9 +270,10 @@ MOT_DE_PASSE_label.place(x=210,y=470)
 
 #-----------subprocess-----------
 def go_there():
-    subprocess.run(["python", current_path+"\\singUp1"])
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Update1.py"])
 
-verify_button = Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there())
+verify_button = Button(body_frame, text="Modifier!", bg="blue", fg="white", font=("Arial", 18), command=go_there)
 verify_button.place(x=870, y=490)
 
 

@@ -12,7 +12,7 @@ current_path=os.getcwd()
 account=Tk()
 account.geometry("1200x720")
 account.config(bg="white")
-iconsbarr=Frame(account,width=200,height=1440,bg="#15b4ea",)
+iconsbarr=Frame(account,width=155,height=1440,bg="#15b4ea",)
 iconsbarr.place(x=0,y=0)
 
 def personel():
@@ -121,11 +121,11 @@ person_button.place(x=18,y=0)
 
 school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
 school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,command=accueil,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
-school_icon_button.place(x=25,y=115)
+school_icon_button.place(x=10,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=description,image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white")
-paper_button.place(x=24,y=230)
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=description,image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPT°",fg="white",activeforeground="white")
+paper_button.place(x=0,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
 book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=cours,image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")

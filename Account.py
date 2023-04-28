@@ -22,14 +22,14 @@ def personel():
 def get_username():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     cursorr.execute("SELECT nom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
     return result[0][0]
 def get_user_second_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     cursorr.execute("SELECT prenom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
     return result[0][0]
@@ -39,7 +39,7 @@ def log_out():
 def get_user_first_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     print(username)
     cursorr.execute("SELECT nom from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
@@ -47,7 +47,7 @@ def get_user_first_name():
 def get_filiere():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     cursorr.execute("SELECT filière from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
     return result[0][0]
@@ -55,7 +55,7 @@ def get_filiere():
 def get_user_picture():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     print(username)
     cursorr.execute("SELECT image from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
@@ -66,7 +66,7 @@ def get_user_picture():
 def get_user_CNE():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     cursorr.execute("SELECT CNE from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
     cne=result[0][0]
@@ -75,7 +75,7 @@ def get_user_CNE():
 def get_user_CIN():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     cursorr.execute("SELECT CIN from Etudiant where Cne='"+username+"';")
     result=cursorr.fetchall()
     cin=result[0][0]

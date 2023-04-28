@@ -5,6 +5,8 @@ import subprocess
 from dataBase import DataBase
 import  re
 import os
+from Account import *
+from info_pers import *
 #____________________________creation of same util function__________________________________________#
 
 
@@ -24,12 +26,8 @@ def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
-              cne=CNE_field.get()
-              db.insert_data_sign_up_phase2(field_adress.get(),cne,CIN_field.get(),photo_field.get())
+              db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
-              with open(r"fichierLog.txt","w+") as file:
-                      file.write(cne+"\n")
-                      
               subprocess.run(["python",current_path+r"/signUp3.py"])
 
 
@@ -187,10 +185,8 @@ name_txt=StringVar()
 
 field_adress=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 field_adress.place(x=x_adress_entry,y=y_adress_entry)
-field_adress.insert(0,"N°-rue-ville")
-field_adress.config(fg="gray")
-field_adress.bind("<FocusIn>",focus_In_adress)
-field_adress.bind("<FocusOut>",focus_out_adress)
+field_adress.insert(0, get_adress())
+
 
 
 #-----enter the name Label------#
@@ -227,7 +223,7 @@ image_label.config(highlightthickness=0)
 CNE_txt=StringVar()
 CNE_field=Entry(window, textvariable=CNE_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CNE_field.place(x=x_adress_entry,y=y_adress_entry+120)
-
+CNE_field.insert(0,get_user_CNE)
 
 
 
@@ -249,6 +245,7 @@ CIN_Label.place(x=x_adress_Label,y=y_adress_Label+250)
 CIN_txt=StringVar()
 CIN_field=Entry(window,textvariable=CIN_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CIN_field.place(x=x_adress_entry,y=y_adress_entry+250)
+CIN_field.insert(0,get_user_CNE)
 
 
 #------------creation de l'étoile--------------#

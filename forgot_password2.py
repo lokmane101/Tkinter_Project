@@ -1,6 +1,8 @@
 import tkinter as tk
 import mysql.connector
 from PIL import Image,ImageTk
+import os
+current_path=os.getcwd()
 # from forgot_password1 import get_cne_value
 # cne_value = get_cne_value # cette valeur de cne saisie par user sera utilisée lorsqu'on veut modifier le mot de passe dasn la base de données
 
@@ -58,7 +60,7 @@ def update_password():
 
 reset_root = tk.Tk()
 reset_root.config(bg="white")
-imagee=(Image.open("C:\\Users\\lokmane\\Desktop\\Tkinter_project\\icons\\password2.jpg"))
+imagee=(Image.open(current_path+"\\icons\\password2.jpg"))
 imagee=imagee.resize((430,800))
 sidepicture = ImageTk.PhotoImage(imagee)
 #----------------Create a Label Widget to display the  Image-----------------

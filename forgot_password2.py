@@ -34,7 +34,7 @@ def update_password():
 
     if new_password == confirm_password:
         # Update password in database
-        sql = "UPDATE etudiant SET password = %s WHERE cne = %s"
+        sql = "UPDATE etudiant SET mot_de_passe = %s WHERE cne = %s"
         val = (new_password, cne)  # replace passwd with the actual passwd of the user
         mycursor.execute(sql, val)
         mydb.commit()

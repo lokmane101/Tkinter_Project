@@ -30,7 +30,7 @@ def verify():
 
     if result:
         root.destroy()
-        subprocess.run(["python",current_path+"forgot_password2.py"])
+        subprocess.run(["python",current_path+"\\forgot_password2.py"])
     else:
         global MAX_TRIES
         MAX_TRIES -= 1

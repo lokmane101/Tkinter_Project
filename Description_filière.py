@@ -73,7 +73,10 @@ agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",co
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
-button=Button(iconsbarr,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
+def open_email_client():
+    webbrowser.open('mailto:equipetechniquestkinter@gmail.com')
+
+button = Button(iconsbarr, command=open_email_client, image=support_icon, relief="flat", bg="#15b4ea",activebackground="#15b4ea")
 button.place(x=30,y=630)
 #-------------frame (Nom filière et nom d'étudiant)-------------- 
 
@@ -91,8 +94,8 @@ Student_nom_prenom.place(x=780,y=120)
 
 #-------------------frame (des professeurs)---------------------
 
-modules_frame=Frame(account,bg="#FFEBCD" )
-modules_frame.place(x=160,y=180, height=550,width=1200)
+modules_frame=Frame(account,bg="#FFEBCD")
+modules_frame.place(x=160,y=180, height=550,width=1000)
 
 # def create_listBox()
 modules_profs=db.get_Modules_Profs()

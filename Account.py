@@ -80,6 +80,9 @@ def get_user_CIN():
     result=cursorr.fetchall()
     cin=result[0][0]
     return cin
+def go_perso():
+    account.destroy()
+    subprocess.run(["python",current_path+"\\info_pers.py"])
 
 def imporicon(path,size_tuple):
     icon=Image.open(path)
@@ -93,14 +96,14 @@ def imporicon(path,size_tuple):
 database = mysql.connector.connect(host='localhost',
                                 database='projet',
                                 user='root',
-                                password='root')
+                                password='lokmane-SQL-12')
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 
 #-----------------------------import icons----------------------------------------
 
 person_icon=imporicon(current_path+"\\icons\\person_icon1.png",(80,80))
-person_button=Button(iconsbarr,text="PROFIL",image=person_icon,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
+person_button=Button(iconsbarr,text="PROFIL",image=person_icon,command=go_perso,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
 person_button.place(x=18,y=0)
 
 

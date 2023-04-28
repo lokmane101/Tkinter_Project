@@ -80,18 +80,27 @@ def get_user_CIN():
     result=cursorr.fetchall()
     cin=result[0][0]
     return cin
-def go_perso():
-    account.destroy()
-    subprocess.run(["python",current_path+"\\info_pers.py"])
 
 def imporicon(path,size_tuple):
     icon=Image.open(path)
     icon=icon.resize(size_tuple, Image.ANTIALIAS)
     icon=ImageTk.PhotoImage(icon)
     return icon
-def description_filière():
+
+#--------------subprocesses-------------------------------------
+def person():
     account.destroy()
-    subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
+    subprocess.run(["python", current_path+"\\info_pers.py"])
+def description():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Description_filière.py"])
+def accueil():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Account.py"])
+def cours():
+    account.destroy()
+    subprocess.run(["python", current_path+"\\Cours.py"])
+
 
 #------------------------------------------partie SQL-------------------------------------------------------------------------------------------------------#
 
@@ -99,27 +108,27 @@ def description_filière():
 database = mysql.connector.connect(host='localhost',
                                 database='projet',
                                 user='root',
-                                password='lokmane-SQL-12')
+                                password='root')
 #------------------------create cursor---------------------------------------------
 cursorr=database.cursor()
 
 #-----------------------------import icons----------------------------------------
 
 person_icon=imporicon(current_path+"\\icons\\person_icon1.png",(80,80))
-person_button=Button(iconsbarr,text="PROFIL",image=person_icon,command=go_perso,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
+person_button=Button(iconsbarr,text="PROFIL",image=person_icon,command=person,compound="top" ,font=("Louis George Cafe",20),padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",fg="white",activeforeground="white",highlightcolor="white")
 person_button.place(x=18,y=0)
 
 
 school_icon=imporicon(current_path+"\\icons\\school.png",(80,80))
-school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
+school_icon_button=Button(iconsbarr,image=school_icon,padx=0,pady=0,command=accueil,relief="flat",bg="#15b4ea",activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="ACCUEIL",fg="white",activeforeground="white")
 school_icon_button.place(x=25,y=115)
 
 paper=imporicon(current_path+"\\icons\\paper1.png",(70,70))
-paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white",command=description_filière)
+paper_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=description,image=paper,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",20),text="DESCRIPTION",fg="white",activeforeground="white")
 paper_button.place(x=24,y=230)
 
 book_icon=imporicon(current_path+"\\icons\\book.png",(70,70))
-book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
+book_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=cours,image=book_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",18),text="COURS",fg="white",activeforeground="white")
 book_icon_button.place(x=25,y=335)
 
 

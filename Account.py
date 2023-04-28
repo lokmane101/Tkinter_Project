@@ -137,7 +137,10 @@ agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",co
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
-button=Button(iconsbarr,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
+def open_email_client():
+    webbrowser.open('mailto:equipetechniquestkinter@gmail.com')
+
+button = Button(iconsbarr, command=open_email_client, image=support_icon, relief="flat", bg="#15b4ea",activebackground="#15b4ea")
 button.place(x=30,y=630)
 
 
@@ -146,41 +149,37 @@ button.place(x=30,y=630)
 # hello.place(x=700,y=30)
 #------------------------------personal data frame------------------------------------------------------------------
 body_frame=Frame(account,bg="#B5EFFF",width=1000,height=530,relief="flat")
-body_frame.place(x=240,y=100)
+body_frame.place(x=180,y=100)
 #-------------------- personal picture import ----------------------------------------------------------
 photo=get_user_picture()
 photo_label=Label(body_frame,image=photo)
 photo_label.place(x=0,y=0)
 #----------------------show other data ----------------------------------------------------------------------
-username_label=Label(body_frame,text="NOM D'UTILISATEUR:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
-username_label.place(x=220,y=0)
-username_label2=Label(body_frame,text=get_username(),bg="#B5EFFF",fg="white",font=("Arila",35))
-username_label2.place(x=700,y=50)
-
+minus=50
 firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
 firstName_label.place(x=220,y=100)
-firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="white",font=("Arila",35))
-firstName_label2.place(x=700,y=150)
+firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",35))
+firstName_label2.place(x=700,y=150-minus)
 
 second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
 second_Name_label.place(x=220,y=200)
-second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="white",font=("Arila",35))
-second_Name_label2.place(x=700,y=250)
+second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",35))
+second_Name_label2.place(x=700,y=250-minus)
 
 CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
 CNE_label.place(x=220,y=300)
-CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="white",font=("Arila",35))
-CNE_label2.place(x=700,y=350)
+CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",35))
+CNE_label2.place(x=700,y=350-minus)
 
 filier_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",35))
 filier_label.place(x=220,y=400)
-filier_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="white",font=("Arila",35))
-filier_label2.place(x=700,y=450)
+filier_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",35))
+filier_label2.place(x=700,y=450-minus)
 
 #--------------------------leave button-------------------------------------------
 leavebutton=Button(account,text="Quitter",command=account.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=1200, y=660)
+leavebutton.place(x=1100, y=660)
 #--------------------------logout button--------------------------------------------
 logout=Button(account,text="Partir",command=log_out,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-logout.place(x=280, y=660)
+logout.place(x=200, y=660)
 account.mainloop()

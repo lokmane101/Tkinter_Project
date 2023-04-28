@@ -18,7 +18,7 @@ def username():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
     print(users)
-    username=users[-2]
+    username=users[0]
     return username
 
 def personel():
@@ -191,54 +191,54 @@ photo_label.place(x=0,y=0)
 
 firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 firstName_label.place(x=210,y=30)
-firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+firstName_label2=Label(body_frame,text=get_user_first_name,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 firstName_label2.place(x=600,y=30)
 
 second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 second_Name_label.place(x=210,y=80)
-second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+second_Name_label2=Label(body_frame,text=get_user_second_name,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 second_Name_label2.place(x=600,y=80)
 
 CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 CNE_label.place(x=210,y=130)
-CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CNE_label2=Label(body_frame,text=get_user_CNE,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 CNE_label2.place(x=600,y=130)
 
 
 CIN_label=Label(body_frame,text="CIN:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 CIN_label.place(x=210,y=180)
-CIN_label2=Label(body_frame,text=get_user_CIN(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CIN_label2=Label(body_frame,text=get_user_CIN,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 CIN_label2.place(x=600,y=180)
 
 
 filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 filiere_label.place(x=210,y=220)
-filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+filiere_label2=Label(body_frame,text=get_filiere,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 filiere_label2.place(x=600,y=220)
 
 
 
 EMAIL_label=Label(body_frame,text="EMAIL:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 EMAIL_label.place(x=210,y=270)
-EMAIL_label2=Label(body_frame,text=get_email(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+EMAIL_label2=Label(body_frame,text=get_email,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 EMAIL_label2.place(x=600,y=270)
 
 add=0
 TELEPHONE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 TELEPHONE_label.place(x=210,y=320+add)
-TELEPHONE_label2=Label(body_frame,text=get_téléphone(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+TELEPHONE_label2=Label(body_frame,text=get_téléphone,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 TELEPHONE_label2.place(x=600,y=320+add)
 
 
 DATE_DE_NAISSANCE_label=Label(body_frame,text="DATE DE NAISSANCE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 DATE_DE_NAISSANCE_label.place(x=210,y=370+add)
-DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 DATE_DE_NAISSANCE_label2.place(x=600,y=370+add)
 
 
 ADRESSE_label=Label(body_frame,text="ADRESSE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 ADRESSE_label.place(x=210,y=420+add)
-ADRESSE_labe2=Label(body_frame,text=get_adress(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+ADRESSE_labe2=Label(body_frame,text=get_adress,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 ADRESSE_labe2.place(x=600,y=420+add)
 
 #---------------------------- masquer le mot de passe----------------------
@@ -256,7 +256,7 @@ def hide_password(event):
     password_label.bind("<Button-1>", show_password)
 
 # Création du champ de mot de passe sécurisé
-password_label = Label(body_frame, text=get_password(), bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
+password_label = Label(body_frame, text=get_password, bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
 password_label.place(x=600, y=470)
 
 # Ajout d'un événement de clic au Label pour afficher/masquer le mot de passe

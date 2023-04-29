@@ -5,9 +5,8 @@ import subprocess
 from dataBase import DataBase
 import  re
 import os
-from Account import *
-from info_pers import *
-#____________________________creation of same util function__________________________________________#
+import mysql.connector
+#_________creation of same util function_______________#
 
 
 #--------------------create icon---------------------#
@@ -21,14 +20,14 @@ def create_icon(icon_path,tuple_size):
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
-        subprocess.run(["python",current_path+r"/signUp1.py"])
+        subprocess.run(["python",current_path+r"/update1.py"])
 def suivant():
        v_generate_err=generate_err()
        v_regex_verification=regex_verification()
        if v_generate_err and v_regex_verification:
               db.insert_data_sign_up_phase2(field_adress.get(),CNE_field.get(),CIN_field.get(),photo_field.get())
               window.destroy()
-              subprocess.run(["python",current_path+r"/signUp3.py"])
+              subprocess.run(["python",current_path+r"/update3.py"])
 
 
 #-----------la fonction qui permet de parcourir les lien pour recuperer l'image désirer---------#
@@ -71,28 +70,24 @@ def parcourir_lien():
 def generate_err():
        ok=True
        if field_adress.get() in["", "N°-rue-ville"] :
-                Label(window,text="****svp entrer votre adresse",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+                Label(window,text="**svp entrer votre adresse",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
                 ok=False
        else:
-                Label(window,text="****svp entrer votre adresse",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
+                Label(window,text="**svp entrer votre adresse",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40)
 
        if CNE_field.get()=="":
-                Label(window,text="****svp entrer votre CNE",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
+                Label(window,text="**svp entrer votre CNE",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
                 ok=False
        else:
-                Label(window,text="****svp entrer votre CNE",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
+                Label(window,text="**svp entrer votre CNE",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100+20)
 
        if CIN_field.get()=="":
-                Label(window,text="****svp entrer votre CIN",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
+                Label(window,text="**svp entrer votre CIN",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
                 ok=False
        else: 
-                Label(window,text="****svp entrer votre photo",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
+                Label(window,text="**svp entrer votre photo",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+40+100*2+50)
 
-       if photo_field.get()=="":
-                Label(window,text="****svp entrer votre photo",fg="red",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+30+100*3+40)
-                ok=False
-       else:
-                Label(window,text="****svp entrer votre numero",fg="white",bg="white").place(x=x_adress_entry+350,y=y_adress_entry+30+100*3+40)
+       
        return ok
        
 
@@ -101,30 +96,29 @@ def regex_verification():
         adress=re.match(r"^\d{1,}-\w+\s?\w+\s?\w+-\w+\s?\w+$",field_adress.get())
         if  not bool(adress) and field_adress.get().strip()  not  in ("N°-rue-ville",""):
                 ok=False
-                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
+                Label(window,text="**invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
                 print("adress valider")
         else:
-                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
+                Label(window,text="**invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40)
                 
 
-        CNE=re.match(r"^[A-Z]{1}\d{10}$",CNE_field.get())
-        if not bool(CNE) and CNE_field.get().strip() not in ("L**********",""):
+        CNE=re.match(r"^[A-Z]\d{9}|[A-Z]{2}\d{7}\d?\d?$",CNE_field.get())
+        if not bool(CNE) and CNE_field.get().strip() not in ("L****",""):
                 ok=False
-                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
+                Label(window,text="**invalide syntaxe",fg="red",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
                 print("CNE valider")
         else:
-                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
+                Label(window,text="**invalide syntaxe",fg="white",bg="white").place(x=x_adress_entry+50,y=y_adress_entry+40+100+20)
 
         
-        CIN=re.match(r"^[A-Z]{1,2}\d{6}$",CIN_field.get())
+        CIN=re.match(r"^[A-Z]\d{6}|[A-Z]{2}\d{5}\d?$",CIN_field.get())
         if not bool(CIN) and CIN_field.get().strip() not in (""):
                 ok=False
-                Label(window,text="****invalide syntxe",fg="red",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
+                Label(window,text="**invalide syntxe",fg="red",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
         else:
-                Label(window,text="****invalide syntxe",fg="white",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
+                Label(window,text="**invalide syntxe",fg="white",bg="white",bd=1).place(x=x_adress_entry+50,y=y_adress_entry+40+100*2+50)
 
         return ok
-
 
 def focus_In_adress(event):
         if field_adress.get()=="N°-rue-ville":
@@ -135,7 +129,44 @@ def focus_out_adress(event):
         if field_adress.get()=="":
                 field_adress.insert(0,"N°-rue-ville")
                 field_adress.configure(foreground="gray",font=("Louis George Cafe Bold",15))
-#________________________________varaibel a utiliser___________________________________#
+
+def get_adress():
+    cursorr.execute("SELECT id from Etudiant where cne='"+username()+"';")
+    id=cursorr.fetchone()
+    print(id)
+    cursorr.execute("SELECT num, rue, ville from adress where id_Etud='"+str(id[0])+"';")
+    result =cursorr.fetchone()
+    adress=str(result[0])+"-"+result[1]+"-"+result[2]
+    return adress
+def username():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    print(users)
+    username=users[0]
+    return username
+def get_user_CNE():
+    cursorr.execute("SELECT CNE from Etudiant where Cne='"+username()+"';")
+    result=cursorr.fetchone()
+    cne=result[0]
+    return cne
+
+def get_user_CIN():
+    cursorr.execute("SELECT CIN from Etudiant where Cne='"+username()+"';")
+    result=cursorr.fetchone()
+    cin=result[0]
+    return cin
+
+
+
+
+#_______________create the non widget_____________#
+database = mysql.connector.connect(host='localhost',
+                                database='projet',
+                                user='root',
+                                password='root')
+#------------------------create cursor---------------------------------------------
+cursorr=database.cursor()
+#___________varaibel a utiliser____________#
 
 current_path=current_path=os.getcwd()
 
@@ -156,16 +187,17 @@ y_adress_etoile=100+10
 
 icon_size=50
 
-#_____________________________________________creation de la fenêtre_________________________________________________#
+#________________creation de la fenêtre________________#
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("MODIFICATION")
 
 #-----------------se connecter tout d'abord à la base de donnée------------------#
 db= DataBase()
 
 
-#______________________________________________create the adress widget______________________________________#
+#_______________create the adress widget_____________#
 
 
                 
@@ -198,7 +230,7 @@ necessary_point.place(x=x_adress_etoile,y=y_adress_etoile)
 
 
 
-#_______________________________________________________create the CNE widget __________________________________________________________#
+#__________________create the CNE widget _____________________#
 
 
                                                 #----CNE Label-----#
@@ -223,14 +255,14 @@ image_label.config(highlightthickness=0)
 CNE_txt=StringVar()
 CNE_field=Entry(window, textvariable=CNE_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CNE_field.place(x=x_adress_entry,y=y_adress_entry+120)
-CNE_field.insert(0,get_user_CNE)
+CNE_field.insert(0,get_user_CNE())
+CNE_field.config(state="readonly")
 
 
 
 
 
-
-# ________________________________________creation du champ CIN___________________________________________________#
+# _____________creation du champ CIN__________________#
 
     
     
@@ -245,7 +277,8 @@ CIN_Label.place(x=x_adress_Label,y=y_adress_Label+250)
 CIN_txt=StringVar()
 CIN_field=Entry(window,textvariable=CIN_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 CIN_field.place(x=x_adress_entry,y=y_adress_entry+250)
-CIN_field.insert(0,get_user_CNE)
+CIN_field.insert(0,get_user_CIN())
+CIN_field.config(state="readonly") 
 
 
 #------------creation de l'étoile--------------#
@@ -270,7 +303,7 @@ icon_label.place(x=x_adress_icon,y=y_adress_icon+256)
 
 
 
-# ________________________________________creation du champ du photo___________________________________________________#
+# _____________creation du champ du photo__________________#
 
     
     
@@ -308,7 +341,7 @@ parcourir.place(x=x_adress_icon+350,y=y_adress_entry+405)
 
 
 
-#______________________________________________________creation d'un frame/background___________________________________________________#
+#___________________creation d'un frame/background__________________#
 
 
 
@@ -333,7 +366,7 @@ espace_etudiant.place(x=150,y=5)
 
 
 
-#___________________________________________creation des button_________________________________________#
+#______________creation des button______________#
 
 
 #----------creation du boutton suivant-----------#

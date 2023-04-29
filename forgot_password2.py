@@ -34,20 +34,20 @@ def update_password():
 
     if new_password == confirm_password:
         # Update password in database
-        sql = "UPDATE etudiant SET password = %s WHERE cne = %s"
+        sql = "UPDATE etudiant SET mot_de_passe = %s WHERE cne = %s"
         val = (new_password, cne)  # replace passwd with the actual passwd of the user
         mycursor.execute(sql, val)
         mydb.commit()
         error_label = tk.Label(reset_root, text="Error")
-        error_label.config(text="Mise à jour du mot de passe réussie!",font=("Louis George Cafe Bold", 18, "bold"), fg="red")
-        error_label.place(x=700, y=480)
+        error_label.config(text="Mise à jour du mot de passe réussie!",font=("Louis George Cafe Bold", 18, "bold"), fg="green",bg="white",relief="flat")
+        error_label.place(x=600, y=560)
         error_label.after(3000, error_label.destroy)
         reset_root.after(3000, reset_root.destroy)
 
     else:
         message_label=tk.Label(reset_root, text="Error")
-        message_label.config(text="Les mots de passe ne correspondent pas!", font=("Louis George Cafe Bold", 18, "bold"), fg="red")
-        message_label.place(x=700, y=480)
+        message_label.config(text="Les mots de passe ne correspondent pas!", font=("Louis George Cafe Bold", 18, "bold"), fg="red",bg="white")
+        message_label.place(x=600, y=560)
         message_label.after(2500, message_label.destroy)
       
     if click_count >= 5:
@@ -74,19 +74,19 @@ welcome.place(x=435,y=0)
 
 # Add labels, entry fields, and buttons
 
-label1 = tk.Label(reset_root, text="Entrez mot de passe:", font=("Louis George Cafe Bold",35),bg="white")
+label1 = tk.Label(reset_root, text="Entrez un mot de passe:", font=("Louis George Cafe Bold",35),bg="white")
 label1.place(x=580,y=170)
 
-entry1 = tk.Entry(reset_root,width=15,show="*",font=("Louis George Cafe Bold",35),relief="flat",bg="#e9eaef",highlightcolor="#041777",highlightthickness=3,highlightbackground='white')
+entry1 = tk.Entry(reset_root,width=20,show="*",font=("Louis George Cafe Bold",35),relief="flat",bg="#e9eaef",highlightcolor="#041777",highlightthickness=3,highlightbackground='white')
 entry1.place(x=580,y=250)
 
 
 
 
-label2 = tk.Label(reset_root, text="Confirmer mot de passe:", font=("Louis George Cafe Bold",35),bg="white")
+label2 = tk.Label(reset_root, text="Confirmer le mot de passe:", font=("Louis George Cafe Bold",35),bg="white")
 label2.place(x=580,y=320)
 
-entry2 = tk.Entry(reset_root,width=15,show="*",font=("Louis George Cafe Bold",35),relief="flat",bg="#e9eaef",highlightcolor="#041777",highlightthickness=3,highlightbackground='white')
+entry2 = tk.Entry(reset_root,width=20,show="*",font=("Louis George Cafe Bold",35),relief="flat",bg="#e9eaef",highlightcolor="#041777",highlightthickness=3,highlightbackground='white')
 entry2.place(x=580,y=400)
 verify_button = tk.Button(reset_root,text="Vérifiez",bg="#32a2cd",fg="white",activebackground="#32a2cd", activeforeground="white",font=("Louis George Cafe Bold",20),padx=0,pady=0, relief="flat",width=30,command=update_password)
 verify_button.place(x=580, y=500)

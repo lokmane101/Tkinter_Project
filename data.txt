@@ -1,0 +1,44 @@
+nom:::ok
+prenom:::test
+email:::test@gmail.com
+téléphone:::0620202020
+date_de_naissance:::2001-09-03
+cne:::S0000000000
+cin:::R000000
+adress:::2-alfarafdi-Tanger
+image:::<_io.TextIOWrapper name='C:/Users/us/Pictures/legends.jpg' mode='r' encoding='cp65001'>
+passwd:::rida
+filière:::ID1
+passwd:::rida
+filière:::ID1
+nom:::ok
+prenom:::test
+email:::test@gmail.com
+téléphone:::0620202020
+date_de_naissance:::2001-09-03
+cne:::S0000000000
+cin:::R000000
+adress:::2-alfarafdi-Tanger
+image:::<_io.TextIOWrapper name='C:/Users/us/Pictures/Affiche-test-court-Graphiste.jpg' mode='r' encoding='cp65001'>
+passwd:::rida
+filière:::ID1
+nom:::ok
+prenom:::test
+email:::test@gmail.com
+téléphone:::0620202020
+date_de_naissance:::2001-09-03
+cne:::S0000000000
+cin:::R000000
+adress:::2-alfarafdi-Tanger
+image:::
+nom:::ok
+prenom:::test
+email:::test@gmail.com
+téléphone:::0620202020
+date_de_naissance:::2001-09-03
+cne:::S0000000000
+cin:::R000000
+adress:::2-alfarafdi-Tanger
+image:::<_io.TextIOWrapper name='C:/Users/us/Pictures/Affiche-test-court-Graphiste.jpg' mode='r' encoding='cp65001'>
+passwd:::rida
+filière:::ID1

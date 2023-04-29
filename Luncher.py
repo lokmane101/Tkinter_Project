@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 import subprocess
 import mysql.connector 
 import os
+import webbrowser
 
 
 
@@ -11,8 +12,8 @@ current_path=os.getcwd()
 print(current_path)
 
 def signup_button():
-    subprocess.run(["python", current_path+"\\signIn1.py"])
     window.destroy()
+    subprocess.run(["python", current_path+"\\signUp1.py"])
 def window_button():
     subprocess.run(["python", current_path+"\\window.py"])
     
@@ -38,8 +39,8 @@ def pass_account():
         fichier_log=open("fichierLog.txt",'w+')
         fichier_log.write(nomfield.get()+"\n")
         fichier_log.close()
-        subprocess.run(["python",current_path+"\\Account.py"])
         window.destroy()
+        subprocess.run(["python",current_path+"\\Account.py"])
     else:
         erreur=Label(window,text="nom d'utilisateur ou mot de passe incorrect",font=("Arial",15),bg="white",fg="red")
         erreur.place(x=580,y=400)
@@ -137,10 +138,14 @@ leavebutton.place(x=1100, y=660)
 
 
 #------------------------contact support --------------------------------------------------------------------------
+def open_email_client():
+    webbrowser.open('mailto:equipetechniquestkinter@gmail.com')
+
+
 framei = Frame(window, width=200, height=200,relief="ridge")
 framei.place(x=460,y=640)
 icon=PhotoImage(file=r""+current_path+"\\icons\\support.png")
-button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white")
+button=Button(framei,image=icon,padx=0,pady=0,relief="flat",bg="white",command=open_email_client)
 button.pack()
 
 

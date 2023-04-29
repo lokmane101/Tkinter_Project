@@ -6,10 +6,17 @@ import os
 from io import BytesIO
 import webbrowser
 from tkinter import messagebox
+from dataBase import DataBase
+from tools import *
 
+db=DataBase()
+
+def emploi():
+    db.get_schedule()
+    
 current_path=os.getcwd()
 account=Tk()
-account.title("Modification des infos personnels")
+account.title("INFORMATION PERSONNELLES")
 account.geometry("1200x720")
 account.config(bg="white")
 iconsbarr=Frame(account,width=155,height=1440,bg="#15b4ea")
@@ -103,21 +110,7 @@ def imporicon(path,size_tuple):
     icon=ImageTk.PhotoImage(icon)
     return icon
 
-def emploi():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT filière from Etudiant where Cne='"+username+"';")
-    result=cursorr.fetchone()
-    filier=result[0]
-    cursorr.execute("SELECT link from emploidutemps where filière='"+filier+"';")
-    print(filier)
-    url =cursorr.fetchone() 
-    link=url[0]
-    print(link)
-    webbrowser.open_new_tab(link)
-def support():
-    messagebox.showinfo(title="SUPPORT", message="CONTACTER UN DES ADMINS :\n\n\nAFKIR MOHAMED \t email\n\n\nAKKOUH LOKMANE \t lokmaneakkouh10@gmail.com\n\n\n BEN TOUHAMI MOHAMED RIDA \t email")
+
 def description_filière():
     account.destroy()
     subprocess.run(["python",os.getcwd()+"\\Description_filière.py"])
@@ -172,7 +165,7 @@ agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",co
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
-button=Button(iconsbarr,command=support,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
+button=Button(iconsbarr,command=open_email_client,image=support_icon,padx=0,pady=0,relief="flat",bg="#15b4ea",activebackground="#15b4ea")
 button.place(x=30,y=630)
 
 
@@ -181,7 +174,7 @@ button.place(x=30,y=630)
 # hello.place(x=700,y=30)
 #------------------------------personal data frame------------------------------------------------------------------
 body_frame=Frame(account,bg="#B5EFFF",width=1000,height=550,relief="flat")
-body_frame.place(x=240,y=100)
+body_frame.place(x=180,y=50)
 #-------------------- personal picture import ----------------------------------------------------------
 photo=imporicon(get_user_picture(),(200,200))
 photo_label=Label(body_frame,image=photo)
@@ -191,54 +184,54 @@ photo_label.place(x=0,y=0)
 
 firstName_label=Label(body_frame,text="NOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 firstName_label.place(x=210,y=30)
-firstName_label2=Label(body_frame,text=get_user_first_name,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+firstName_label2=Label(body_frame,text=get_user_first_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 firstName_label2.place(x=600,y=30)
 
 second_Name_label=Label(body_frame,text="PRENOM:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 second_Name_label.place(x=210,y=80)
-second_Name_label2=Label(body_frame,text=get_user_second_name,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+second_Name_label2=Label(body_frame,text=get_user_second_name(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 second_Name_label2.place(x=600,y=80)
 
 CNE_label=Label(body_frame,text="CNE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 CNE_label.place(x=210,y=130)
-CNE_label2=Label(body_frame,text=get_user_CNE,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CNE_label2=Label(body_frame,text=get_user_CNE(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 CNE_label2.place(x=600,y=130)
 
 
 CIN_label=Label(body_frame,text="CIN:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 CIN_label.place(x=210,y=180)
-CIN_label2=Label(body_frame,text=get_user_CIN,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+CIN_label2=Label(body_frame,text=get_user_CIN(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 CIN_label2.place(x=600,y=180)
 
 
 filiere_label=Label(body_frame,text="FILIERE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 filiere_label.place(x=210,y=220)
-filiere_label2=Label(body_frame,text=get_filiere,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+filiere_label2=Label(body_frame,text=get_filiere(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 filiere_label2.place(x=600,y=220)
 
 
 
 EMAIL_label=Label(body_frame,text="EMAIL:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 EMAIL_label.place(x=210,y=270)
-EMAIL_label2=Label(body_frame,text=get_email,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+EMAIL_label2=Label(body_frame,text=get_email(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 EMAIL_label2.place(x=600,y=270)
 
 add=0
 TELEPHONE_label=Label(body_frame,text="TELEPHONE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 TELEPHONE_label.place(x=210,y=320+add)
-TELEPHONE_label2=Label(body_frame,text=get_téléphone,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+TELEPHONE_label2=Label(body_frame,text=get_téléphone(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 TELEPHONE_label2.place(x=600,y=320+add)
 
 
 DATE_DE_NAISSANCE_label=Label(body_frame,text="DATE DE NAISSANCE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 DATE_DE_NAISSANCE_label.place(x=210,y=370+add)
-DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+DATE_DE_NAISSANCE_label2=Label(body_frame,text=get_date_de_naissance(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 DATE_DE_NAISSANCE_label2.place(x=600,y=370+add)
 
 
 ADRESSE_label=Label(body_frame,text="ADRESSE:",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
 ADRESSE_label.place(x=210,y=420+add)
-ADRESSE_labe2=Label(body_frame,text=get_adress,bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
+ADRESSE_labe2=Label(body_frame,text=get_adress(),bg="#B5EFFF",fg="#A92B6F",font=("Arila",20))
 ADRESSE_labe2.place(x=600,y=420+add)
 
 #---------------------------- masquer le mot de passe----------------------
@@ -256,7 +249,7 @@ def hide_password(event):
     password_label.bind("<Button-1>", show_password)
 
 # Création du champ de mot de passe sécurisé
-password_label = Label(body_frame, text=get_password, bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
+password_label = Label(body_frame, text=get_password(), bg="#B5EFFF", fg="#A92B6F", font=("Arial", 20))
 password_label.place(x=600, y=470)
 
 # Ajout d'un événement de clic au Label pour afficher/masquer le mot de passe
@@ -279,10 +272,10 @@ verify_button.place(x=870, y=490)
 
 #--------------------------leave button-------------------------------------------
 leavebutton=Button(account,text="Quitter",command=account.quit,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-leavebutton.place(x=1200, y=660)
+leavebutton.place(x=1100, y=660)
 #--------------------------logout button--------------------------------------------
 logout=Button(account,text="Partir",command=log_out,bg="#258EF5",fg="white",activebackground="#258EF5", activeforeground="white",font=("Arial",16),padx=0,pady=0, relief="flat")      #
-logout.place(x=210, y=660)
+logout.place(x=200, y=660)
 account.mainloop()
 
 

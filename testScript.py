@@ -1,4 +1,5 @@
-# from tkinter import *
+from tkinter import *
+from tkinter import messagebox
 # from tkinter import filedialog
 # from re import *
 # import mysql.connector as sc
@@ -168,5 +169,36 @@ button.place(x=40,y=70)
 
 # cursor.execute("SELECT IMAGE FROM ETUDIANT WHERE CIN='R1587899633'")
 # print(cursor.fetchone())
-raise "contacter l'addministration"
-print(3)
+root=Tk()
+error_label = tk.Label(root, text="Error")
+error_label.config(text="Les informations saisies sont incorrectes", font=("Arial", 18, "bold"), fg="red")
+error_label.pack()
+error_label.after(5000,error_label.destroy)
+# root.mainloop()
+
+
+
+# ddn="2002-02-03"
+# ddn=ddn.split("-")
+# if ddn[1][0]=='0' :
+#     ddn[1]=ddn[1][1]
+# if ddn[2][0]=='0' :
+#     ddn[2]=ddn[2][1]
+
+    
+# print("-".join(ddn))
+
+
+
+date="2003-21-3"
+date_list=date.split("-")
+if bool(re.match(r"^\d{4}-\d-\d$",date)):
+    date_list[1]="0"+date_list[1]
+    date_list[2]="0"+date_list[2]
+elif bool(re.match(r"^\d{4}-\d\d-\d$",date)): 
+    date_list[2]="0"+date_list[2]
+elif bool(re.match(r"^\d{4}-\d-\d\d$",date)):
+    date_list[1]="0"+date_list[1]
+date="-".join(date_list)
+    
+print(date)

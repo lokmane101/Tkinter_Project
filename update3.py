@@ -4,27 +4,28 @@ from PIL import Image,ImageTk
 import subprocess
 from dataBase import DataBase
 import os
-from info_pers import *
-
-
+import mysql.connector
+import re
 #------------button qui retour en arrière-------------#
 def go_back():
         window.destroy()
-        subprocess.run(["python",current_path+r"/signUp2.py"])
-
+        subprocess.run(["python",current_path+r"/update2.py"])
+        
 #----pour button valider-----
 
 def valider():
-        if generate_err():
+        g_e=generate_err()
+        r_v=regex_verification()
+        if g_e and r_v:
                 print("apply insertion function......")
                 db.insert_data_sign_up_phase3(passwd_field.get(),filière_field.get())
                 print("hello importaion des donnnées......")
                 print(db.getrow())
                 print("enregistrement.....")
-                db.valide()
-                print("saved")
-                window.quit()
-#____________________________creation of same util function__________________________________________#
+                db.update()
+                window.destroy()
+                subprocess.run(["python",current_path+"\\update4.py"])
+#_________creation of same util function_______________#
 
 
 #--------------------create icon---------------------#
@@ -42,22 +43,57 @@ def generate_err():
         ok=True
         
         if passwd_field.get()=="":
-                Label(window,text="****svp entrer votre mot de passe",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
+                Label(window,text="**svp entrer votre mot de passe",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
                 ok=False
         else:
-                Label(window,text="****svp entrer votre mot de passe",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
+                Label(window,text="**svp entrer votre mot de passe",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+40)
                 
         if filière_field.get()=="":
-                Label(window,text="****svp entrer votre filière'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
+                Label(window,text="**svp entrer votre filière'",fg="red",bg="white").place(x=x_username_entry+350,y=y_username_entry+200-10)
                 ok=False
         
         else:
-                Label(window,text="****svp entrer votre section",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+300+40)
+                Label(window,text="**svp entrer votre section",fg="white",bg="white").place(x=x_username_entry+350,y=y_username_entry+300+40)
         return ok
+
+def regex_verification():
+        ok=True
+        fil=re.match(r"^ID1|ID2|GI1|GI2$",filière_field.get())
+        if  not bool(fil) and filière_field.get().strip()  not  in ("filière diponible:ID1/ID2/GI1/GI2(respecter la syntaxe)",""):
+                ok=False
+                Label(window,text="****invalide syntaxe (filière disponiblie: ID1, ID2, GI1, GI2)",fg="red",bg="white").place(x=x_username_entry+50,y=y_username_entry+200-10)
+                print("filière valider")
+        else:
+                Label(window,text="****invalide syntaxe (filière disponiblie: ID1, ID2, GI1, GI2)",fg="white",bg="white").place(x=x_username_entry+50,y=y_username_entry+200-10)
+                
                  
+        return ok
 
+                 
+def get_password():
+    cursorr.execute("SELECT mot_de_passe from Etudiant where cne='"+username()+"';")
+    result=cursorr.fetchone()
+    mot_de_passe=result[0]
+    return mot_de_passe
+#_______________create the non widget_____________#
+database = mysql.connector.connect(host='localhost',
+                                database='projet',
+                                user='root',
+                                password='root')
+#------------------------create cursor---------------------------------------------
+cursorr=database.cursor()
+def username():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    print(users)
+    username=users[0]
+    return username
+def get_filiere():
+    cursorr.execute("SELECT filière from Etudiant where Cne='"+username()+"';")
+    result=cursorr.fetchone()
+    return result[0]
 
-#________________________________varaibel a utiliser___________________________________#
+#___________varaibel a utiliser____________#
 
 current_path=os.getcwd()
 
@@ -78,10 +114,11 @@ y_username_etoile=100
 icon_size=50
 
 
-#_____________________________________________creation de la fenêtre_________________________________________________#
+#________________creation de la fenêtre________________#
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("MODIFICATION")
 
 
 
@@ -91,7 +128,7 @@ db= DataBase()
 
 
 
-#_______________________________________________________create the password widget __________________________________________________________#
+#__________________create the password widget _____________________#
 
 
                                                 #----passwd Label-----#
@@ -115,11 +152,11 @@ image_label.config(highlightthickness=0)
 passwd_txt=StringVar()
 passwd_field=Entry(window,show="*", textvariable=passwd_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 passwd_field.place(x=x_username_entry,y=y_username_entry)
-passwd_field.insert(0, get_password)
+passwd_field.insert(0, get_password())
 
 
 
-# ________________________________________creation du champ filière___________________________________________________#
+# _____________creation du champ filière__________________#
 
     
     
@@ -134,7 +171,7 @@ filière_Label.place(x=x_username_Label-10,y=y_username_Label+120+30)
 filière_txt=StringVar()
 filière_field=Entry(window,textvariable=filière_txt,font=("Avial",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 filière_field.place(x=x_username_entry,y=y_username_entry+120+30)
-filière_field.insert(0, get_filiere)
+filière_field.insert(0, get_filiere())
 
 #------------creation de l'étoile--------------#
 filière_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
@@ -151,7 +188,7 @@ icon_label.place(x=x_username_icon-20,y=y_username_icon+120+30)
 
 
 
-#______________________________________________________creation d'un frame/background___________________________________________________#
+#___________________creation d'un frame/background__________________#
 
 
 
@@ -174,7 +211,7 @@ espace_etudiant.place(x=150,y=5)
 
 
 
-#___________________________________________creation des button_________________________________________#
+#______________creation des button______________#
 
 
 #----------creation du boutton valider-----------#

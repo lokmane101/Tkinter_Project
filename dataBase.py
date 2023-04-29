@@ -1,5 +1,6 @@
 import mysql.connector as sc
 from tkinter import messagebox
+import webbrowser
 class DataBase:
     def __init__(self):
         self.mydata={}
@@ -60,10 +61,9 @@ class DataBase:
             db= image.read()
         return db
     
-    #-----------------enregistrement des données dans a base des données--------------
 
-    def valide(self):
-        #-----definition d'image path 
+    
+    def get_image_link(self):
         Myimage_path=self.mydata["image"].split(" ")
         print(Myimage_path)
         if "png" in Myimage_path[2] or "jpg"in Myimage_path[2]:
@@ -72,22 +72,26 @@ class DataBase:
         else:
             Myimage_path=Myimage_path[1].split("=")[1].replace("'","")
 
-        
-
-
         print(Myimage_path)
+        return Myimage_path
+    #-----------------enregistrement des données dans a base des données--------------
+
+    def valide(self):
+        #-----definition d'image path 
+        image_path=self.get_image_link()
         #------insertion des données (sans l'adress)--------#
         try:
             requeste="INSERT INTO ETUDIANT (mot_de_passe,nom,prenom,filière,email,téléphone,cne,cin,date_de_naissance,image) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             data=(self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["filière"],
-                  self.mydata["email"],self.mydata["téléphone"],self.mydata["cne"],self.mydata["cin"],self.mydata["date_de_naissance"],DataBase.convertToBinary(image_path=Myimage_path))
+                  self.mydata["email"],self.mydata["téléphone"],self.mydata["cne"],self.mydata["cin"],self.mydata["date_de_naissance"],DataBase.convertToBinary(image_path))
             self.cursor.execute(requeste,data)
             self.database.commit()
             print("saved data without adress ")
         except:
-            messagebox.showwarning("Warning","cne déja existe, retour à a page précédente pour corriger cne")
+            messagebox.showwarning("Warning","Etudiant déja existe, retour à a la page précédente pour corriger le CNE")
             raise "cne déja existe, recommencez la (ré)insription"
         
+
            
         
 
@@ -129,15 +133,59 @@ class DataBase:
 
         return nom_prenom_fil[0][0],nom_prenom_fil[0][1],filiere
     
-
-
-    # recuperation des modules  et leur professeurs
-    def get_Modules_Profs(self):
+    #---------recuperation du cne d'utilisateur connecter--------------
+    @staticmethod
+    def get_cne_user_connecter():
         with open(r"fichierLog.txt","r") as fL:
             cne=fL.readlines()[0].replace("\n","")
+            return cne
+
+    # ----------recuperation des modules  et leur professeurs------------
+    def get_Modules_Profs(self):
+        
         requete ="SELECT module,professeur from modules where filière=(SELECT filière from etudiant where cne=%s)"
-        data=(cne,)
+        data=(DataBase.get_cne_user_connecter(),)
         self.cursor.execute(requete,data)
         return  self.cursor.fetchall()
     
-        
+    #------------fonction pour modifier les données
+    def update(self):
+
+        requete="Update Etudiant set mot_de_passe=%s,nom=%s,prenom=%s,filière=%s,email=%s,téléphone=%s,date_de_naissance=%s"
+        data=(self.mydata["passwd"],self.mydata["nom"],self.mydata["prenom"],self.mydata["filière"],
+                  self.mydata["email"],self.mydata["téléphone"],self.mydata["date_de_naissance"])
+        if self.mydata["image"]!="":
+            requete=requete+",image=%s"
+            data=data+(DataBase.convertToBinary(self.get_image_link()),)  
+        requete=requete+"where cne='"+DataBase.get_cne_user_connecter()+"'"
+        self.cursor.execute(requete,data)
+        self.database.commit()
+
+        requete="Update Etudiant set mot_de_passe=%s,nom=%s,prenom=%s,filière=%s,email=%s,téléphone=%s,date_de_naissance=%s"
+
+
+        #--------fetch the id of the student------
+        self.cursor.execute("SELECT id from Etudiant where cne=%s",(DataBase.get_cne_user_connecter(),))
+        valide_id=self.cursor.fetchall()
+        v_valide_id=valide_id[0][0]
+        print(v_valide_id)
+        #----------insertion de l'adress----------
+        adress=self.mydata["adress"].split("-")
+        requeste="update adress set num=%s,rue=%s,ville=%s where id_Etud=%s;"
+        data=(adress[0],adress[1],adress[2],v_valide_id)
+        self.cursor.execute(requeste,data)
+
+        print("update avec succssés")
+
+        # -------get Schedule--------
+
+    def get_schedule(self):
+        requete="SELECT filière from Etudiant where cne=%s"
+        data=(DataBase.get_cne_user_connecter(),)
+        self.cursor.execute(requete,data)
+        filiere=self.cursor.fetchone()[0]
+        requete="SELECT link from emploidutemps where filier=%s"
+        data=(filiere,)
+        self.cursor.execute(requete,data)
+        link=self.cursor.fetchone()[0]
+        webbrowser.open_new_tab(link)

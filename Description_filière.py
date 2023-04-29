@@ -7,9 +7,10 @@ import webbrowser
 
 
 #------------------------focntions utiles----------------------#
+
 def emploi():
-    url = 'https://drive.google.com/file/d/1Nz6Mu8ZliD2G_Hn4mM5zV0aJuBbOOar5/view?usp=sharing'
-    webbrowser.open_new_tab(url)
+    db.get_schedule()
+    
 def imporicon(path,icon_size):
     icon=Image.open(path)
     icon=icon.resize(icon_size)
@@ -38,7 +39,7 @@ db=DataBase()
 account=Tk()
 account.geometry("1200x720")
 account.config(bg="#FFEBCD")
-
+account.title("DESCRIPTION")
 
 
 
@@ -81,7 +82,7 @@ button.place(x=30,y=630)
 #-------------frame (Nom filière et nom d'étudiant)-------------- 
 
 Student_frame=Frame(account,bg="#FFEBCD")
-Student_frame.place(x=220,y=10, height=150,width=1100)
+Student_frame.place(x=190,y=10, height=150,width=1100)
 
 
 nom,prenom,filière=db.getStudent()
@@ -90,7 +91,7 @@ Student_fil=Label(Student_frame,text=filière,font=("LEMONMILK-Medium",50),fg="#
 Student_fil.place(x=170,y=25)
 
 Student_nom_prenom=Label(Student_frame,text="Mr(s)."+nom+" "+prenom,font=("LEMONMILK-Medium",15),fg="#A92B6F",bg="#FFEBCD")
-Student_nom_prenom.place(x=780,y=120)
+Student_nom_prenom.place(x=0,y=120)
 
 #-------------------frame (des professeurs)---------------------
 
@@ -133,7 +134,7 @@ for module,prof in modules_profs:
     else:
         listbox.insert(END,module)
 
-    listbox.configure(fg="white",bg="#3C8E82",font=("LEMONMILK-Medium",12,"bold"),bd=3)
+    listbox.configure(fg="white",bg="#3C8E82",font=("LEMONMILK-Medium",8,"bold"),bd=3)
 
     listbox.insert(END," ")
     listbox.insert(END,"              Enseignant(e):")
@@ -146,16 +147,12 @@ for module,prof in modules_profs:
 #-----------creation des boutton-----------------------------#
 for index in range(len(modules_profs)):
     button=Button(modules_frame,relief="flat",text=f"module{index+1}",width=20,height=2,command=lambda index=index: show_listbox(index),bg="#15b4ea",fg="#F9F871",font=("LEMONMILK-Medium",9,"bold"))
-    if index+1==13:
-        button.place(x=dx,y=dy-30)
-        l_button.append({"button":button,"dx":dx,"dy":dy-30})
-    else:
-        l_button.append({"button":button,"dx":dx,"dy":dy})
-        button.place(x=dx,y=dy)
+    l_button.append({"button":button,"dx":dx,"dy":dy})
+    button.place(x=dx,y=dy)
     dx+=200   
-    if len(l_button)%6==0:
+    if len(l_button)%5==0:
         dx=10
-        dy+=205
+        dy+=180
     
 
 

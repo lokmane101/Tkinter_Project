@@ -3,20 +3,34 @@ import mysql.connector
 from PIL import Image,ImageTk
 import subprocess
 import os
+from datetime import datetime
+from tools import *
+
 current_path=os.getcwd()
 MAX_TRIES = 5
-def on_entry_click(event):
+def on_entry_click_in(event):
     """Function to handle click event on Entry widget"""
     if date_de_naissance_entry.get() == 'YYYY-MM-DD':
         date_de_naissance_entry.delete(0, tk.END)  # Delete the placeholder text
-
+        date_de_naissance_entry.config(fg="black")
+def on_entry_click_out(event):
+    """Function to handle click event on Entry widget"""
+    if date_de_naissance_entry.get() == '':
+        date_de_naissance_entry.insert(0, "YYYY-MM-DD")  # Delete the placeholder text
+        date_de_naissance_entry.config(fg="gray")
 def verify():
     """Function to verify user information"""
     global cne
     cne = cne_entry.get()
     cin = cin_entry.get()
-    ddn = date_de_naissance_entry.get()
+    ddn = regler_date(date_de_naissance_entry.get())
+    # Convertir l'objet datetime en une chaîne de caractères au format YYYY-MM-DD
+    
+    
 
+    
+
+    #2002-03-06
     # Verify user information in database
     db = mysql.connector.connect(
         host="localhost",
@@ -36,18 +50,18 @@ def verify():
         MAX_TRIES -= 1
         if MAX_TRIES == 0:
             error_label = tk.Label(root, text="Error")
-            error_label.config(text="Les informations saisies sont incorrectes", font=("Arial", 18, "bold"), fg="red")
-            error_label.place(x=700, y=580)
+            error_label.config(text="Les informations saisies sont incorrectes", font=("Arial", 18, "bold"), fg="red",bg="white")
+            error_label.place(x=580, y=640)
             error_label.after(2000, root.destroy) # this message will be deleted after 3s
         else:
             error_label = tk.Label(root, text="Error")
-            error_label.config(text="Les informations saisies sont incorrectes", font=("Arial", 18, "bold"), fg="red")
-            error_label.place(x=700, y=580)
+            error_label.config(text="Les informations saisies sont incorrectes", font=("Arial", 18, "bold"), fg="red",bg="white")
+            error_label.place(x=580, y=640)
             error_label.after(2000, error_label.destroy)
 def get_user_name():
     logfile=open("fichierlog.txt",'r')
     users=logfile.read().split("\n")
-    username=users[-2]
+    username=users[0]
     return username
 root = tk.Tk()
 root.title("Vérification des informations d'utilisateur")
@@ -79,8 +93,11 @@ birthday_label=tk.Label(root, text="Date de naissance:", font=("Louis George Caf
 birthday_label.place(x=580, y=400)
 
 date_de_naissance_entry = tk.Entry(root, width=20,font=("Arial",30),relief="flat",bg="#e9eaef",highlightcolor="#041777",highlightthickness=3,highlightbackground='white')
-date_de_naissance_entry.insert(0, 'YYYY-MM-DD')  # Set the placeholder text
-date_de_naissance_entry.bind('<FocusIn>', on_entry_click)  # Bind the click event to the function
+date_de_naissance_entry.insert(0, 'YYYY-MM-DD')  # Set the placeholder 
+date_de_naissance_entry.config(foreground="gray")
+date_de_naissance_entry.bind('<FocusIn>', on_entry_click_in)  # Bind the click event to the function
+date_de_naissance_entry.bind('<FocusOut>', on_entry_click_out)  # Bind the click event to the function
+
 date_de_naissance_entry.place(x=580, y=465)
 
 verify_button = tk.Button(root, text="Vérifiez!",bg="#32a2cd",fg="white",activebackground="#32a2cd", activeforeground="white",font=("Arial",20),padx=0,pady=0, relief="flat",width=27,command=verify)

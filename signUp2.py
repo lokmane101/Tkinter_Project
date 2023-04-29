@@ -162,6 +162,7 @@ icon_size=50
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("INSCRIPTION")
 
 #-----------------se connecter tout d'abord à la base de donnée------------------#
 db= DataBase()

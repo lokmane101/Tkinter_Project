@@ -24,8 +24,8 @@ def valider():
                 print(db.getrow())
                 print("enregistrement.....")
                 db.valide()
-                window.quit()
-                subprocess.run(["python",current_path+"\\Account.py"])
+                window.destroy()
+                subprocess.run(["python",current_path+"\\SignUp4.py"])
 
 #____________________________creation of same util function__________________________________________#
 
@@ -103,6 +103,8 @@ icon_size=50
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("INSCRIPTION")
+
 
 
 

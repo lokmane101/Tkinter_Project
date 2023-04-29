@@ -5,7 +5,12 @@ from PIL import Image,ImageTk
 import os
 import webbrowser
 from tkinter import messagebox
+from dataBase import DataBase
+db=DataBase()
 
+def emploi():
+    db.get_schedule()
+    
 current_path=os.getcwd()
 account=Tk()
 account.title("LES COURS")
@@ -43,19 +48,7 @@ def imporicon(path,size_tuple):
     icon=ImageTk.PhotoImage(icon)
     return icon
 
-def emploi():
-    logfile=open("fichierlog.txt",'r')
-    users=logfile.read().split("\n")
-    username=users[-2]
-    cursorr.execute("SELECT filière from Etudiant where CNE='"+username+"';")
-    result=cursorr.fetchone()
-    filier=result[0]
-    cursorr.execute("SELECT link from emploidutemps where filier='"+filier+"';")
-    print(filier)
-    url =cursorr.fetchone() 
-    link=url[0]
-    print(link)
-    webbrowser.open_new_tab(link)
+
 def support():
     messagebox.showinfo(title="SUPPORT", message="CONTACTER UN DES ADMINS :\n\n\nAFKIR MOHAMED \t mohammedafk002@gmail.com\n\n\nAKKOUH LOKMANE \t lokmaneakkouh10@gmail.com\n\n\n BEN TOUHAMI MOHAMED RIDA \t bentouhamimohamedrida@gmail.com")
 
@@ -136,7 +129,7 @@ for i in range(0, len(re1)):
     else:
         l1=Label(body_frame,text=re1[i]+": ",bg="#B5EFFF",fg="#0073e6",font=("Arila",20))
         l1.place(x=40,y=dy)
-        cours_lien=Button(body_frame,bg="#15b4ea",padx=0,pady=0, relief="flat",command=lambda i=i:cours_acces(i),activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="Clique ici",fg="#F9F871",activeforeground="white")
+        cours_lien=Button(body_frame,bg="#15b4ea",padx=0,pady=0, relief="flat",command=lambda i=i:cours_acces(i),activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15,"underline","bold"),text="Clique ici",fg="#F9F871",activeforeground="white")
         cours_lien.place(x=735,y=dy)
     dy=dy+47
 

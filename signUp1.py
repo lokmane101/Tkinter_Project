@@ -5,6 +5,7 @@ import subprocess
 from dataBase import DataBase
 import re 
 import os
+from tools import *
 current_path=os.getcwd()
 
 
@@ -21,16 +22,18 @@ def button_suivant():
         v_generate_err=generate_err()
         v_regex_verification=regex_verification()
         if v_regex_verification and  v_generate_err  :
-                db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),date_de_naissan_field.get())
+                db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),regler_date(date_de_naissan_field.get()))
                 window.destroy()      
                 subprocess.run(["python",current_path+"\\signUp2.py"])
                 print("travaille")
                 
 
+
+
         
 def go_to_luncher():
+        window.destroy()      
         subprocess.run(["python",current_path+"\\Luncher.py"])
-        window.quit()      
 
 
 
@@ -150,10 +153,10 @@ def generate_err():
                 Label(window,text="****svp entrer votre numero",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
 
         if date_de_naissan_field.get()=="" or date_de_naissan_field.get()=="YYYY-MM-DD":
-                Label(window,text="****svp entrer la date de naissance",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
+                Label(window,text="****svp entrer la date de naissance",fg="red",bg="white").place(x=x_nom_entry+250,y=y_nom_entry+40+100*4+85)
                 ok=False
         else:
-                Label(window,text="****svp entrer la date de naissance",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
+                Label(window,text="****svp entrer la date de naissance",fg="white",bg="white").place(x=x_nom_entry+250,y=y_nom_entry+40+100*4+85)
 
         return ok
 
@@ -195,6 +198,7 @@ def regex_verification():
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("INSCRIPTION")
 
 #--------------------creation de la conenection avec la base de donee------------------
 db=DataBase()
@@ -349,7 +353,7 @@ icon_label.place(x=x_non_icon,y=y_non_icon+336)
 
 
 #--------------creation du label-------------------#
-date_de_naissan_Label=Label(window, text="Entrer la date_de_naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
+date_de_naissan_Label=Label(window, text="Entrer la date de naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
 date_de_naissan_Label.place(x=x_nom_Label,y=y_nom_Label+430+50)
 
 
@@ -381,7 +385,7 @@ icon_label.place(x=x_non_icon,y=y_non_icon+430+50)
 
 #----------creation du boutton suivant-----------#
 button_suivant=Button(window, text="suivant",fg="white",bg="#258EF5",width=20,activebackground="#258EF5",activeforeground="blue",font=("Louis George Cafe Bold",10,"bold"),command=button_suivant)
-button_suivant.place(x=1070,y=680)
+button_suivant.place(x=1000,y=680)
 
 #-----------creartion du button go back----------#
 go_back_icon=create_icon(current_path+"\\icons\\go_back.jpg",(45,15))

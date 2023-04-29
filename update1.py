@@ -5,27 +5,22 @@ import subprocess
 from dataBase import DataBase
 import re 
 import os
-from Account import *
+import mysql.connector
+from tools import *
 
 current_path=os.getcwd()
 
 
-#--------------------------------------#
-#                                      #
-#                                      #
-#                                      #
-#                                      #
-#                                      #
 # ------------------------------------ #
-#___________________________Subprocess___________________________#
+#__________Subprocess__________#
 
 def button_suivant():
         v_generate_err=generate_err()
         v_regex_verification=regex_verification()
         if v_regex_verification and  v_generate_err  :
-                db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),date_de_naissan_field.get())
+                db.insert_data_sign_up_phase1(field_nom.get(),prenom_field.get(),email_field.get(),phone_field.get(),regler_date(date_de_naissan_field.get()))
                 window.destroy()      
-                subprocess.run(["python",current_path+"\\signUp2.py"])
+                subprocess.run(["python",current_path+"\\update2.py"])
                 print("travaille")
                 
 
@@ -51,7 +46,7 @@ def go_to_luncher():
 
 
 
-#________________________________varaibel a utiliser___________________________________#
+#___________varaibel a utiliser____________#
 
 x_nom_entry=300+100+100
 y_nom_entry=150
@@ -67,50 +62,6 @@ y_nom_etoile=100
 
 
 icon_size=50
-
-#__________________________________________some function ___________________________________________#
-
-
-#----------------------------placehoder----------------------------#
-
-
-############################"event argument is to detect if I ckliked on the field or not#############################""""""
-def focus_In(event):
-        if date_de_naissan_field.get()=="YYYY-MM-DD":
-                date_de_naissan_field.delete(0,END)
-                date_de_naissan_field.configure(foreground="black")
-
-def focus_out(event):
-        if date_de_naissan_field.get()=="":
-                date_de_naissan_field.insert(0,"YYYY-MM-DD")
-                date_de_naissan_field.configure(foreground="gray",font=("Louis George Cafe Bold",15))
-
-
-#--------place holder de l'email-----------------------------#
-def focus_In_email(event):
-        if email_field.get()=="school@service.com":
-                email_field.delete(0,END)
-                email_field.config(fg="black")
-
-def focus_out_email(event):
-        if email_field.get()=="":
-                email_field.insert(0,"school@service.com")
-                email_field.configure(foreground="gray",font=("Louis George Cafe Bold",15))
-
-
-#--------place holder de l'email----------------------------#
-
-def focus_In_phone(event):
-        if phone_field.get()=="06******** | 07********":
-                phone_field.delete(0,END)
-                phone_field.config(fg="black")
-
-def focus_out_phone(event):
-        if phone_field.get()=="":
-                phone_field.insert(0,"06******** | 07********")
-                phone_field.configure(foreground="gray",font=("Louis George Cafe Bold",15))
-
-
 
 
 #-----------------------create icon------------------------------#
@@ -128,34 +79,34 @@ def create_icon(icon_path,tuple_size):
 def generate_err():
         ok=True
         if field_nom.get()=="":
-                Label(window,text="****svp entrer le nom",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40)
+                Label(window,text="**svp entrer le nom",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40)
                 ok=False
         else:
-                Label(window,text="****svp entrer le nom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40)
+                Label(window,text="**svp entrer le nom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40)
 
         if prenom_field.get()=="":
-                Label(window,text="****svp entrer le prenom",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
+                Label(window,text="**svp entrer le prenom",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
                 ok=False
         else:
-                Label(window,text="****svp entrer le prenom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
+                Label(window,text="**svp entrer le prenom",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100)
 
         if email_field.get() in ["","school@service.com"]:
-                Label(window,text="****svp entrer l' email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="**svp entrer l' email",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
                 ok=False
         else: 
-                Label(window,text="****svp entrer l' email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
+                Label(window,text="**svp entrer l' email",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*2)
 
-        if phone_field.get() in  ["","06******** | 07********"]:
-                Label(window,text="****svp entrer votre numero",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
+        if phone_field.get() in  ["","06**** | 07****"]:
+                Label(window,text="**svp entrer votre numero",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
                 ok=False
         else:
-                Label(window,text="****svp entrer votre numero",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
+                Label(window,text="**svp entrer votre numero",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+30+100*3+40)
 
         if date_de_naissan_field.get()=="" or date_de_naissan_field.get()=="YYYY-MM-DD":
-                Label(window,text="****svp entrer la date de naissance",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
+                Label(window,text="**svp entrer la date de naissance",fg="red",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
                 ok=False
         else:
-                Label(window,text="****svp entrer la date de naissance",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
+                Label(window,text="**svp entrer la date de naissance",fg="white",bg="white").place(x=x_nom_entry+350,y=y_nom_entry+40+100*4+85)
 
         return ok
 
@@ -166,37 +117,48 @@ def regex_verification():
         email=re.match(r"^\w+\.?\w*@\w+\.\w{2,}$",email_field.get())
         if  not bool(email) and email_field.get().strip()  not  in ('school@service.com',""):
                 ok=False
-                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+40+100*2)
+                Label(window,text="**invalide syntaxe",fg="red",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+40+100*2)
                 print("email valider")
         else:
-                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+40+100*2)
+                Label(window,text="**invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+40+100*2)
                 
 
         phone=re.match(r"^0(6|7)\d{8}$",phone_field.get())
-        if not bool(phone) and phone_field.get().strip() not in ("06******** | 07********",""):
+        if not bool(phone) and phone_field.get().strip() not in ("06**** | 07****",""):
                 ok=False
-                Label(window,text="****invalide syntaxe",fg="red",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
+                Label(window,text="**invalide syntaxe",fg="red",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
                 print("phone valider")
         else:
-                Label(window,text="****invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
+                Label(window,text="**invalide syntaxe",fg="white",bg="white").place(x=x_nom_entry+30,y=y_nom_entry+30+100*3+40)
 
         
         date=re.match(r"^[1-2]\d{3}-(0?[1-9]|1[0-2])-((0?[1-9])|[1-2]?\d|3[0-1])$",date_de_naissan_field.get())
         if not bool(date) and date_de_naissan_field.get().strip() not in ("YYYY-MM-DD",""):
                 ok=False
-                Label(window,text="****invalide syntxe",fg="red",bg="white",bd=1).place(x=x_nom_entry+90,y=y_nom_entry+40+100*4+85)
+                Label(window,text="**invalide syntxe",fg="red",bg="white",bd=1).place(x=x_nom_entry+90,y=y_nom_entry+40+100*4+85)
         else:
-                Label(window,text="****invalide syntxe",fg="white",bg="white",bd=1).place(x=x_nom_entry+90,y=y_nom_entry+40+100*4+85)
+                Label(window,text="**invalide syntxe",fg="white",bg="white",bd=1).place(x=x_nom_entry+90,y=y_nom_entry+40+100*4+85)
 
         return ok
 
 
 
-
-#_____________________________________________creation de la fenêtre_________________________________________________#
+def username():
+    logfile=open("fichierlog.txt",'r')
+    users=logfile.read().split("\n")
+    print(users)
+    username=users[0]
+    return username
+def get_user_CNE():
+    cursorr.execute("SELECT CNE from Etudiant where Cne='"+username()+"';")
+    result=cursorr.fetchone()
+    cne=result[0]
+    return cne
+#________________creation de la fenêtre________________#
 window=Tk()
 window.geometry("1200x720")
 window.config(bg="white")
+window.title("MODIFICATION")
 
 #--------------------creation de la conenection avec la base de donee------------------
 db=DataBase()
@@ -213,18 +175,21 @@ db=DataBase()
 
 
 
-#______________________________________________create the non widget______________________________________#
-
-
-
+#_______________create the non widget_____________#
+database = mysql.connector.connect(host='localhost',
+                                database='projet',
+                                user='root',
+                                password='root')
+#------------------------create cursor---------------------------------------------
+cursorr=database.cursor()
 #-----enter the Entry name field------#
 name_txt=StringVar()
 
-field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",20),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
+field_nom=Entry(window, textvariable=name_txt, width=45,bd=0,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 field_nom.place(x=x_nom_entry,y=y_nom_entry)
-cursorr.execute("SELECT nom from Etudiant where CIN='"+get_user_CIN()+"';")
+cursorr.execute("SELECT nom from Etudiant where CNE='"+username()+"';")
 nom=cursorr.fetchone()
-Entry.insert(0, nom)
+field_nom.insert(0, nom[0])
 
 
 
@@ -245,7 +210,7 @@ image_label.config(highlightthickness=0)
 
 
 
-#_______________________________________________________create a prenom widget __________________________________________________________#
+#__________________create a prenom widget _____________________#
 
 
                                                 #----prenom Label-----#
@@ -263,9 +228,9 @@ prenom_etoile.place(x=x_nom_etoile+10,y=y_nom_etoile+100)
 prenom_txt=StringVar()
 prenom_field=Entry(window, textvariable=prenom_txt,bd=0,width=45,font=("Arial",15),highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 prenom_field.place(x=x_nom_entry,y=y_nom_entry+100)
-cursorr.execute("SELECT prenom from Etudiant where CIN='"+get_user_CIN()+"';")
+cursorr.execute("SELECT prenom from Etudiant where CNE='"+username()+"';")
 prenom=cursorr.fetchone()
-Entry.insert(0, prenom)
+prenom_field.insert(0, prenom[0])
 
 
 #--------------creation de l'icon de prenom-------------------#
@@ -283,7 +248,7 @@ image_label.config(highlightthickness=0)
 
 
 
-# ________________________________________creation du champ email___________________________________________________#
+# _____________creation du champ email__________________#
 
     
     
@@ -298,9 +263,9 @@ email_Label.place(x=x_nom_Label,y=y_nom_Label+200)
 email_txt=StringVar()
 email_field=Entry(window,textvariable=email_txt,font=("Louis George Cafe Bold",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff",fg="black")
 email_field.place(x=x_nom_entry,y=y_nom_entry+200)
-cursorr.execute("SELECT email from Etudiant where CIN='"+get_user_CIN()+"';")
+cursorr.execute("SELECT email from Etudiant where CNE='"+username()+"';")
 email=cursorr.fetchone()
-Entry.insert(0, email)
+email_field.insert(0, email[0])
 
 
 #------------creation de l'étoile--------------#
@@ -319,27 +284,30 @@ icon_label.place(x=x_non_icon,y=y_non_icon+206)
 
 
 
-#_______________________________creation du numero de telephone______________________________________#
+#__________creation du numero de telephone_____________#
 
 
 #--------------creation du label-------------------#
-phone_Label=Label(window, text="Entrer votre téléphone  :",font=("Halvetica",15,"bold"),bg="white")
+phone_Label=Label(window, text="Entrer votre téléphone :",font=("Halvetica",15,"bold"),bg="white")
 phone_Label.place(x=x_nom_Label,y=y_nom_Label+330)
+image_label.config(highlightthickness=0, fg='black')
+
+
 
 
 #--------------creation du entry of phone------------#
 phone_txt=StringVar()
 phone_field=Entry(window,textvariable=phone_txt,font=("Louis George Cafe Bold",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff")
 phone_field.place(x=x_nom_entry,y=y_nom_entry+330)
-cursorr.execute("SELECT téléphone from Etudiant where CIN='"+get_user_CIN()+"';")
+cursorr.execute("SELECT téléphone from Etudiant where CNE='"+username()+"';")
 telephone=cursorr.fetchone()
-Entry.insert(0, telephone)
-phone_field.configure(fg="gray")
+phone_field.insert(0, telephone)
+phone_field.configure(fg= 'black')
 
 
 #------------creation de l'étoile--------------#
 phone_etoile=Label(window, text="*",font=("Halvetica",15,"bold"),fg="red",bg="white")
-phone_etoile.place(x=x_nom_etoile,y=y_nom_etoile+330)
+phone_etoile.place(x=x_nom_etoile+30,y=y_nom_etoile+330)
 
 #---------------craetion de l'icon ----------#
 phone_icon=create_icon(current_path+"\\icons\\phone_icon.png",(icon_size-10,icon_size-10))
@@ -351,11 +319,11 @@ icon_label.place(x=x_non_icon,y=y_non_icon+336)
 
 
 
-#______________________________________________creation de date de naissance_________________________________________________________________#
+#_______________creation de date de naissance______________________#
 
 
 #--------------creation du label-------------------#
-date_de_naissan_Label=Label(window, text="Entrer la date_de_naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
+date_de_naissan_Label=Label(window, text="Entrer la date de naissance  :",font=("Louis George Cafe Bold",15,"bold"),bg="white")
 date_de_naissan_Label.place(x=x_nom_Label,y=y_nom_Label+430+50)
 
 
@@ -365,11 +333,12 @@ date_de_naissan_txt=StringVar()
 date_de_naissan_field=Entry(window,textvariable=date_de_naissan_txt,font=("Louis George Cafe Bold",15), width=45,bd=0,highlightcolor="#05bcfa",highlightthickness=3,highlightbackground='white',bg="#e1f3ff",fg="black")
 date_de_naissan_field.place(x=x_nom_entry,y=y_nom_entry+430+50)
 
-date_de_naissan_field.insert(0,"YYYY-MM-DD")
 date_de_naissan_field.configure(fg="gray")
-cursorr.execute("SELECT date_de_naissance from Etudiant where CIN='"+get_user_CIN()+"';")
+cursorr.execute("SELECT date_de_naissance from Etudiant where CNE='"+username()+"';")
 date_de_naissance=cursorr.fetchone()
-Entry.insert(0, date_de_naissance)
+date_de_naissan_field.insert(0, date_de_naissance[0])
+date_de_naissan_field.configure(fg= 'black')
+
 
 
 #-------------------creation de l'étoile-----------------#
@@ -384,12 +353,12 @@ icon_label.place(x=x_non_icon,y=y_non_icon+430+50)
 
 
 
-#___________________________________________creation des button_________________________________________#
+#______________creation des button______________#
 
 
 #----------creation du boutton suivant-----------#
 button_suivant=Button(window, text="suivant",fg="white",bg="#258EF5",width=20,activebackground="#258EF5",activeforeground="blue",font=("Louis George Cafe Bold",10,"bold"),command=button_suivant)
-button_suivant.place(x=1070,y=680)
+button_suivant.place(x=1000,y=680)
 
 #-----------creartion du button go back----------#
 go_back_icon=create_icon(current_path+"\\icons\\go_back.jpg",(45,15))
@@ -411,7 +380,7 @@ go_back_button.place(x=300+100,y=680)
 
 
 
-#______________________________________________________creation d'un frame___________________________________________________#
+#___________________creation d'un frame__________________#
 
 
 

@@ -111,8 +111,8 @@ def cours_acces(i):
 body_frame=Frame(account,bg="#B5EFFF", width=940,height=640,relief="flat")
 body_frame.place(x=200,y=30)
 cursorr.execute("SELECT filière from Etudiant where CNE='"+username()+"';")
-result=cursorr.fetchone()
-filiere=result[0]
+result=cursorr.fetchall()
+filiere=result[0][0]
 cursorr.execute("select module from modules where filière = '"+filiere+"';")
 re1=cursorr.fetchall()
 cursorr.execute("select link from modules where filière = '"+filiere+"';")

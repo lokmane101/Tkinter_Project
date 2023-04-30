@@ -28,9 +28,9 @@ file.close()
 
 cuurent_path =os.getcwd()
 if var=="0":
-    username=input("S'il vous plait entrer le nom de votre utilisateur sur Mysql: ")
+    username=input("S'il vous plait entrer le nom de votre utilisateur sur Mysql(généralement root): ")
     password=input("S'il vous plait entrer le mot de passe de cette utilisateur : ")
-    db=input("S'il vous plait entrer le nom dubase de donnée à connecter : ")
+    db=input("S'il vous plait entrer le nom d'une base de données déja existe (généralement sys) : ")
     connecter(username,db,password)
 subprocess.run(["python",cuurent_path+"\\Luncher.py"])
 

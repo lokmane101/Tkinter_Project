@@ -86,10 +86,10 @@ Student_frame.place(x=190,y=10, height=150,width=1100)
 
 nom,prenom,filière=db.getStudent()
 
-Student_fil=Label(Student_frame,text=filière,font=("LEMONMILK-Medium",50),fg="#A92B6F",bg="#CCFBE5")
+Student_fil=Label(Student_frame,text=filière,font=("Arial",50),fg="#A92B6F",bg="#CCFBE5")
 Student_fil.place(x=170,y=25)
 
-Student_nom_prenom=Label(Student_frame,text="Mr(s)."+nom+" "+prenom,font=("LEMONMILK-Medium",15),fg="#A92B6F",bg="#CCFBE5")
+Student_nom_prenom=Label(Student_frame,text="Mr(s)."+nom+" "+prenom,font=("Arial",15),fg="#A92B6F",bg="#CCFBE5")
 Student_nom_prenom.place(x=0,y=120)
 
 #-------------------frame (des professeurs)---------------------

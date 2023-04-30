@@ -13,12 +13,13 @@ def connecter(user,bddn,passwd):
     # Read the SQL script from file
     with open("script_des_bases_de_données.sql", "r", encoding="utf-8") as file:
         script = file.read()
+    charset = "utf8mb4"
 
     # Construct the mysql command to execute the script
-    command = f"mysql -h {host} -u {user} -p{password} {database}"
+    command = f"mysql -h {host} -u {user} -p{password} --default-character-set={charset} {database}"
 
     # Run the command and pass the script as input
-    subprocess.run(command, input=script.encode(), shell=True)
+    subprocess.run(command, input=script.encode("utf-8"), shell=True)
 
 
 file=open(r"config.properties","r",)
@@ -38,4 +39,3 @@ subprocess.run(["python",cuurent_path+"\\Luncher.py"])
 
 with open(r"config.properties","w") as file:
     file.write("var=1")
-    

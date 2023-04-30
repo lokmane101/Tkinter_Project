@@ -381,7 +381,7 @@ picture_label.pack()
 #--------creation du titre--------#
 
 
-espace_etudiant=Label(window,text="ESPACE      ETUDIANT", font=("LEMONMILK-Medium",52),bg="white")
+espace_etudiant=Label(window,text="ESPACE      ETUDIANT", font=("Arial",52),bg="white")
 espace_etudiant.place(x=435,y=0)
                                                                                                                                                                                         
 

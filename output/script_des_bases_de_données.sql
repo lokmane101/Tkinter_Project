@@ -127,3 +127,7 @@ insert into deliberation values('ID1','https://drive.google.com/file/d/1-HvPbzPQ
 insert into deliberation values('ID2','https://drive.google.com/file/d/1FWXRnfAh7SFkBgotOEAiG6nmC7S_gNlI/view?usp=share_link');
 insert into deliberation values('GI1','https://drive.google.com/file/d/15-isLBx2JGl40H1PWkXoVWwrZpjeAcXz/view?usp=share_link');
 insert into deliberation values('GI2','https://drive.google.com/file/d/159DB-ZBEQpxzEKpFTFhQW-kDsB0pj7cc/view?usp=share_link');
+
+create table BentouhamiAfkirAkkouh(
+        test varchar(10)
+);

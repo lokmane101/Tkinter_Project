@@ -1,5 +1,6 @@
 import subprocess
 import os 
+import mysql.connector as sqc
 
 
 def connecter(user,bddn,passwd):
@@ -22,20 +23,31 @@ def connecter(user,bddn,passwd):
     subprocess.run(command, input=script.encode("utf-8"), shell=True)
 
 
-file=open(r"config.properties","r",)
+file=open(r"config.properties","r")
 var=file.read().split("=")[1].replace("\n","")
 file.close()
 
 
 cuurent_path =os.getcwd()
-if var=="0":
-    username=input("S'il vous plait entrer le nom de votre utilisateur sur Mysql(généralement root): ")
-    password=input("S'il vous plait entrer le mot de passe de cette utilisateur : ")
-    db=input("S'il vous plait entrer le nom d'une base de données déja existe (généralement sys) : ")
-    connecter(username,db,password)
-subprocess.run(["python",cuurent_path+"\\Luncher.py"])
+while True:
+    try:
+        if var=="0":
+            username=input("S'il vous plait entrer le nom de votre utilisateur sur Mysql(généralement root): ")
+            password=input("S'il vous plait entrer le mot de passe de cette utilisateur : ")
+            db=input("S'il vous plait entrer le nom d'une base de données déja existe (généralement sys) : ")
+            connecter(username,db,password)
+            #--------gestion d'error au cas d'entrer des infos incorrect-----------
+            db=sqc.connect(user=username,passwd=password,database="projet",host="localhost")
+            print("connecter")
+            crs=db.cursor()
+            crs.execute("SELECT * FROM BentouhamiAfkirAkkouh;")
+            print(crs.fetchone())
 
-    
+        subprocess.run(["python",cuurent_path+"\\Luncher.py"])
+            
 
-with open(r"config.properties","w") as file:
-    file.write("var=1")
+        with open(r"config.properties","w") as file:
+            file.write("var=1")
+        break
+    except:
+        print("Les informations sont incorrectes ,essayer une autre fois")

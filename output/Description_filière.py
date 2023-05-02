@@ -69,7 +69,7 @@ book_icon_button.place(x=25,y=335)
 
 
 agenda_icon=imporicon(current_path+"\\icons\\agenda.png",(60,60))
-agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=db.get_schedule, image=agenda_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="EMPLOI DU \n DU TEMPS",fg="white",activeforeground="white")
+agenda_icon_button=Button(iconsbarr,bg="#15b4ea",padx=0,pady=0, relief="flat",command=db.get_schedule, image=agenda_icon,activebackground="#15b4ea",compound="top" ,font=("Louis George Cafe",15),text="EMPLOI\n DU TEMPS",fg="white",activeforeground="white")
 agenda_icon_button.place(x=10,y=460)
 
 support_icon=imporicon(current_path+"\\icons\\support.png",(70,70))
